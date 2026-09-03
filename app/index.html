@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>BeyForge X — Beyblade X Combo Builder, Deck Builder & Tournament Tracker</title>
-<meta name="description" content="Build Beyblade X combos, check competitive viability, build 3v3 decks, track matches, and run tournaments. The ultimate Beyblade X strategy tool.">
+<meta name="description" content="Build Beyblade X combos, create 3v3 decks, track matches, and run tournaments. The ultimate Beyblade X organizer tool.">
 <meta name="theme-color" content="#0d0d0d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="BeyForge X">
 <meta property="og:title" content="BeyForge X — Beyblade X Combo Builder">
-<meta property="og:description" content="Build combos, check competitive viability, and dominate the meta.">
+<meta property="og:description" content="Build combos, create decks, track matches, and run tournaments.">
 <meta property="og:type" content="website">
 <link rel="manifest" id="manifestLink" href="">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f3460'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
@@ -291,7 +291,6 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.75
   <section id="tab-combos" class="section active">
     <div class="card">
       <h2>🗡️ Blade <span class="sub">pick your blade</span></h2>
-      <div class="tier-filter" id="bladeTierFilter"></div>
       <select id="bladeSelect" onchange="updateCombo()"></select>
       <div id="bladePreview" class="part-preview"></div>
     </div>
@@ -311,17 +310,14 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.75
 
     <div id="emptyState" class="empty-state">
       <div class="icon">⚔️</div>
-      <p>Select a blade, ratchet, and bit to see competitive analysis</p>
+      <p>Select a blade, ratchet, and bit to build your combo</p>
     </div>
 
     <div id="resultsPanel" class="card hidden">
-      <h2>🏆 Combo Analysis</h2>
+      <h2>📋 Your Combo</h2>
       <div id="comboDisplay" class="combo-display"></div>
       <div id="comboName" class="combo-name"></div>
       <div id="comboSummary" class="combo-summary"></div>
-      <div id="totalCost" class="total-cost"></div>
-      <div id="viabilityCards"></div>
-      <div id="matchupBox" class="matchup-box"></div>
       <div class="btn-row mt">
         <button class="btn" style="flex:1" onclick="shareCombo()">📋 Share Link</button>
         <button class="btn" style="flex:1" onclick="downloadCard()">📸 Combo Card</button>
@@ -442,7 +438,6 @@ const LS = {
   matches: 'beyforge_matches',
   tournaments: 'beyforge_tournaments'
 };
-const TIER_ORDER = ['S+', 'S', 'A', 'B', 'C'];
 const FINISH_POINTS = { spin: 1, over: 2, burst: 2, extreme: 3 };
 const FINISH_LABELS = { spin: 'Spin', over: 'Over', burst: 'Burst', extreme: 'Extreme' };
 const WIN_TARGET = 4;
@@ -460,7 +455,6 @@ function uid() { return Date.now().toString(36) + Math.random().toString(36).sli
 /* ---------- Data helpers ---------- */
 function getPart(id, list) { return list.find(p => p.id === id); }
 function imgUrl(part) { return (part && part.image) ? IMG_BASE + part.image : null; }
-function tierClass(tier) { return tier ? 'tier-' + tier.replace('+', '\\+') : ''; }
 function resolveCombo(c) {
   if (!c) return null;
   const blade = getPart(c.bladeId, DATA.blades);
@@ -474,24 +468,11 @@ function comboWeight(rc) {
   return (rc.blade.w || 0) + (rc.ratchet.w || 0) + (rc.bit.w || 0);
 }
 function comboType(rc) { return rc ? (rc.blade.type || 'Balance') : 'Balance'; }
-function comboPlaystyle(rc) {
-  if (!rc) return 'Unknown';
-  const bt = rc.blade.type || 'Balance';
-  const bit = rc.bit;
-  if (bt === 'Attack' && (bit.mob || 0) >= 7) return 'Aggressive Attack — high mobility KO attempts';
-  if (bt === 'Stamina' && (bit.sta || 0) >= 7) return 'Outspin Stamina — win by spinning longer';
-  if (bt === 'Defense' && (bit.stb || 0) >= 8) return 'Tank Defense — absorb hits and survive';
-  if (bt === 'Balance') return 'Balance — adaptable but not specialized';
-  return bt + ' with ' + (bit.type || '') + ' bit — mixed approach';
-}
 function comboImgHtml(rc, size) {
   const s = size || 40;
-  const parts = [rc.blade, rc.ratchet, rc.bit];
-  return parts.map(p => {
-    const u = imgUrl(p);
-    return u ? `<img src="${u}" alt="${p.name}" style="width:${s}px;height:${s}px;object-fit:contain;background:var(--surface3);border-radius:6px" onerror="this.style.display='none'">`
-             : `<div style="width:${s}px;height:${s}px;background:var(--surface3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:${s*0.4}px">?</div>`;
-  }).join('');
+  const u = imgUrl(rc.blade);
+  return u ? `<img src="${u}" alt="${rc.blade.name}" style="width:${s}px;height:${s}px;object-fit:contain;background:var(--surface3);border-radius:6px" onerror="this.style.display='none'">`
+           : `<div style="width:${s}px;height:${s}px;background:var(--surface3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:${s*0.4}px">?</div>`;
 }
 
 /* ---------- Toast ---------- */
@@ -518,16 +499,15 @@ function switchTab(name) {
 /* ============================================================
    TAB 1: COMBOS
    ============================================================ */
-let bladeFilter = '';
+let bladeFilter = ''; // kept for compatibility, no longer used
 
 function populateBlades() {
   const sel = document.getElementById('bladeSelect');
   const cur = sel.value;
-  const list = bladeFilter ? DATA.blades.filter(b => b.tier === bladeFilter) : DATA.blades;
   let html = '<option value="">— Choose a blade —</option>';
-  list.forEach(b => { html += `<option value="${b.id}">${b.name} [${b.tier}] (${b.type})</option>`; });
+  DATA.blades.forEach(b => { html += `<option value="${b.id}">${b.name} (${b.type})</option>`; });
   sel.innerHTML = html;
-  if (cur && list.some(b => b.id === cur)) sel.value = cur;
+  if (cur) sel.value = cur;
 }
 function populateRatchets() {
   const sel = document.getElementById('ratchetSelect');
@@ -545,37 +525,20 @@ function populateBits() {
   sel.innerHTML = html;
   if (cur) sel.value = cur;
 }
-function renderTierFilter() {
-  const div = document.getElementById('bladeTierFilter');
-  const tiers = ['', 'S+', 'S', 'A', 'B', 'C'];
-  const labels = ['All', 'S+', 'S', 'A', 'B', 'C'];
-  div.innerHTML = tiers.map((t, i) =>
-    `<button class="${bladeFilter === t ? 'active' : ''}" onclick="setBladeFilter('${t}')">${labels[i]}</button>`
-  ).join('');
-}
-function setBladeFilter(tier) {
-  bladeFilter = tier;
-  renderTierFilter();
-  populateBlades();
-  updateCombo();
-}
 
 function renderPartPreview(containerId, part, showImage) {
   const c = document.getElementById(containerId);
   if (!part) { c.innerHTML = ''; return; }
   const u = showImage ? imgUrl(part) : null;
-  const tier = part.tier ? `<span class="tier-badge ${tierClass(part.tier)}">${part.tier}</span>` : '';
   const type = part.type ? `<span class="type-badge">${part.type}</span>` : '';
   const weight = part.w ? `${part.w}g` : '';
-  const price = part.price ? `$${part.price}` : '';
-  const desc = part.desc || (part.competitive && part.competitive.assessment) || '';
   let meta = weight;
   if (part.spin) meta += (meta ? ' · ' : '') + 'Spin: ' + part.spin;
   if (part.h !== undefined) meta += (meta ? ' · ' : '') + 'Height: ' + part.h + 'mm';
   if (part.teeth !== undefined) meta += (meta ? ' · ' : '') + 'Teeth: ' + part.teeth;
   if (part.mob !== undefined) meta += (meta ? ' · ' : '') + `Mob ${part.mob} · Sta ${part.sta} · Stb ${part.stb}`;
   const imgHtml = u ? `<img src="${u}" alt="${part.name}" onerror="this.style.display='none'">` : '';
-  c.innerHTML = `${imgHtml}<div class="part-info">${tier}${type}<div class="pname">${part.name}</div><div class="pmeta">${meta}</div><div class="pdesc">${desc}</div><div class="pprice">${price}</div></div>`;
+  c.innerHTML = `${imgHtml}<div class="part-info">${type}<div class="pname">${part.name}</div><div class="pmeta">${meta}</div></div>`;
 }
 
 function currentCombo() {
@@ -606,57 +569,14 @@ function showAnalysis(rc) {
   const labels = ['Blade', 'Ratchet', 'Bit'];
   const parts = [rc.blade, rc.ratchet, rc.bit];
   document.getElementById('comboDisplay').innerHTML = parts.map((p, i) => {
-    const u = i === 0 ? imgUrl(p) : null; // only blade gets image
+    const u = i === 0 ? imgUrl(p) : null;
     const img = u ? `<img src="${u}" onerror="this.style.display='none'">` : '';
     return `<div class="combo-part">${img}<div class="label">${labels[i]}</div><div class="name">${p.name}</div></div>`;
   }).join('');
   document.getElementById('comboName').textContent = rc.name;
   const totalWeight = comboWeight(rc);
   const spin = rc.blade.spin || 'R';
-  document.getElementById('comboSummary').textContent = `${comboPlaystyle(rc)} • ${totalWeight}g total • ${spin}-spin`;
-  const totalCost = (rc.blade.price || 0) + (rc.ratchet.price || 0) + (rc.bit.price || 0);
-  document.getElementById('totalCost').textContent = `Total cost: ~$${totalCost}`;
-
-  // Viability cards
-  document.getElementById('viabilityCards').innerHTML = parts.map((p, i) => {
-    const comp = p.competitive || {};
-    const viability = comp.viability || 'Unknown';
-    let statusClass = 'status-situational';
-    if (viability.includes('Competitively viable')) statusClass = 'status-viable';
-    else if (viability.includes('Not competitively') || viability.includes('Not recommended')) statusClass = 'status-not-viable';
-    const assessment = comp.assessment || p.desc || '';
-    const tier = p.tier ? `<span class="tier-badge ${tierClass(p.tier)}">${p.tier}</span>` : '';
-    return `<div class="viability-card"><h3>${labels[i]}: ${p.name} ${tier}<span class="viability-status ${statusClass}">${viability}</span></h3><div class="assessment">${assessment}</div></div>`;
-  }).join('');
-
-  // Matchup
-  const matchups = DATA.typeMatchups || {};
-  const bType = rc.blade.type || 'Balance';
-  const mu = matchups[bType] || { strong_vs: 'None', weak_vs: 'None' };
-  let mh = '';
-  if (mu.strong_vs && mu.strong_vs !== 'None') mh += `<div class="matchup-item matchup-strong">✅ Strong vs ${mu.strong_vs}</div>`;
-  else mh += `<div class="matchup-item" style="background:var(--surface2)">⚖️ No type advantage</div>`;
-  if (mu.weak_vs && mu.weak_vs !== 'None') mh += `<div class="matchup-item matchup-weak">⚠️ Weak vs ${mu.weak_vs}</div>`;
-  else mh += `<div class="matchup-item" style="background:var(--surface2)">⚖️ No type weakness</div>`;
-  if (rc.blade.tier) {
-    const idx = TIER_ORDER.indexOf(rc.blade.tier);
-    if (idx <= 1) mh += `<div class="matchup-item matchup-strong">🔥 Meta pick — top ${rc.blade.tier} tier</div>`;
-    else if (idx >= 3) mh += `<div class="matchup-item matchup-weak">📉 Outclassed by higher tiers</div>`;
-  }
-  document.getElementById('matchupBox').innerHTML = mh;
-}
-
-function randomCombo() {
-  const topBlades = DATA.blades.filter(b => b.tier === 'S+' || b.tier === 'S');
-  const blade = topBlades[Math.floor(Math.random() * topBlades.length)];
-  const goodRatchets = DATA.ratchets.filter(r => r.teeth >= 4);
-  const ratchet = goodRatchets[Math.floor(Math.random() * goodRatchets.length)];
-  const matchingBits = DATA.bits.filter(b => b.type === blade.type);
-  const bit = matchingBits.length ? matchingBits[Math.floor(Math.random() * matchingBits.length)] : DATA.bits[Math.floor(Math.random() * DATA.bits.length)];
-  document.getElementById('bladeSelect').value = blade.id;
-  document.getElementById('ratchetSelect').value = ratchet.id;
-  document.getElementById('bitSelect').value = bit.id;
-  updateCombo();
+  document.getElementById('comboSummary').textContent = `${comboType(rc)} • ${totalWeight}g total • ${spin}-spin`;
 }
 
 function saveCombo() {
@@ -1740,7 +1660,6 @@ function setupPWA() {
    INIT
    ============================================================ */
 function init() {
-  renderTierFilter();
   populateBlades();
   populateRatchets();
   populateBits();
