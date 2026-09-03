@@ -2,438 +2,1756 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BeyForge X — Beyblade X Combo Builder & Competitive Guide</title>
-<meta name="description" content="Build your Beyblade X combo, see competitive viability, tier ratings, and matchup analysis. The ultimate Beyblade X strategy tool.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BeyForge X — Beyblade X Combo Builder, Deck Builder & Tournament Tracker</title>
+<meta name="description" content="Build Beyblade X combos, check competitive viability, build 3v3 decks, track matches, and run tournaments. The ultimate Beyblade X strategy tool.">
+<meta name="theme-color" content="#0a0a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BeyForge X">
 <meta property="og:title" content="BeyForge X — Beyblade X Combo Builder">
 <meta property="og:description" content="Build combos, check competitive viability, and dominate the meta.">
 <meta property="og:type" content="website">
+<link rel="manifest" id="manifestLink" href="">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 :root {
-  --bg: #0a0a1a; --surface: #14142b; --surface2: #1e1e3f; --border: #2a2a4a;
-  --text: #e8e8f0; --muted: #8888aa; --accent: #6c5ce7; --accent2: #00cec9;
-  --gold: #ffd700; --green: #00b894; --red: #e74c3c; --orange: #fd79a8;
+  --bg: #0d0d0d; --surface: #1a1a2e; --surface2: #16213e; --surface3: #0f3460; --border: #1a1a3e;
+  --text: #e8e8f0; --muted: #7f8c9a; --accent: #e94560; --accent2: #0f3460;
+  --gold: #ffd700; --green: #00b894; --red: #e94560; --orange: #f39c12; --blue: #00a8ff;
   --tier-sp: #ff4444; --tier-s: #ff8800; --tier-a: #ffcc00; --tier-b: #88cc00; --tier-c: #888888;
+  --tabbar-h: 62px;
 }
-body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-header { background: linear-gradient(135deg, #1a1a3e, #0a0a1a); border-bottom: 2px solid var(--accent); padding: 20px; text-align: center; }
-header h1 { font-size: 2.5em; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px; }
-header p { color: var(--muted); margin-top: 5px; font-size: 1.1em; }
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-.builder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-@media (max-width: 768px) { .builder-grid { grid-template-columns: 1fr; } }
-.part-selector { background: var(--surface); border-radius: 12px; padding: 20px; border: 1px solid var(--border); }
-.part-selector h2 { font-size: 1.2em; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
-.part-selector h2 .badge { font-size: 0.6em; padding: 2px 8px; border-radius: 10px; background: var(--surface2); color: var(--muted); }
-select { width: 100%; padding: 12px; background: var(--surface2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-size: 1em; cursor: pointer; margin-bottom: 10px; }
-select:focus { outline: none; border-color: var(--accent); }
-.part-preview { display: flex; gap: 15px; align-items: center; margin-top: 10px; }
-.part-preview img { width: 120px; height: 120px; object-fit: contain; background: var(--surface2); border-radius: 8px; padding: 5px; }
-.part-info { flex: 1; }
-.part-info .tier-badge { display: inline-block; padding: 3px 10px; border-radius: 5px; font-weight: bold; font-size: 0.9em; margin-bottom: 5px; }
-.tier-S\\+ { background: var(--tier-sp); color: white; }
-.tier-S { background: var(--tier-s); color: white; }
-.tier-A { background: var(--tier-a); color: black; }
-.tier-B { background: var(--tier-b); color: black; }
-.tier-C { background: var(--tier-c); color: white; }
-.part-info .type-badge { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: 0.8em; margin-left: 5px; background: var(--surface2); }
-.part-info .desc { font-size: 0.85em; color: var(--muted); margin-top: 5px; line-height: 1.4; }
-.part-info .price { font-size: 0.85em; color: var(--green); margin-top: 3px; }
-.results-panel { background: var(--surface); border-radius: 12px; padding: 20px; border: 1px solid var(--border); margin-top: 20px; }
-.results-panel h2 { font-size: 1.3em; margin-bottom: 15px; }
-.combo-display { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: center; padding: 20px; background: var(--surface2); border-radius: 10px; margin-bottom: 15px; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100vh;
+  padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: inherit; cursor: pointer; }
+select, input, textarea { font-family: inherit; }
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #0f3460, #0d0d0d);
+  border-bottom: 2px solid var(--gold);
+  padding: 14px 16px; text-align: center;
+  position: sticky; top: 0; z-index: 50;
+}
+header h1 {
+  font-size: 1.6em; font-weight: 800;
+  background: linear-gradient(135deg, var(--gold), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px;
+}
+header p { color: var(--muted); font-size: 0.8em; margin-top: 2px; }
+
+/* Main + sections */
+main { max-width: 900px; margin: 0 auto; padding: 14px 14px 20px; }
+.section { display: none; animation: fadeIn 0.22s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Bottom tab bar */
+#tabbar {
+  position: fixed; bottom: 0; left: 0; right: 0; height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--surface); border-top: 1px solid var(--border);
+  display: flex; z-index: 100;
+}
+#tabbar button {
+  flex: 1; background: none; border: none; color: var(--muted);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  font-size: 0.68em; transition: color 0.15s;
+}
+#tabbar button .ico { font-size: 1.5em; line-height: 1; }
+#tabbar button.active { color: var(--accent2); }
+#tabbar button.active .ico { transform: scale(1.1); }
+
+/* Cards & panels */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.card h2 { font-size: 1.05em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card h2 .sub { font-size: 0.7em; color: var(--muted); font-weight: normal; }
+.section-title { font-size: 1.3em; font-weight: 800; margin: 4px 0 14px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px 18px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text); font-size: 0.95em; font-weight: 600;
+  transition: transform 0.06s, background 0.15s, border-color 0.15s;
+  min-height: 44px;
+}
+.btn:active { transform: scale(0.97); }
+.btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; }
+.btn.primary:hover { opacity: 0.92; }
+.btn.green { background: var(--green); color: #fff; border: none; }
+.btn.red { background: var(--red); color: #fff; border: none; }
+.btn.ghost { background: transparent; }
+.btn.small { padding: 8px 12px; min-height: 36px; font-size: 0.85em; }
+.btn.block { width: 100%; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Forms */
+label.field { display: block; font-size: 0.8em; color: var(--muted); margin: 10px 0 4px; }
+select, input[type=text], input[type=number], input[type=password], textarea {
+  width: 100%; padding: 12px; background: var(--surface2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px; font-size: 1em; min-height: 44px;
+}
+select:focus, input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+select option { background: var(--surface2); color: var(--text); }
+
+/* Tier badges */
+.tier-badge { display: inline-block; padding: 2px 9px; border-radius: 6px; font-weight: 800; font-size: 0.78em; }
+.tier-S\+ { background: var(--tier-sp); color: #fff; }
+.tier-S { background: var(--tier-s); color: #fff; }
+.tier-A { background: var(--tier-a); color: #000; }
+.tier-B { background: var(--tier-b); color: #000; }
+.tier-C { background: var(--tier-c); color: #fff; }
+.type-badge { display: inline-block; padding: 2px 9px; border-radius: 6px; font-size: 0.75em; background: var(--surface3); color: var(--muted); margin-left: 4px; }
+
+/* Tier filter */
+.tier-filter { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+.tier-filter button {
+  padding: 6px 13px; border: 1px solid var(--border); background: var(--surface2);
+  color: var(--muted); border-radius: 20px; font-size: 0.8em; font-weight: 600;
+}
+.tier-filter button.active { border-color: var(--accent); color: #fff; background: var(--accent); }
+
+/* Part preview */
+.part-preview { display: flex; gap: 12px; align-items: center; margin-top: 8px; }
+.part-preview img { width: 84px; height: 84px; object-fit: contain; background: var(--surface2); border-radius: 10px; padding: 4px; flex-shrink: 0; }
+.part-preview .no-image { width: 84px; height: 84px; background: var(--surface2); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.6em; flex-shrink: 0; }
+.part-info { flex: 1; min-width: 0; }
+.part-info .pname { font-weight: 700; margin-top: 4px; }
+.part-info .pmeta { font-size: 0.78em; color: var(--muted); margin-top: 2px; }
+.part-info .pdesc { font-size: 0.8em; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.part-info .pprice { font-size: 0.8em; color: var(--green); margin-top: 3px; }
+
+/* Combo display */
+.combo-display { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; padding: 16px; background: var(--surface2); border-radius: 12px; margin-bottom: 12px; }
 .combo-part { text-align: center; }
-.combo-part img { width: 100px; height: 100px; object-fit: contain; }
-.combo-part .label { font-size: 0.75em; color: var(--muted); margin-top: 5px; }
-.combo-part .name { font-size: 0.85em; font-weight: bold; }
-.viability-card { background: var(--surface2); border-radius: 10px; padding: 15px; margin-top: 15px; }
-.viability-card h3 { font-size: 1em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-.viability-card .viability-status { padding: 3px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold; }
+.combo-part img { width: 88px; height: 88px; object-fit: contain; }
+.combo-part .label { font-size: 0.7em; color: var(--muted); margin-top: 4px; }
+.combo-part .name { font-size: 0.8em; font-weight: 700; max-width: 110px; }
+.combo-name { font-size: 1.35em; font-weight: 800; text-align: center; margin-bottom: 4px; }
+.combo-summary { text-align: center; color: var(--muted); font-size: 0.9em; margin-bottom: 4px; }
+.total-cost { font-size: 0.85em; color: var(--green); text-align: center; margin-bottom: 12px; }
+
+/* Viability */
+.viability-card { background: var(--surface2); border-radius: 10px; padding: 13px; margin-top: 10px; }
+.viability-card h3 { font-size: 0.9em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.viability-status { padding: 2px 9px; border-radius: 6px; font-size: 0.72em; font-weight: 700; }
 .status-viable { background: rgba(0,184,148,0.2); color: var(--green); border: 1px solid var(--green); }
 .status-not-viable { background: rgba(231,76,60,0.2); color: var(--red); border: 1px solid var(--red); }
 .status-situational { background: rgba(253,121,168,0.2); color: var(--orange); border: 1px solid var(--orange); }
-.viability-card .assessment { font-size: 0.9em; color: var(--text); line-height: 1.5; margin-top: 8px; }
-.matchup-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-.matchup-item { padding: 8px; border-radius: 6px; font-size: 0.85em; text-align: center; }
+.viability-card .assessment { font-size: 0.85em; color: var(--text); line-height: 1.5; margin-top: 6px; }
+
+/* Matchup */
+.matchup-box { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.matchup-item { padding: 9px; border-radius: 8px; font-size: 0.82em; text-align: center; }
 .matchup-strong { background: rgba(0,184,148,0.15); border: 1px solid var(--green); }
 .matchup-weak { background: rgba(231,76,60,0.15); border: 1px solid var(--red); }
-.buy-links { margin-top: 15px; }
-.buy-links a { display: inline-block; padding: 8px 16px; background: var(--accent); color: white; text-decoration: none; border-radius: 6px; font-size: 0.9em; margin-right: 8px; margin-bottom: 5px; }
-.buy-links a:hover { background: var(--accent2); color: var(--bg); }
-.share-btn { display: inline-block; padding: 8px 16px; background: var(--surface2); color: var(--text); border: 1px solid var(--border); border-radius: 6px; font-size: 0.9em; cursor: pointer; margin-right: 8px; }
-.share-btn:hover { border-color: var(--accent); }
-.empty-state { text-align: center; padding: 40px; color: var(--muted); }
+
+/* Combo list cards (saved combos) */
+.combo-list { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 600px) { .combo-list { grid-template-columns: 1fr 1fr; } }
+.combo-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 12px; display: flex; gap: 10px; align-items: center; cursor: pointer; transition: border-color 0.15s; }
+.combo-card.selected { border-color: var(--accent2); box-shadow: 0 0 0 1px var(--accent2); }
+.combo-card .thumbs { display: flex; gap: 4px; }
+.combo-card .thumbs img { width: 40px; height: 40px; object-fit: contain; background: var(--surface3); border-radius: 6px; }
+.combo-card .cinfo { flex: 1; min-width: 0; }
+.combo-card .cname { font-weight: 700; font-size: 0.9em; }
+.combo-card .cmeta { font-size: 0.75em; color: var(--muted); margin-top: 2px; }
+.combo-card .cactions { display: flex; gap: 4px; flex-direction: column; }
+
+/* Deck builder */
+.deck-slot { display: flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px dashed var(--border); border-radius: 10px; padding: 10px; margin-bottom: 8px; }
+.deck-slot.dragging { opacity: 0.5; }
+.deck-slot.drag-over { border-color: var(--accent2); }
+.deck-slot .slot-num { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8em; flex-shrink: 0; }
+.deck-slot .slot-body { flex: 1; min-width: 0; }
+.deck-slot .slot-name { font-weight: 700; font-size: 0.9em; }
+.deck-slot .slot-meta { font-size: 0.75em; color: var(--muted); }
+.deck-slot .slot-arrows { display: flex; flex-direction: column; gap: 2px; }
+.deck-slot .slot-arrows button { background: var(--surface3); border: 1px solid var(--border); color: var(--text); border-radius: 5px; width: 28px; height: 24px; font-size: 0.7em; }
+
+/* Deck cards */
+.deck-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+.deck-card .dhead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.deck-card .dname { font-weight: 800; font-size: 1em; }
+.deck-card .dcombos { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.deck-card .dcombo { text-align: center; }
+.deck-card .dcombo img { width: 52px; height: 52px; object-fit: contain; background: var(--surface3); border-radius: 8px; }
+.deck-card .dcombo .n { font-size: 0.7em; max-width: 80px; margin-top: 2px; }
+
+/* Scoring screen */
+.score-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: flex; flex-direction: column; overflow-y: auto; }
+.score-top { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.score-top .round-label { font-weight: 800; color: var(--accent2); }
+.score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; flex: 1; }
+.score-side { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; }
+.score-side.winner { border-color: var(--green); box-shadow: 0 0 0 1px var(--green); }
+.score-side .sname { font-weight: 800; font-size: 1em; text-align: center; }
+.score-side .scombo { text-align: center; font-size: 0.78em; color: var(--muted); margin: 4px 0; min-height: 1.2em; }
+.score-side .scombo img { width: 44px; height: 44px; object-fit: contain; display: block; margin: 4px auto; }
+.score-side .sbig { font-size: 3em; font-weight: 900; text-align: center; line-height: 1; margin: 6px 0; }
+.score-side .sbig.win { color: var(--green); }
+.result-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: auto; }
+.result-btn { border: none; border-radius: 10px; padding: 12px 6px; font-weight: 800; font-size: 0.85em; color: #fff; min-height: 48px; }
+.result-btn:active { transform: scale(0.95); }
+.result-btn .pts { display: block; font-size: 0.7em; font-weight: 600; opacity: 0.85; }
+.rb-spin { background: #2d6cdf; }
+.rb-over { background: #e67e22; }
+.rb-burst { background: #9b59b6; }
+.rb-extreme { background: #e74c3c; }
+.penalty-btn { width: 100%; margin-top: 6px; background: var(--surface3); border: 1px solid var(--border); color: var(--muted); border-radius: 8px; padding: 8px; font-size: 0.8em; font-weight: 700; }
+.score-center { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 4px 12px; }
+.score-center .vs { font-weight: 900; font-size: 1.1em; color: var(--muted); }
+.score-center .target { font-size: 0.75em; color: var(--muted); }
+.score-footer { padding: 10px 14px; display: flex; gap: 8px; }
+
+/* Round result banner */
+.round-banner { text-align: center; padding: 10px; font-weight: 800; font-size: 1.1em; border-radius: 10px; margin: 8px 12px; }
+
+/* Stats */
+.stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.stat-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+.stat-box .val { font-size: 1.8em; font-weight: 900; }
+.stat-box .lbl { font-size: 0.75em; color: var(--muted); margin-top: 2px; }
+.bar-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.bar-row .blbl { width: 90px; font-size: 0.8em; color: var(--muted); flex-shrink: 0; }
+.bar-track { flex: 1; height: 14px; background: var(--surface3); border-radius: 7px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 7px; }
+
+/* Match history */
+.match-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 8px; }
+.match-item .mhead { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.match-item .mresult { font-weight: 800; padding: 2px 10px; border-radius: 6px; font-size: 0.8em; }
+.mresult.win { background: rgba(0,184,148,0.2); color: var(--green); }
+.mresult.loss { background: rgba(231,76,60,0.2); color: var(--red); }
+.mresult.draw { background: rgba(136,136,170,0.2); color: var(--muted); }
+.match-item .mbody { font-size: 0.82em; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+/* Tournament */
+.tournament-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+.tournament-card .thead { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.tournament-card .tname { font-weight: 800; }
+.tournament-card .tmeta { font-size: 0.78em; color: var(--muted); margin-top: 4px; }
+.bracket-round { margin-bottom: 12px; }
+.bracket-round .rlabel { font-size: 0.75em; color: var(--muted); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+.bracket-match { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 6px; }
+.bracket-match .bp { display: flex; justify-content: space-between; padding: 4px 6px; border-radius: 6px; font-size: 0.85em; }
+.bracket-match .bp.winner { background: rgba(0,184,148,0.15); color: var(--green); font-weight: 700; }
+.bracket-match .bp .bscore { font-weight: 800; }
+.standings-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+.standings-table th, .standings-table td { padding: 8px 6px; text-align: left; border-bottom: 1px solid var(--border); }
+.standings-table th { color: var(--muted); font-size: 0.75em; }
+.player-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface3); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 0.85em; margin: 3px; }
+
+/* Modal */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+.modal h3 { margin-bottom: 12px; }
+
+/* Toast */
+#toast { position: fixed; bottom: calc(var(--tabbar-h) + 20px); left: 50%; transform: translateX(-50%) translateY(20px); background: var(--surface3); color: var(--text); border: 1px solid var(--accent); padding: 10px 18px; border-radius: 24px; font-size: 0.9em; z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; max-width: 90vw; text-align: center; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 36px 16px; color: var(--muted); }
 .empty-state .icon { font-size: 3em; margin-bottom: 10px; }
-.tier-filter { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
-.tier-filter button { padding: 4px 12px; border: 1px solid var(--border); background: var(--surface2); color: var(--muted); border-radius: 15px; cursor: pointer; font-size: 0.8em; }
-.tier-filter button.active { border-color: var(--accent); color: var(--text); background: var(--accent); }
-footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8em; border-top: 1px solid var(--border); margin-top: 30px; }
-.combo-name { font-size: 1.5em; font-weight: bold; text-align: center; margin-bottom: 10px; }
-.combo-summary { text-align: center; color: var(--muted); margin-bottom: 15px; }
-.total-cost { font-size: 0.9em; color: var(--green); text-align: center; margin-top: 5px; }
-.ad-slot { text-align: center; padding: 20px; background: var(--surface); border-radius: 8px; margin: 20px 0; color: var(--muted); font-size: 0.8em; border: 1px dashed var(--border); }
-.no-image { width: 120px; height: 120px; background: var(--surface2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.7em; }
-.random-btn { padding: 10px 20px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; width: 100%; margin-top: 10px; }
-.random-btn:hover { opacity: 0.9; }
+
+/* Segmented control */
+.seg { display: flex; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
+.seg button { flex: 1; background: none; border: none; color: var(--muted); padding: 11px; font-weight: 700; font-size: 0.9em; }
+.seg button.active { background: var(--accent); color: #fff; }
+
+/* Misc */
+.muted { color: var(--muted); }
+.small { font-size: 0.8em; }
+.mt { margin-top: 10px; }
+.mb { margin-bottom: 10px; }
+.hidden { display: none !important; }
+.divider { height: 1px; background: var(--border); margin: 14px 0; }
+a { color: var(--accent2); }
+footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.75em; border-top: 1px solid var(--border); margin-top: 20px; }
 </style>
 </head>
 <body>
 <header>
-<h1>⚔️ BeyForge X</h1>
-<p>Beyblade X Combo Builder & Competitive Guide</p>
+  <h1>⚔️ BeyForge X</h1>
+  <p>Combo Builder · Decks · Match Tracker · Tournaments</p>
 </header>
-<div class="container">
-<div class="builder-grid">
-<div class="part-selector">
-<h2>🗡️ Blade <span class="badge">Select your blade</span></h2>
-<select id="bladeSelect" onchange="updateCombo()">
-<option value="">— Choose a blade —</option>
-</select>
-<div class="tier-filter" id="bladeTierFilter">
-<button class="active" onclick="filterTier('blade','')">All</button>
-<button onclick="filterTier('blade','S+')">S+</button>
-<button onclick="filterTier('blade','S')">S</button>
-<button onclick="filterTier('blade','A')">A</button>
-<button onclick="filterTier('blade','B')">B</button>
-<button onclick="filterTier('blade','C')">C</button>
-</div>
-<div id="bladePreview" class="part-preview"></div>
-</div>
-<div class="part-selector">
-<h2>⚙️ Ratchet <span class="badge">Select your ratchet</span></h2>
-<select id="ratchetSelect" onchange="updateCombo()">
-<option value="">— Choose a ratchet —</option>
-</select>
-<div id="ratchetPreview" class="part-preview"></div>
-</div>
-<div class="part-selector" style="grid-column: 1/-1;">
-<h2>🎯 Bit <span class="badge">Select your bit</span></h2>
-<select id="bitSelect" onchange="updateCombo()">
-<option value="">— Choose a bit —</option>
-</select>
-<div id="bitPreview" class="part-preview"></div>
-</div>
-</div>
-<button class="random-btn" onclick="randomCombo()">🎲 Random Competitive Combo</button>
-<div id="resultsPanel" class="results-panel" style="display:none;">
-<h2>🏆 Combo Analysis</h2>
-<div id="comboDisplay" class="combo-display"></div>
-<div id="comboName" class="combo-name"></div>
-<div id="comboSummary" class="combo-summary"></div>
-<div id="totalCost" class="total-cost"></div>
-<div id="viabilityCards"></div>
-<div id="matchupBox" class="matchup-box"></div>
-<div class="buy-links" id="buyLinks"></div>
-<button class="share-btn" onclick="shareCombo()">📋 Copy Share Link</button>
-<button class="share-btn" onclick="downloadComboImage()">📸 Download Combo Card</button>
-</div>
-<div class="ad-slot" id="adSlot">
-Ad space — your brand here
-</div>
-<div id="emptyState" class="empty-state">
-<div class="icon">⚔️</div>
-<p>Select a blade, ratchet, and bit to see competitive analysis</p>
-<p style="margin-top:10px;">Or hit <strong>Random Competitive Combo</strong> for a top-tier build</p>
-</div>
-</div>
+
+<main>
+  <!-- ============ TAB 1: COMBOS ============ -->
+  <section id="tab-combos" class="section active">
+    <div class="card">
+      <h2>🗡️ Blade <span class="sub">pick your blade</span></h2>
+      <div class="tier-filter" id="bladeTierFilter"></div>
+      <select id="bladeSelect" onchange="updateCombo()"></select>
+      <div id="bladePreview" class="part-preview"></div>
+    </div>
+    <div class="card">
+      <h2>⚙️ Ratchet <span class="sub">pick your ratchet</span></h2>
+      <select id="ratchetSelect" onchange="updateCombo()"></select>
+      <div id="ratchetPreview" class="part-preview"></div>
+    </div>
+    <div class="card">
+      <h2>🎯 Bit <span class="sub">pick your bit</span></h2>
+      <select id="bitSelect" onchange="updateCombo()"></select>
+      <div id="bitPreview" class="part-preview"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn green" style="flex:1" onclick="saveCombo()">💾 Save Combo</button>
+    </div>
+
+    <div id="emptyState" class="empty-state">
+      <div class="icon">⚔️</div>
+      <p>Select a blade, ratchet, and bit to see competitive analysis</p>
+    </div>
+
+    <div id="resultsPanel" class="card hidden">
+      <h2>🏆 Combo Analysis</h2>
+      <div id="comboDisplay" class="combo-display"></div>
+      <div id="comboName" class="combo-name"></div>
+      <div id="comboSummary" class="combo-summary"></div>
+      <div id="totalCost" class="total-cost"></div>
+      <div id="viabilityCards"></div>
+      <div id="matchupBox" class="matchup-box"></div>
+      <div class="btn-row mt">
+        <button class="btn" style="flex:1" onclick="shareCombo()">📋 Share Link</button>
+        <button class="btn" style="flex:1" onclick="downloadCard()">📸 Combo Card</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 2: DECKS ============ -->
+  <section id="tab-decks" class="section">
+    <div class="section-title">🃏 Deck Builder</div>
+    <div class="btn-row mb">
+      <button class="btn primary" style="flex:1" onclick="startNewDeck()">➕ New Deck</button>
+    </div>
+    <div id="deckBuilder" class="card hidden">
+      <h2>Build 3v3 Deck</h2>
+      <label class="field">Deck name</label>
+      <input type="text" id="deckNameInput" placeholder="e.g. My Tournament Deck">
+      <label class="field">Select 3 combos (tap to add, drag or use arrows to reorder)</label>
+      <div id="deckSlots"></div>
+      <div class="divider"></div>
+      <label class="field">Available combos</label>
+      <div id="deckComboPicker" class="combo-list"></div>
+      <div class="btn-row mt">
+        <button class="btn green" style="flex:1" onclick="saveDeck()">💾 Save Deck</button>
+        <button class="btn ghost" onclick="cancelDeck()">Cancel</button>
+      </div>
+    </div>
+    <div id="decksList"></div>
+  </section>
+
+  <!-- ============ TAB 3: TRACK ============ -->
+  <section id="tab-track" class="section">
+    <div class="section-title">📊 Match Tracker</div>
+    <div class="seg">
+      <button id="seg-solo" class="active" onclick="setTrackMode('solo')">🎮 Solo Testing</button>
+      <button id="seg-history" onclick="setTrackMode('history')">📜 History & Stats</button>
+    </div>
+
+    <div id="trackSolo">
+      <div class="card">
+        <h2>Match Setup</h2>
+        <label class="field">Format</label>
+        <div class="seg" id="formatSeg">
+          <button id="fmt-1v1" class="active" onclick="setFormat('1v1')">1v1</button>
+          <button id="fmt-3v3" onclick="setFormat('3v3')">3v3</button>
+        </div>
+        <div id="trackSetup"></div>
+        <button class="btn primary block mt" onclick="startMatch()">▶️ Start Match</button>
+      </div>
+      <div class="card" id="sessionSummary">
+        <h2>📈 Session Summary</h2>
+        <div id="sessionStats" class="stat-grid"></div>
+      </div>
+    </div>
+
+    <div id="trackHistory" class="hidden">
+      <div class="card">
+        <h2>📈 Stats Dashboard</h2>
+        <div id="historyStats" class="stat-grid"></div>
+        <div class="divider"></div>
+        <div id="finishBreakdown"></div>
+        <div class="divider"></div>
+        <div id="topCombos"></div>
+      </div>
+      <div class="card">
+        <h2>📜 Match History</h2>
+        <div class="btn-row mb">
+          <select id="historyFilterCombo" onchange="renderHistory()"><option value="">All combos</option></select>
+          <select id="historyFilterFormat" onchange="renderHistory()">
+            <option value="">All formats</option>
+            <option value="1v1">1v1</option>
+            <option value="3v3">3v3</option>
+          </select>
+        </div>
+        <div id="historyList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 4: TOURNAMENT ============ -->
+  <section id="tab-tournament" class="section">
+    <div class="section-title">🏆 Tournament</div>
+    <div class="btn-row mb">
+      <button class="btn primary" style="flex:1" onclick="showCreateTournament()">➕ Create</button>
+      <button class="btn" style="flex:1" onclick="showJoinTournament()">🔑 Join</button>
+    </div>
+    <div id="tournamentList"></div>
+  </section>
+</main>
+
+<nav id="tabbar">
+  <button class="active" data-tab="combos" onclick="switchTab('combos')"><span class="ico">⚔️</span>Combos</button>
+  <button data-tab="decks" onclick="switchTab('decks')"><span class="ico">🃏</span>Decks</button>
+  <button data-tab="track" onclick="switchTab('track')"><span class="ico">📊</span>Track</button>
+  <button data-tab="tournament" onclick="switchTab('tournament')"><span class="ico">🏆</span>Tournament</button>
+</nav>
+
+<div id="toast"></div>
+<div id="modalRoot"></div>
+
 <footer>
-<p>BeyForge X is a fan-made tool. Not affiliated with Takara Tomy or Hasbro.</p>
-<p>Part images from <a href="https://github.com/hinfok/beys" style="color:var(--accent2)">Beypedia</a>. Competitive data from community sources.</p>
+  <p>BeyForge X is a fan-made tool. Not affiliated with Takara Tomy or Hasbro.</p>
+  <p>Part images from <a href="https://github.com/hinfok/beys" target="_blank" rel="nofollow">Beypedia</a>. Competitive data from community sources.</p>
 </footer>
+
+<script src="data.js"></script>
 <script>
-const DATA = {"blades":[{"id":"cobalt_dragoon","name":"Cobalt Dragoon","type":"Stamina","tier":"S+","w":35,"spin":"L","color":"#1E40AF","desc":"LEFT SPIN \u2014 equalization king","price":25,"image":"images/Blade/BL-PRD-096092-01.png","competitive":{"assessment":"Top-tier competitive blade. LEFT SPIN \u2014 equalization king. Meta-defining pick \u2014 appears in virtually every competitive deck.","viability":"Competitively viable. Top tournament pick.","tier":"S+","type":"Stamina"}},{"id":"aero_pegasus","name":"Aero Pegasus","type":"Attack","tier":"S+","w":47,"color":"#38BDF8","desc":"Ultra-heavy winged attack","price":22,"image":"images/Blade/BL-PRD-096528-00.png","competitive":{"assessment":"Top-tier competitive blade. Ultra-heavy winged attack. Meta-defining pick \u2014 appears in virtually every competitive deck.","viability":"Competitively viable. Top tournament pick.","tier":"S+","type":"Attack"}},{"id":"shark_scale","name":"Shark Scale","type":"Attack","tier":"S+","w":36,"color":"#0891B2","desc":"Scale armor + fierce smash","price":18,"image":"images/Blade/BL-PRD-982432-01.png","competitive":{"assessment":"Top-tier competitive blade. Scale armor + fierce smash. Meta-defining pick \u2014 appears in virtually every competitive deck.","viability":"Competitively viable. Top tournament pick.","tier":"S+","type":"Attack"}},{"id":"hells_hammer","name":"Hells Hammer","type":"Attack","tier":"S+","w":40,"color":"#581C87","desc":"Heaviest smash blade","price":15,"image":"images/Blade/BL-PRD-096146-04.png","competitive":{"assessment":"Top-tier competitive blade. Heaviest smash blade. Meta-defining pick \u2014 appears in virtually every competitive deck.","viability":"Competitively viable. Top tournament pick.","tier":"S+","type":"Attack"}},{"id":"phoenix_wing","name":"Phoenix Wing","type":"Attack","tier":"S","w":38,"color":"#F97316","desc":"Upper + Smash combo","price":15,"image":"images/Blade/BL-PRD-913092-00.png","competitive":{"assessment":"Strong competitive blade. Upper + Smash combo. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"tyranno_beat","name":"Tyranno Beat","type":"Attack","tier":"S","w":36,"color":"#16A34A","desc":"8-sided heavy smash","price":23,"image":"images/Blade/BL-PRD-096146-05.png","competitive":{"assessment":"Strong competitive blade. 8-sided heavy smash. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"tyranno_roar","name":"Tyranno Roar","type":"Attack","tier":"S","w":37,"color":"#15803D","desc":"Heavy smash evolution","price":20,"image":"images/Blade/BL-PRD-982432-02.png","competitive":{"assessment":"Strong competitive blade. Heavy smash evolution. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"silver_wolf","name":"Silver Wolf","type":"Stamina","tier":"S","w":33,"color":"#94A3B8","desc":"Free-spin ring LAD","price":18,"image":"images/Blade/BL-PRD-939498-00.png","competitive":{"assessment":"Strong competitive blade. Free-spin ring LAD. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Stamina"}},{"id":"wyvern_hover","name":"Wyvern Hover","type":"Balance","tier":"S","w":33,"color":"#06B6D4","desc":"Incredible reversal","price":16,"image":"images/Blade/BL-PRD-993636-00.png","competitive":{"assessment":"Strong competitive blade. Incredible reversal. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Balance"}},{"id":"samurai_saber","name":"Samurai Saber","type":"Attack","tier":"S","w":34,"color":"#B91C1C","desc":"Retractable blades","price":15,"image":"images/Blade/BL-PRD-085515-00.png","competitive":{"assessment":"Strong competitive blade. Retractable blades. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"lightning_ldrago_rh","name":"Lightning L-Drago (Rapid-Hit)","type":"Attack","tier":"S","w":35,"spin":"L","color":"#7C3AED","desc":"LEFT SPIN \u2014 rapid-hit dragon","price":20,"image":"images/Blade/BL-PRD-930358-00.png","competitive":{"assessment":"Strong competitive blade. LEFT SPIN \u2014 rapid-hit dragon. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"knight_mail","name":"Knight Mail","type":"Defense","tier":"S","w":37,"color":"#A8A29E","desc":"Full-armor knight guard","price":16,"image":"images/Blade/BL-PRD-919124-00.png","competitive":{"assessment":"Strong competitive blade. Full-armor knight guard. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Defense"}},{"id":"ghost_circle","name":"Ghost Circle","type":"Defense","tier":"S","w":35,"color":"#C4B5FD","desc":"Ghost ring absorbs hits","price":15,"image":"images/Blade/BL-PRD-939566-01.png","competitive":{"assessment":"Strong competitive blade. Ghost ring absorbs hits. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Defense"}},{"id":"unicorn_delta","name":"Unicorn Delta","type":"Attack","tier":"S","w":35,"color":"#E879F9","desc":"CX-17 Prize \u2014 delta wing smash","price":18,"image":"images/Blade/BL-PRD-096146-01.png","competitive":{"assessment":"Strong competitive blade. CX-17 Prize \u2014 delta wing smash. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"brachio_whip","name":"Brachio Whip","type":"Stamina","tier":"B","w":34,"color":"#0E7490","desc":"CX-18 \u2014 whip-tail stamina","price":14,"image":"images/Blade/BL-PRD-096177-01.png","competitive":{"assessment":"Budget/casual blade. CX-18 \u2014 whip-tail stamina. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"ragna_rage","name":"Ragna Rage","type":"Attack","tier":"A","w":35,"color":"#7C3AED","desc":"CX-15 \u2014 raging smash","price":18,"image":"images/Blade/BL-EVE-088899-00.png","competitive":{"assessment":"Solid competitive blade. CX-15 \u2014 raging smash. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"knight_armor","name":"Knight Armor","type":"Defense","tier":"A","w":38,"color":"#94A3B8","desc":"CX-14 \u2014 heavy armor guard","price":18,"image":"images/Blade/BL-PRD-097266-00.png","competitive":{"assessment":"Solid competitive blade. CX-14 \u2014 heavy armor guard. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"dran_strike","name":"Dran Strike","type":"Attack","tier":"A","w":34,"color":"#DC2626","desc":"BX-49 \u2014 strike smash attack","price":12,"image":"images/Blade/BL-EVE-077428-01.png","competitive":{"assessment":"Solid competitive blade. BX-49 \u2014 strike smash attack. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"griffon_rocket","name":"Griffon Rocket","type":"Balance","tier":"B","w":33,"color":"#0EA5E9","desc":"UX \u2014 rocket balance","price":14,"image":"images/Blade/BL-PRD-096160-00.png","competitive":{"assessment":"Budget/casual blade. UX \u2014 rocket balance. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"rampart_aegis","name":"Rampart Aegis","type":"Defense","tier":"B","w":36,"color":"#475569","desc":"UX \u2014 ratchet-integrated shield","price":13,"image":"images/Blade/BL-PRD-097266-00.png","competitive":{"assessment":"Budget/casual blade. UX \u2014 ratchet-integrated shield. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"cutter_shinobi","name":"Cutter Shinobi","type":"Attack","tier":"B","w":32,"color":"#1F2937","desc":"UX \u2014 mode-switch attack","price":13,"image":"images/Blade/BL-PRD-914549-01.png","competitive":{"assessment":"Budget/casual blade. UX \u2014 mode-switch attack. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"impact_drake","name":"Impact Drake","type":"Attack","tier":"S","w":36,"color":"#1E3A5F","desc":"Heavy impact smash","price":16,"image":"images/Blade/BL-PRD-939559-00.png","competitive":{"assessment":"Strong competitive blade. Heavy impact smash. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"meteor_dragoon","name":"Meteor Dragoon","type":"Attack","tier":"S","w":36,"color":"#2563EB","desc":"Meteor shower attack","price":18,"image":"images/Blade/BL-PRD-997627-00.png","competitive":{"assessment":"Strong competitive blade. Meteor shower attack. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"dran_buster","name":"Dran Buster","type":"Attack","tier":"A","w":33,"color":"#F87171","desc":"Explosive attack","price":12,"image":"images/Blade/BL-PRD-096092-05.png","competitive":{"assessment":"Solid competitive blade. Explosive attack. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"hells_chain","name":"Hells Chain","type":"Balance","tier":"A","w":35,"color":"#6D28D9","desc":"High stamina balance","price":14,"image":"images/Blade/BL-PRD-913085-01.png","competitive":{"assessment":"Solid competitive blade. High stamina balance. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"shark_edge","name":"Shark Edge","type":"Attack","tier":"A","w":31,"color":"#2DD4BF","desc":"Low-profile aggression","price":8,"image":"images/Blade/BL-PRD-085706-00.png","competitive":{"assessment":"Solid competitive blade. Low-profile aggression. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"viper_tail","name":"Viper Tail","type":"Stamina","tier":"A","w":32,"color":"#A3E635","desc":"Whip attack stamina","price":10,"image":"images/Blade/BL-PRD-912972-01.png","competitive":{"assessment":"Solid competitive blade. Whip attack stamina. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"cobalt_drake","name":"Cobalt Drake","type":"Attack","tier":"A","w":34,"color":"#1D4ED8","desc":"Cobalt dragon strike","price":12,"image":"images/Blade/BL-PRD-910510-00.png","competitive":{"assessment":"Solid competitive blade. Cobalt dragon strike. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"knight_lance","name":"Knight Lance","type":"Defense","tier":"A","w":33,"color":"#CBD5E1","desc":"Silver lance guard","price":25,"image":"images/Blade/BL-PRD-910565-00.png","competitive":{"assessment":"Solid competitive blade. Silver lance guard. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"hells_scythe","name":"Hells Scythe","type":"Attack","tier":"A","w":30,"color":"#9333EA","desc":"Reaper smash","price":14,"image":"images/Blade/BL-PRD-096092-04.png","competitive":{"assessment":"Solid competitive blade. Reaper smash. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"golem_rock","name":"Golem Rock","type":"Defense","tier":"A","w":36,"color":"#8B6914","desc":"Rock-solid counter defense","price":12,"image":"images/Blade/BL-PRD-098775-02.png","competitive":{"assessment":"Solid competitive blade. Rock-solid counter defense. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"crimson_garuda","name":"Crimson Garuda","type":"Attack","tier":"A","w":34,"color":"#DC2626","desc":"Crimson fire wings","price":9,"image":"images/Blade/BL-PRD-096146-06.png","competitive":{"assessment":"Solid competitive blade. Crimson fire wings. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"leon_crest","name":"Leon Crest","type":"Balance","tier":"A","w":33,"color":"#CA8A04","desc":"Royal lion crest","price":10,"image":"images/Blade/BL-PRD-914600-00.png","competitive":{"assessment":"Solid competitive blade. Royal lion crest. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"phoenix_rudder","name":"Phoenix Rudder","type":"Stamina","tier":"A","w":34,"color":"#FB923C","desc":"Flame rudder outspin","price":13,"image":"images/Blade/BL-PRD-914594-01.png","competitive":{"assessment":"Solid competitive blade. Flame rudder outspin. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"lightning_ldrago_up","name":"Lightning L-Drago (Upper)","type":"Attack","tier":"A","w":34,"spin":"L","color":"#8B5CF6","desc":"LEFT SPIN \u2014 upper attack dragon","price":18,"image":"images/Blade/BL-PRD-930358-00.png","competitive":{"assessment":"Solid competitive blade. LEFT SPIN \u2014 upper attack dragon. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"clock_mirage","name":"Clock Mirage","type":"Stamina","tier":"A","w":34,"color":"#D4AF37","desc":"Time-gear spin trick","price":14,"image":"images/Blade/BL-PRD-990154-01.png","competitive":{"assessment":"Solid competitive blade. Time-gear spin trick. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"orochi_cluster","name":"Orochi Cluster","type":"Balance","tier":"A","w":45,"color":"#166534","desc":"Multi-head serpent, ultra-heavy","price":15,"image":"images/Blade/BL-PRD-997023-00.png","competitive":{"assessment":"Solid competitive blade. Multi-head serpent, ultra-heavy. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"samurai_calibur","name":"Samurai Calibur","type":"Balance","tier":"A","w":32,"color":"#991B1B","desc":"Calibur blade balanced","price":8,"image":"images/Blade/BL-PRD-939580-00.png","competitive":{"assessment":"Solid competitive blade. Calibur blade balanced. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"sphinx_cowl","name":"Sphinx Cowl","type":"Defense","tier":"A","w":34,"color":"#B8860B","desc":"Sphinx guard cowl","price":10,"image":"images/Blade/BL-PRD-913115-01.png","competitive":{"assessment":"Solid competitive blade. Sphinx guard cowl. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"weiss_tiger","name":"Weiss Tiger","type":"Attack","tier":"A","w":33,"color":"#E2E8F0","desc":"White tiger claw strike","price":10,"image":"images/Blade/BL-PRD-097167-06.png","competitive":{"assessment":"Solid competitive blade. White tiger claw strike. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"phoenix_feather","name":"Phoenix Feather","type":"Stamina","tier":"A","w":32,"color":"#EA580C","desc":"Feather-light outspin","price":10,"image":"images/Blade/BL-FRB-CR2312-00.png","competitive":{"assessment":"Solid competitive blade. Feather-light outspin. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"scorpio_spear","name":"Scorpio Spear","type":"Attack","tier":"A","w":33,"color":"#B91C1C","desc":"Scorpion stinger attack","price":14,"image":"images/Blade/BL-PRD-080558-00.png","competitive":{"assessment":"Solid competitive blade. Scorpion stinger attack. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"shinobi_shadow","name":"Shinobi Shadow","type":"Attack","tier":"A","w":32,"color":"#312E81","desc":"Ninja stealth smash","price":14,"image":"images/Blade/BL-PRD-914549-01.png","competitive":{"assessment":"Solid competitive blade. Ninja stealth smash. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"mummy_curse","name":"Mummy Curse","type":"Defense","tier":"A","w":35,"color":"#A3A38C","desc":"Wrap defense absorb","price":14,"image":"images/Blade/BL-PRD-097167-01.png","competitive":{"assessment":"Solid competitive blade. Wrap defense absorb. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"wizard_rod","name":"Wizard Rod","type":"Stamina","tier":"A","w":32,"color":"#6D28D9","desc":"Magic rod outspin","price":14,"image":"images/Blade/BL-EVE-936138-01.png","competitive":{"assessment":"Solid competitive blade. Magic rod outspin. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"shark_gill","name":"Shark Gill","type":"Attack","tier":"A","w":30,"color":"#0369A1","desc":"Gill-edge aggression","price":8,"image":"images/Blade/BL-PRD-098775-03.png","competitive":{"assessment":"Solid competitive blade. Gill-edge aggression. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"storm_spriggan","name":"Storm Spriggan","type":"Balance","tier":"A","w":34,"color":"#DC2626","desc":"X-Over dual-spin balance","price":15,"image":"images/Blade/BL-PRD-997351-00.png","competitive":{"assessment":"Solid competitive blade. X-Over dual-spin balance. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"victory_valkyrie","name":"Victory Valkyrie","type":"Attack","tier":"A","w":33,"color":"#2563EB","desc":"X-Over winged rush","price":15,"image":"images/Blade/BL-PRD-946816-03.png","competitive":{"assessment":"Solid competitive blade. X-Over winged rush. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"xeno_xcalibur","name":"Xeno Xcalibur","type":"Attack","tier":"A","w":35,"color":"#B91C1C","desc":"X-Over sword strike","price":15,"image":"images/Blade/BL-PRD-946823-00.png","competitive":{"assessment":"Solid competitive blade. X-Over sword strike. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"knight_shield","name":"Knight Shield","type":"Defense","tier":"B","w":30,"color":"#94A3B8","desc":"Absorbs hits","price":8,"image":"images/Blade/BL-EVE-910879-01.png","competitive":{"assessment":"Budget/casual blade. Absorbs hits. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"leon_claw","name":"Leon Claw","type":"Balance","tier":"B","w":30,"color":"#EAB308","desc":"Versatile claws","price":7,"image":"images/Blade/BL-PRD-913030-00.png","competitive":{"assessment":"Budget/casual blade. Versatile claws. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"mammoth_tusk","name":"Mammoth Tusk","type":"Defense","tier":"B","w":35,"color":"#78716C","desc":"Heavy immovable","price":12,"image":"images/Blade/BL-PRD-096092-03.png","competitive":{"assessment":"Budget/casual blade. Heavy immovable. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"unicorn_sting","name":"Unicorn Sting","type":"Balance","tier":"B","w":26,"color":"#F0ABFC","desc":"Light & fast","price":7,"image":"images/Blade/BL-PRD-914464-00.png","competitive":{"assessment":"Budget/casual blade. Light & fast. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"dran_sword","name":"Dran Sword","type":"Attack","tier":"B","w":29,"color":"#E53E3E","desc":"Balanced attack","price":6,"image":"images/Blade/BL-EVE-910909-01.png","competitive":{"assessment":"Budget/casual blade. Balanced attack. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"whale_wave","name":"Whale Wave","type":"Stamina","tier":"B","w":33,"color":"#0EA5E9","desc":"Wave stamina","price":8,"image":"images/Blade/BL-PRD-085690-00.png","competitive":{"assessment":"Budget/casual blade. Wave stamina. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"wizard_arrow","name":"Wizard Arrow","type":"Stamina","tier":"B","w":31,"color":"#7E22CE","desc":"Magic bolt spin","price":12,"image":"images/Blade/BL-PRD-910473-00.png","competitive":{"assessment":"Budget/casual blade. Magic bolt spin. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"rhino_horn","name":"Rhino Horn","type":"Attack","tier":"B","w":35,"color":"#A8A29E","desc":"Heavy horn charge","price":8,"image":"images/Blade/BL-PRD-913061-00.png","competitive":{"assessment":"Budget/casual blade. Heavy horn charge. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"bear_scratch","name":"Bear Scratch","type":"Attack","tier":"B","w":32,"color":"#92400E","desc":"Wild claw attack","price":7,"image":"images/Blade/BL-PRD-939481-00.png","competitive":{"assessment":"Budget/casual blade. Wild claw attack. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"croc_crunch","name":"Croc Crunch","type":"Attack","tier":"B","w":31,"color":"#65A30D","desc":"Jaw crunch smash","price":7,"image":"images/Blade/BL-PRD-953678-00.png","competitive":{"assessment":"Budget/casual blade. Jaw crunch smash. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"ptera_swing","name":"Ptera Swing","type":"Stamina","tier":"B","w":30,"color":"#7DD3FC","desc":"Pteranodon air stamina","price":3,"image":"images/Blade/BL-PRD-939542-03.png","competitive":{"assessment":"Budget/casual blade. Pteranodon air stamina. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"draciel_shield","name":"Draciel Shield","type":"Defense","tier":"B","w":33,"color":"#059669","desc":"Emerald turtle guard","price":11,"image":"images/Blade/BL-PRD-945567-00.png","competitive":{"assessment":"Budget/casual blade. Emerald turtle guard. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"dragoon_storm","name":"Dragoon Storm","type":"Attack","tier":"B","w":32,"color":"#3B82F6","desc":"Blue dragon storm","price":11,"image":"images/Blade/BL-PRD-099468-00.png","competitive":{"assessment":"Budget/casual blade. Blue dragon storm. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"dranzer_spiral","name":"Dranzer Spiral","type":"Attack","tier":"B","w":31,"color":"#EF4444","desc":"Red phoenix spiral","price":11,"image":"images/Blade/BL-PRD-910503-00.png","competitive":{"assessment":"Budget/casual blade. Red phoenix spiral. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"driger_slash","name":"Driger Slash","type":"Attack","tier":"B","w":31,"color":"#F59E0B","desc":"Tiger slash strike","price":11,"image":"images/Blade/BL-PRD-930341-00.png","competitive":{"assessment":"Budget/casual blade. Tiger slash strike. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"black_shell","name":"Black Shell","type":"Defense","tier":"B","w":30,"color":"#1E1E1E","desc":"Hard shell defense","price":8,"image":"images/Blade/BL-PRD-914570-01.png","competitive":{"assessment":"Budget/casual blade. Hard shell defense. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"shelter_drake","name":"Shelter Drake","type":"Balance","tier":"B","w":33,"color":"#1E40AF","desc":"Shelter guard balance","price":10,"image":"images/Blade/BL-PRD-939511-01.png","competitive":{"assessment":"Budget/casual blade. Shelter guard balance. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"wyvern_gale","name":"Wyvern Gale","type":"Stamina","tier":"B","w":32,"color":"#14B8A6","desc":"Wind gale outspin","price":10,"image":"images/Blade/BL-PRD-913108-01.png","competitive":{"assessment":"Budget/casual blade. Wind gale outspin. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"tricera_press","name":"Tricera Press","type":"Attack","tier":"B","w":32,"color":"#15803D","desc":"Triceratops press smash","price":8,"image":"images/Blade/BL-PRD-939528-00.png","competitive":{"assessment":"Budget/casual blade. Triceratops press smash. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"kong_yell","name":"Kong Yell","type":"Attack","tier":"B","w":33,"color":"#78350F","desc":"Gorilla yell power","price":8,"image":"images/Blade/BL-PRD-997610-02.png","competitive":{"assessment":"Budget/casual blade. Gorilla yell power. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"samurai_steel","name":"Samurai Steel","type":"Attack","tier":"B","w":32,"color":"#71717A","desc":"Steel blade slash","price":8,"image":"images/Blade/BL-PRD-993766-00.png","competitive":{"assessment":"Budget/casual blade. Steel blade slash. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"shinobi_knife","name":"Shinobi Knife","type":"Attack","tier":"B","w":29,"color":"#4C1D95","desc":"Ninja knife throw","price":8,"image":"images/Blade/BL-PRD-946847-00.png","competitive":{"assessment":"Budget/casual blade. Ninja knife throw. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"hack_viking","name":"Hack Viking","type":"Attack","tier":"B","w":31,"color":"#78716C","desc":"Viking axe hack","price":10,"image":"images/Blade/BL-PRD-993766-00.png","competitive":{"assessment":"Budget/casual blade. Viking axe hack. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"stun_medusa","name":"Stun Medusa","type":"Defense","tier":"B","w":32,"color":"#7C3AED","desc":"Stone gaze stun","price":10,"image":"images/Blade/BL-PRD-939511-01.png","competitive":{"assessment":"Budget/casual blade. Stone gaze stun. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"rock_leone","name":"Rock Leone","type":"Defense","tier":"B","w":33,"color":"#065F46","desc":"X-Over lion rock wall","price":12,"image":"images/Blade/BL-PRD-957492-00.png","competitive":{"assessment":"Budget/casual blade. X-Over lion rock wall. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"storm_pegasis","name":"Storm Pegasis","type":"Attack","tier":"B","w":32,"color":"#2563EB","desc":"X-Over Pegasus storm","price":12,"image":"images/Blade/BL-PRD-946816-02.png","competitive":{"assessment":"Budget/casual blade. X-Over Pegasus storm. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"dran_dagger","name":"Dran Dagger","type":"Attack","tier":"C","w":25,"color":"#FCA5A5","desc":"Small & fast","price":5,"image":"images/Blade/BL-PRD-097167-05.png","competitive":{"assessment":"Entry-level blade. Small & fast. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Attack"}},{"id":"goat_tackle","name":"Goat Tackle","type":"Attack","tier":"C","w":28,"color":"#D4D4D4","desc":"Goat ram tackle","price":7,"image":"images/Blade/BL-PRD-997610-02.png","competitive":{"assessment":"Entry-level blade. Goat ram tackle. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Attack"}},{"id":"tricera_spiky","name":"Tricera Spiky","type":"Attack","tier":"C","w":29,"color":"#22C55E","desc":"Spiky triceratops","price":7,"image":"images/Blade/BL-PRD-939528-00.png","competitive":{"assessment":"Entry-level blade. Spiky triceratops. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Attack"}},{"id":"trypio","name":"Trypio","type":"Balance","tier":"C","w":28,"color":"#F472B6","desc":"X-Over spinning balance","price":10,"image":"images/Blade/BL-EVE-958772-01.png","competitive":{"assessment":"Entry-level blade. X-Over spinning balance. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Balance"}},{"id":"t_rex","name":"T. Rex","type":"Attack","tier":"B","w":33,"color":"#7F1D1D","desc":"Collab \u2014 Jurassic World","price":12,"image":"images/Blade/BL-PRD-982432-02.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Jurassic World. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"mosasaurus","name":"Mosasaurus","type":"Attack","tier":"B","w":34,"color":"#164E63","desc":"Collab \u2014 Jurassic World","price":12,"image":"images/Blade/BL-PRD-085690-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Jurassic World. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"spinosaurus","name":"Spinosaurus","type":"Attack","tier":"B","w":33,"color":"#854D0E","desc":"Collab \u2014 Jurassic World","price":12,"image":"images/Blade/BL-PRD-939542-03.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Jurassic World. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"quetzalcoatlus","name":"Quetzalcoatlus","type":"Stamina","tier":"B","w":31,"color":"#0E7490","desc":"Collab \u2014 Jurassic World","price":12,"image":"images/Blade/BL-PRD-913108-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Jurassic World. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"spider_man","name":"Spider-Man","type":"Attack","tier":"B","w":32,"color":"#DC2626","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-085706-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"venom","name":"Venom","type":"Attack","tier":"B","w":34,"color":"#1E1E1E","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-080558-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"iron_man","name":"Iron Man","type":"Attack","tier":"B","w":33,"color":"#B91C1C","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-913092-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"thanos","name":"Thanos","type":"Defense","tier":"B","w":35,"color":"#7C3AED","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-098775-02.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"miles_morales","name":"Miles Morales","type":"Attack","tier":"B","w":31,"color":"#1E1E1E","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-914549-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"green_goblin","name":"Green Goblin","type":"Attack","tier":"B","w":32,"color":"#15803D","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-098775-03.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"captain_america","name":"Captain America","type":"Defense","tier":"B","w":33,"color":"#1D4ED8","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-EVE-910879-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"red_hulk","name":"Red Hulk","type":"Attack","tier":"B","w":36,"color":"#991B1B","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-913061-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"darth_vader","name":"Darth Vader","type":"Attack","tier":"B","w":34,"color":"#1E1E1E","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-910510-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"luke_skywalker","name":"Luke Skywalker","type":"Attack","tier":"B","w":32,"color":"#3B82F6","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-EVE-077428-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"the_mandalorian","name":"The Mandalorian","type":"Defense","tier":"B","w":33,"color":"#71717A","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-EVE-910879-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"moff_gideon","name":"Moff Gideon","type":"Attack","tier":"B","w":32,"color":"#1E1E1E","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-096092-05.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"chewbacca","name":"Chewbacca","type":"Defense","tier":"B","w":35,"color":"#78350F","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-096092-03.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"stormtrooper","name":"Stormtrooper","type":"Defense","tier":"C","w":30,"color":"#E2E8F0","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-914570-01.png","competitive":{"assessment":"Entry-level blade. Collab \u2014 Star Wars. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Defense"}},{"id":"general_grievous","name":"General Grievous","type":"Attack","tier":"B","w":33,"color":"#A3A3A3","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-080558-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"obi_wan_kenobi","name":"Obi-Wan Kenobi","type":"Balance","tier":"B","w":32,"color":"#92400E","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-914600-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"optimus_prime","name":"Optimus Prime","type":"Defense","tier":"B","w":34,"color":"#1D4ED8","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-919124-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"megatron","name":"Megatron","type":"Attack","tier":"B","w":35,"color":"#71717A","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-939559-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"bumblebee","name":"Bumblebee","type":"Attack","tier":"B","w":30,"color":"#EAB308","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-EVE-910909-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"starscream","name":"Starscream","type":"Attack","tier":"B","w":31,"color":"#9333EA","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-099468-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"optimus_primal","name":"Optimus Primal","type":"Balance","tier":"B","w":33,"color":"#DC2626","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-913030-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"shockwave","name":"Shockwave","type":"Defense","tier":"B","w":34,"color":"#6D28D9","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-098775-02.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}}],"ratchets":[{"id":"0-60","name":"0-60","teeth":0,"h":60,"price":5,"image":"images/Ratchet/RC-PRD-097242-00.png","competitive":{"assessment":"No teeth \u2014 zero burst resistance. Only use with bits that have high burst stats.","viability":"Not recommended for competitive play."}},{"id":"0-70","name":"0-70","teeth":0,"h":70,"price":5,"image":"images/Ratchet/RC-PRD-080558-00.png","competitive":{"assessment":"No teeth \u2014 zero burst resistance. Only use with bits that have high burst stats.","viability":"Not recommended for competitive play."}},{"id":"0-80","name":"0-80","teeth":0,"h":80,"price":5,"image":"images/Ratchet/RC-PRD-939566-01.png","competitive":{"assessment":"No teeth \u2014 zero burst resistance. Only use with bits that have high burst stats. High height \u2014 good for stamina (less friction).","viability":"Not recommended for competitive play."}},{"id":"1-60","name":"1-60","teeth":1,"h":60,"price":9,"image":"images/Ratchet/RC-PRD-090960-00.png","competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"1-70","name":"1-70","teeth":1,"h":70,"price":6,"image":"images/Ratchet/RC-PRD-982432-02.png","competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"1-80","name":"1-80","teeth":1,"h":80,"price":6,"image":"images/Ratchet/RC-PRD-085690-00.png","competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"1-85","name":"1-85","teeth":1,"h":85,"price":8,"image":null,"competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"2-60","name":"2-60","teeth":2,"h":60,"price":5,"image":"images/Ratchet/RC-PRD-085706-00.png","competitive":{"assessment":"Low burst resistance (2 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"2-70","name":"2-70","teeth":2,"h":70,"price":7,"image":"images/Ratchet/RC-PRD-939535-00.png","competitive":{"assessment":"Low burst resistance (2 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"2-80","name":"2-80","teeth":2,"h":80,"price":6,"image":"images/Ratchet/RC-PRD-096092-05.png","competitive":{"assessment":"Low burst resistance (2 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"3-60","name":"3-60","teeth":3,"h":60,"price":5,"image":"images/Ratchet/RC-EVE-910909-01.png","competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"3-65","name":"3-65","teeth":3,"h":65,"price":7,"image":null,"competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"3-70","name":"3-70","teeth":3,"h":70,"price":6,"image":"images/Ratchet/RC-PRD-096528-00.png","competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"3-80","name":"3-80","teeth":3,"h":80,"price":7,"image":"images/Ratchet/RC-EVE-910879-02.png","competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"3-85","name":"3-85","teeth":3,"h":85,"price":10,"image":"images/Ratchet/RC-PRD-096092-04.png","competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"4-45","name":"4-45","teeth":4,"h":45,"price":8,"image":null,"competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. Balanced choice."}},{"id":"4-50","name":"4-50","teeth":4,"h":50,"price":14,"image":"images/Ratchet/RC-EVE-077428-01.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. Balanced choice."}},{"id":"4-55","name":"4-55","teeth":4,"h":55,"price":8,"image":"images/Ratchet/RC-EVE-088899-00.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. Balanced choice."}},{"id":"4-60","name":"4-60","teeth":4,"h":60,"price":5,"image":"images/Ratchet/RC-PRD-097167-02.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"4-70","name":"4-70","teeth":4,"h":70,"price":6,"image":"images/Ratchet/RC-PRD-096092-02.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"4-80","name":"4-80","teeth":4,"h":80,"price":5,"image":"images/Ratchet/RC-PRD-097167-06.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. Balanced choice."}},{"id":"5-60","name":"5-60","teeth":5,"h":60,"price":5,"image":"images/Ratchet/RC-PRD-085515-00.png","competitive":{"assessment":"Good burst resistance (5 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"5-70","name":"5-70","teeth":5,"h":70,"price":6,"image":"images/Ratchet/RC-EVE-936138-02.png","competitive":{"assessment":"Good burst resistance (5 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"5-80","name":"5-80","teeth":5,"h":80,"price":6,"image":"images/Ratchet/RC-PRD-912972-01.png","competitive":{"assessment":"Good burst resistance (5 teeth). Balanced option. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. Balanced choice."}},{"id":"6-60","name":"6-60","teeth":6,"h":60,"price":5,"image":"images/Ratchet/RC-EVE-982524-01.png","competitive":{"assessment":"Good burst resistance (6 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"6-70","name":"6-70","teeth":6,"h":70,"price":6,"image":"images/Ratchet/RC-PRD-939580-00.png","competitive":{"assessment":"Good burst resistance (6 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"6-80","name":"6-80","teeth":6,"h":80,"price":5,"image":"images/Ratchet/RC-EVE-958772-02.png","competitive":{"assessment":"Good burst resistance (6 teeth). Balanced option. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. Balanced choice."}},{"id":"7-60","name":"7-60","teeth":7,"h":60,"price":6,"image":"images/Ratchet/RC-PRD-096092-03.png","competitive":{"assessment":"High burst resistance (7 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"7-70","name":"7-70","teeth":7,"h":70,"price":14,"image":"images/Ratchet/RC-PRD-939542-03.png","competitive":{"assessment":"High burst resistance (7 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"7-80","name":"7-80","teeth":7,"h":80,"price":6,"image":"images/Ratchet/RC-PRD-096146-06.png","competitive":{"assessment":"High burst resistance (7 teeth). Excellent for survival. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. High burst resistance."}},{"id":"9-60","name":"9-60","teeth":9,"h":60,"price":12,"image":"images/Ratchet/RC-PRD-098843-00.png","competitive":{"assessment":"High burst resistance (9 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"9-65","name":"9-65","teeth":9,"h":65,"price":10,"image":"images/Ratchet/RC-PRD-096146-03.png","competitive":{"assessment":"High burst resistance (9 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"9-70","name":"9-70","teeth":9,"h":70,"price":8,"image":"images/Ratchet/RC-PRD-097167-04.png","competitive":{"assessment":"High burst resistance (9 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"9-80","name":"9-80","teeth":9,"h":80,"price":7,"image":"images/Ratchet/RC-PRD-096092-01.png","competitive":{"assessment":"High burst resistance (9 teeth). Excellent for survival. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. High burst resistance."}},{"id":"8-70","name":"8-70","teeth":8,"h":70,"price":10,"image":"images/Ratchet/RC-PRD-097266-00.png","competitive":{"assessment":"High burst resistance (8 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"4-85","name":"4-85","teeth":4,"h":85,"price":10,"image":null,"competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. Balanced choice."}},{"id":"7-55","name":"7-55","teeth":7,"h":55,"price":10,"image":"images/Ratchet/RC-PRD-097167-01.png","competitive":{"assessment":"High burst resistance (7 teeth). Excellent for survival. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. High burst resistance."}},{"id":"1-50","name":"1-50","teeth":1,"h":50,"price":10,"image":"images/Ratchet/RC-PRD-072447-00.png","competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting. Low height \u2014 good for attack (faster movement).","viability":"Situational. Low burst resistance."}},{"id":"M-85","name":"M-85","teeth":0,"h":85,"price":14,"image":"images/Ratchet/RC-PRD-098775-02.png","competitive":{"assessment":"No teeth \u2014 zero burst resistance. Only use with bits that have high burst stats. High height \u2014 good for stamina (less friction).","viability":"Not recommended for competitive play."}},{"id":"PO3-60","name":"PO3-60","teeth":3,"h":60,"price":12,"image":null,"competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"PO1-80","name":"PO1-80","teeth":1,"h":80,"price":12,"image":null,"competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"FE4-55","name":"FE4-55","teeth":4,"h":55,"price":12,"image":null,"competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. Balanced choice."}},{"id":"GV8-70","name":"GV8-70","teeth":8,"h":70,"price":12,"image":null,"competitive":{"assessment":"High burst resistance (8 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}}],"bits":[{"id":"F","name":"Flat","type":"Attack","mob":9,"sta":3,"stb":4,"price":6,"image":"images/Bit/BT-EVE-910909-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"GF","name":"Gear Flat","type":"Attack","mob":10,"sta":2,"stb":3,"price":7,"image":"images/Bit/BT-PRD-085690-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"LF","name":"Low Flat","type":"Attack","mob":8,"sta":3,"stb":5,"price":5,"image":"images/Bit/BT-PRD-912965-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"HF","name":"High Flat","type":"Attack","mob":9,"sta":3,"stb":4,"price":6,"image":"images/Bit/BT-EVE-910909-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"SF","name":"Sharp Flat","type":"Attack","mob":8,"sta":4,"stb":5,"price":7,"image":"images/Bit/BT-EVE-910909-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"XF","name":"Xtreme Flat","type":"Attack","mob":10,"sta":2,"stb":2,"price":8,"image":"images/Bit/BT-EVE-910909-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"R","name":"Rush","type":"Attack","mob":7,"sta":4,"stb":5,"price":5,"image":"images/Bit/BT-PRD-099468-00.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"HR","name":"High Rush","type":"Attack","mob":7,"sta":4,"stb":5,"price":6,"image":"images/Bit/BT-PRD-099468-00.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"LR","name":"Low Rush","type":"Attack","mob":7,"sta":4,"stb":6,"price":5,"image":"images/Bit/BT-PRD-097167-06.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"A","name":"Accel","type":"Attack","mob":8,"sta":4,"stb":5,"price":9,"image":"images/Bit/BT-PRD-096528-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"RA","name":"Rubber Accel","type":"Attack","mob":9,"sta":3,"stb":6,"price":16,"image":"images/Bit/BT-PRD-096528-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"C","name":"Cyclone","type":"Attack","mob":7,"sta":4,"stb":5,"price":7,"image":"images/Bit/BT-PRD-097167-02.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"GR","name":"Gear Rush","type":"Attack","mob":8,"sta":3,"stb":4,"price":6,"image":"images/Bit/BT-PRD-096146-02.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"J","name":"Jolt","type":"Attack","mob":8,"sta":3,"stb":5,"price":6,"image":"images/Bit/BT-PRD-997627-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"V","name":"Variable","type":"Attack","mob":7,"sta":5,"stb":5,"price":6,"image":"images/Bit/BT-EVE-982524-01.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"Q","name":"Quake","type":"Attack","mob":8,"sta":3,"stb":4,"price":7,"image":"images/Bit/BT-PRD-096092-05.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"U","name":"Unite","type":"Attack","mob":7,"sta":5,"stb":6,"price":8,"image":"images/Bit/BT-PRD-914556-00.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"T","name":"Taper","type":"Balance","mob":5,"sta":6,"stb":7,"price":4,"image":"images/Bit/BT-PRD-089193-02.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"HT","name":"High Taper","type":"Balance","mob":5,"sta":7,"stb":7,"price":6,"image":"images/Bit/BT-PRD-913085-01.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"LT","name":"Low Taper","type":"Balance","mob":5,"sta":6,"stb":8,"price":5,"image":"images/Bit/BT-PRD-089193-02.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"P","name":"Point","type":"Balance","mob":4,"sta":7,"stb":7,"price":4,"image":"images/Bit/BT-PRD-092698-00.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"GP","name":"Gear Point","type":"Balance","mob":4,"sta":7,"stb":8,"price":7,"image":"images/Bit/BT-PRD-085706-00.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"B","name":"Ball","type":"Stamina","mob":2,"sta":9,"stb":8,"price":5,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"MB","name":"Metal Ball","type":"Stamina","mob":2,"sta":10,"stb":9,"price":10,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"LB","name":"Low Ball","type":"Stamina","mob":2,"sta":9,"stb":8,"price":5,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"HB","name":"High Ball","type":"Stamina","mob":2,"sta":9,"stb":7,"price":6,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"RB","name":"Rubber Ball","type":"Stamina","mob":2,"sta":10,"stb":9,"price":9,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"FB","name":"Free Ball","type":"Stamina","mob":2,"sta":10,"stb":9,"price":12,"image":"images/Bit/BT-PRD-098775-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"DB","name":"Disc Ball","type":"Stamina","mob":3,"sta":8,"stb":8,"price":7,"image":"images/Bit/BT-EVE-936138-03.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"GB","name":"Gear Ball","type":"Stamina","mob":3,"sta":9,"stb":8,"price":9,"image":"images/Bit/BT-PRD-096092-04.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"O","name":"Orbit","type":"Stamina","mob":3,"sta":9,"stb":7,"price":6,"image":"images/Bit/BT-PRD-092858-02.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"H","name":"Hexa","type":"Stamina","mob":2,"sta":8,"stb":8,"price":5,"image":"images/Bit/BT-PRD-096160-00.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"D","name":"Dot","type":"Stamina","mob":2,"sta":8,"stb":7,"price":4,"image":"images/Bit/BT-PRD-092858-03.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"G","name":"Glide","type":"Stamina","mob":3,"sta":9,"stb":7,"price":6,"image":"images/Bit/BT-PRD-097167-05.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"E","name":"Elevate","type":"Stamina","mob":3,"sta":8,"stb":7,"price":5,"image":"images/Bit/BT-PRD-096092-02.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"L","name":"Level","type":"Stamina","mob":3,"sta":8,"stb":8,"price":6,"image":"images/Bit/BT-PRD-939535-00.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"N","name":"Needle","type":"Defense","mob":1,"sta":7,"stb":9,"price":5,"image":"images/Bit/BT-EVE-910879-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"HN","name":"High Needle","type":"Defense","mob":1,"sta":7,"stb":9,"price":6,"image":"images/Bit/BT-PRD-098775-02.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"GN","name":"Gear Needle","type":"Defense","mob":2,"sta":7,"stb":9,"price":6,"image":"images/Bit/BT-PRD-913115-01.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"S","name":"Spike","type":"Defense","mob":2,"sta":6,"stb":10,"price":4,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"LS","name":"Low Spike","type":"Defense","mob":2,"sta":7,"stb":10,"price":5,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"HS","name":"High Spike","type":"Defense","mob":2,"sta":6,"stb":10,"price":6,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"SS","name":"Semi Spike","type":"Defense","mob":3,"sta":6,"stb":9,"price":5,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"XS","name":"Xtreme Spike","type":"Defense","mob":1,"sta":5,"stb":10,"price":8,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"BS","name":"Bound Spike","type":"Defense","mob":2,"sta":6,"stb":9,"price":4,"image":"images/Bit/BT-PRD-919124-00.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"UN","name":"Under","type":"Defense","mob":1,"sta":7,"stb":10,"price":7,"image":"images/Bit/BT-PRD-097266-00.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"WD","name":"Wide Defense","type":"Defense","mob":1,"sta":7,"stb":10,"price":6,"image":"images/Bit/BT-EVE-958772-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"HD","name":"High Defense","type":"Defense","mob":1,"sta":7,"stb":10,"price":6,"image":"images/Bit/BT-EVE-958772-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"LD","name":"Low Defense","type":"Defense","mob":1,"sta":8,"stb":10,"price":5,"image":"images/Bit/BT-EVE-958772-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"LO","name":"Low Orb","type":"Stamina","sta":9,"stb":7,"mob":3,"price":5,"image":"images/Bit/BT-PRD-096146-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"W","name":"Wedge","type":"Defense","sta":5,"stb":9,"mob":4,"price":5,"image":"images/Bit/BT-EVE-958772-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"TK","name":"Trans Kick","type":"Balance","sta":7,"stb":6,"mob":7,"price":6,"image":"images/Bit/BT-PRD-995678-00.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"I","name":"Ignition","type":"Attack","sta":3,"stb":4,"mob":9,"price":6,"image":"images/Bit/BT-PRD-072447-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"Y","name":"Yielding","type":"Stamina","sta":9,"stb":8,"mob":2,"price":6,"image":"images/Bit/BT-EVE-088899-00.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"WB","name":"Wide Ball","type":"Stamina","sta":8,"stb":8,"mob":4,"price":5,"image":"images/Bit/BT-PRD-956983-01.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"MN","name":"Metal Needle","type":"Attack","sta":5,"stb":5,"mob":8,"price":6,"image":"images/Bit/BT-PRD-914549-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"Op","name":"Operate","type":"Balance","sta":6,"stb":7,"mob":6,"price":6,"image":"images/Bit/BT-PRD-098775-01.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"K","name":"Kick","type":"Attack","sta":4,"stb":5,"mob":8,"price":5,"image":"images/Bit/BT-PRD-085515-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"GU","name":"Gear Unite","type":"Balance","sta":6,"stb":6,"mob":7,"price":7,"image":"images/Bit/BT-PRD-096146-01.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"WW","name":"Wide Wave","type":"Stamina","sta":8,"stb":8,"mob":3,"price":7,"image":"images/Bit/BT-PRD-096153-00.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"FF","name":"Free Flat","type":"Attack","mob":9,"sta":4,"stb":4,"price":8,"image":"images/Bit/BT-EVE-077428-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}}],"imageBaseUrl":"https://raw.githubusercontent.com/hinfok/beys/master/","typeMatchups":{"Attack":{"strong_vs":"Stamina","weak_vs":"Defense"},"Defense":{"strong_vs":"Attack","weak_vs":"Stamina"},"Stamina":{"strong_vs":"Defense","weak_vs":"Attack"},"Balance":{"strong_vs":"None","weak_vs":"None"}}};
+/* ============================================================
+   BeyForge X — vanilla JS PWA
+   ============================================================ */
+'use strict';
+
+const DATA = window.BEY_DATA;
 const IMG_BASE = DATA.imageBaseUrl;
-let currentFilter = { blade: '', ratchet: '', bit: '' };
+const LS = {
+  combos: 'beyforge_combos',
+  decks: 'beyforge_decks',
+  matches: 'beyforge_matches',
+  tournaments: 'beyforge_tournaments'
+};
+const TIER_ORDER = ['S+', 'S', 'A', 'B', 'C'];
+const FINISH_POINTS = { spin: 1, over: 2, burst: 2, extreme: 3 };
+const FINISH_LABELS = { spin: 'Spin', over: 'Over', burst: 'Burst', extreme: 'Extreme' };
+const WIN_TARGET = 4;
 
-// Populate dropdowns
-function init() {
-populateSelect('bladeSelect', DATA.blades, 'name', filterBlades());
-populateSelect('ratchetSelect', DATA.ratchets, 'name', DATA.ratchets);
-populateSelect('bitSelect', DATA.bits, 'name', DATA.bits);
-// Check URL for shared combo
-const params = new URLSearchParams(window.location.search);
-if (params.get('b') || params.get('r') || params.get('t')) {
-const bi = params.get('b'), ri = params.get('r'), ti = params.get('t');
-if (bi) document.getElementById('bladeSelect').value = bi;
-if (ri) document.getElementById('ratchetSelect').value = ri;
-if (ti) document.getElementById('bitSelect').value = ti;
-updateCombo();
+/* ---------- Storage helpers ---------- */
+function lsGet(key, def) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; }
+  catch (e) { return def; }
 }
+function lsSet(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { console.warn('storage full', e); }
 }
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
 
-function filterBlades() {
-if (!currentFilter.blade) return DATA.blades;
-return DATA.blades.filter(b => b.tier === currentFilter.blade);
+/* ---------- Data helpers ---------- */
+function getPart(id, list) { return list.find(p => p.id === id); }
+function imgUrl(part) { return (part && part.image) ? IMG_BASE + part.image : null; }
+function tierClass(tier) { return tier ? 'tier-' + tier.replace('+', '\\+') : ''; }
+function resolveCombo(c) {
+  if (!c) return null;
+  const blade = getPart(c.bladeId, DATA.blades);
+  const ratchet = getPart(c.ratchetId, DATA.ratchets);
+  const bit = getPart(c.bitId, DATA.bits);
+  if (!blade || !ratchet || !bit) return null;
+  return { blade, ratchet, bit, id: c.id, name: c.name || (blade.name + ' ' + ratchet.name + ' ' + bit.name) };
 }
-
-function filterRatchets() {
-return DATA.ratchets;
+function comboWeight(rc) {
+  if (!rc) return 0;
+  return (rc.blade.w || 0) + (rc.ratchet.w || 0) + (rc.bit.w || 0);
 }
-
-function populateSelect(id, items, labelField, filteredItems) {
-const sel = document.getElementById(id);
-const currentVal = sel.value;
-const itemsToShow = filteredItems || items;
-let html = '<option value="">— Choose —</option>';
-itemsToShow.forEach(item => {
-const tier = item.tier ? ` [${item.tier}]` : '';
-const type = item.type ? ` (${item.type})` : '';
-html += `<option value="${item.id}">${item[labelField]}${tier}${type}</option>`;
-});
-sel.innerHTML = html;
-if (currentVal) sel.value = currentVal;
+function comboType(rc) { return rc ? (rc.blade.type || 'Balance') : 'Balance'; }
+function comboPlaystyle(rc) {
+  if (!rc) return 'Unknown';
+  const bt = rc.blade.type || 'Balance';
+  const bit = rc.bit;
+  if (bt === 'Attack' && (bit.mob || 0) >= 7) return 'Aggressive Attack — high mobility KO attempts';
+  if (bt === 'Stamina' && (bit.sta || 0) >= 7) return 'Outspin Stamina — win by spinning longer';
+  if (bt === 'Defense' && (bit.stb || 0) >= 8) return 'Tank Defense — absorb hits and survive';
+  if (bt === 'Balance') return 'Balance — adaptable but not specialized';
+  return bt + ' with ' + (bit.type || '') + ' bit — mixed approach';
 }
-
-function filterTier(category, tier) {
-currentFilter[category] = tier;
-// Update button states
-const filterDiv = document.getElementById(category + 'TierFilter');
-if (filterDiv) {
-filterDiv.querySelectorAll('button').forEach(btn => {
-btn.classList.remove('active');
-if ((btn.textContent === 'All' && !tier) || btn.textContent === tier) {
-btn.classList.add('active');
-}
-});
-}
-if (category === 'blade') {
-populateSelect('bladeSelect', DATA.blades, 'name', filterBlades());
-}
-}
-
-function getPart(id, list) {
-return list.find(p => p.id === id);
+function comboImgHtml(rc, size) {
+  const s = size || 40;
+  const parts = [rc.blade, rc.ratchet, rc.bit];
+  return parts.map(p => {
+    const u = imgUrl(p);
+    return u ? `<img src="${u}" alt="${p.name}" style="width:${s}px;height:${s}px;object-fit:contain;background:var(--surface3);border-radius:6px" onerror="this.style.display='none'">`
+             : `<div style="width:${s}px;height:${s}px;background:var(--surface3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:${s*0.4}px">?</div>`;
+  }).join('');
 }
 
-function getImageUrl(part) {
-if (!part || !part.image) return null;
-return IMG_BASE + part.image;
+/* ---------- Toast ---------- */
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
 }
 
-function renderPreview(containerId, part) {
-const container = document.getElementById(containerId);
-if (!part) { container.innerHTML = ''; return; }
-const imgUrl = getImageUrl(part);
-const tierClass = part.tier ? 'tier-' + part.tier.replace('+','\\+') : '';
-const tier = part.tier ? `<span class="tier-badge ${tierClass}">${part.tier}</span>` : '';
-const type = part.type ? `<span class="type-badge">${part.type}</span>` : '';
-const weight = part.w ? `${part.w}g` : (part.weight ? `${part.weight}g` : '');
-const price = part.price ? `$${part.price}` : '';
-const desc = part.desc || (part.competitive && part.competitive.assessment) || '';
-const imgHtml = imgUrl
-? `<img src="${imgUrl}" alt="${part.name}" onerror="this.style.display='none'">`
-: `<div class="no-image">No image</div>`;
-container.innerHTML = `${imgHtml}<div class="part-info">${tier}${type}<div style="margin-top:5px;font-weight:bold;">${part.name}</div><div style="font-size:0.8em;color:var(--muted);">${weight} ${part.spin ? '| Spin: ' + part.spin : ''} ${part.h ? '| Height: ' + part.h + 'mm' : ''} ${part.teeth !== undefined ? '| Teeth: ' + part.teeth : ''}</div><div class="desc">${desc}</div><div class="price">${price}</div></div>`;
+/* ---------- Tab navigation ---------- */
+function switchTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelectorAll('#tabbar button').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  if (name === 'decks') { renderSavedCombos(); renderDecks(); }
+  if (name === 'track') { renderTrackSetup(); renderHistory(); renderStats(); }
+  if (name === 'tournament') { renderTournaments(); }
+  window.scrollTo({ top: 0 });
+}
+
+/* ============================================================
+   TAB 1: COMBOS
+   ============================================================ */
+let bladeFilter = '';
+
+function populateBlades() {
+  const sel = document.getElementById('bladeSelect');
+  const cur = sel.value;
+  const list = bladeFilter ? DATA.blades.filter(b => b.tier === bladeFilter) : DATA.blades;
+  let html = '<option value="">— Choose a blade —</option>';
+  list.forEach(b => { html += `<option value="${b.id}">${b.name} [${b.tier}] (${b.type})</option>`; });
+  sel.innerHTML = html;
+  if (cur && list.some(b => b.id === cur)) sel.value = cur;
+}
+function populateRatchets() {
+  const sel = document.getElementById('ratchetSelect');
+  const cur = sel.value;
+  let html = '<option value="">— Choose a ratchet —</option>';
+  DATA.ratchets.forEach(r => { html += `<option value="${r.id}">${r.name} (${r.teeth} teeth, ${r.h}mm)</option>`; });
+  sel.innerHTML = html;
+  if (cur) sel.value = cur;
+}
+function populateBits() {
+  const sel = document.getElementById('bitSelect');
+  const cur = sel.value;
+  let html = '<option value="">— Choose a bit —</option>';
+  DATA.bits.forEach(b => { html += `<option value="${b.id}">${b.name} (${b.type})</option>`; });
+  sel.innerHTML = html;
+  if (cur) sel.value = cur;
+}
+function renderTierFilter() {
+  const div = document.getElementById('bladeTierFilter');
+  const tiers = ['', 'S+', 'S', 'A', 'B', 'C'];
+  const labels = ['All', 'S+', 'S', 'A', 'B', 'C'];
+  div.innerHTML = tiers.map((t, i) =>
+    `<button class="${bladeFilter === t ? 'active' : ''}" onclick="setBladeFilter('${t}')">${labels[i]}</button>`
+  ).join('');
+}
+function setBladeFilter(tier) {
+  bladeFilter = tier;
+  renderTierFilter();
+  populateBlades();
+  updateCombo();
+}
+
+function renderPartPreview(containerId, part) {
+  const c = document.getElementById(containerId);
+  if (!part) { c.innerHTML = ''; return; }
+  const u = imgUrl(part);
+  const tier = part.tier ? `<span class="tier-badge ${tierClass(part.tier)}">${part.tier}</span>` : '';
+  const type = part.type ? `<span class="type-badge">${part.type}</span>` : '';
+  const weight = part.w ? `${part.w}g` : '';
+  const price = part.price ? `$${part.price}` : '';
+  const desc = part.desc || (part.competitive && part.competitive.assessment) || '';
+  let meta = weight;
+  if (part.spin) meta += (meta ? ' · ' : '') + 'Spin: ' + part.spin;
+  if (part.h !== undefined) meta += (meta ? ' · ' : '') + 'Height: ' + part.h + 'mm';
+  if (part.teeth !== undefined) meta += (meta ? ' · ' : '') + 'Teeth: ' + part.teeth;
+  if (part.mob !== undefined) meta += (meta ? ' · ' : '') + `Mob ${part.mob} · Sta ${part.sta} · Stb ${part.stb}`;
+  const imgHtml = u ? `<img src="${u}" alt="${part.name}" onerror="this.style.display='none'">` : '<div class="no-image">No image</div>';
+  c.innerHTML = `${imgHtml}<div class="part-info">${tier}${type}<div class="pname">${part.name}</div><div class="pmeta">${meta}</div><div class="pdesc">${desc}</div><div class="pprice">${price}</div></div>`;
+}
+
+function currentCombo() {
+  const b = getPart(document.getElementById('bladeSelect').value, DATA.blades);
+  const r = getPart(document.getElementById('ratchetSelect').value, DATA.ratchets);
+  const t = getPart(document.getElementById('bitSelect').value, DATA.bits);
+  if (!b || !r || !t) return null;
+  return { blade: b, ratchet: r, bit: t, name: b.name + ' ' + r.name + ' ' + t.name };
 }
 
 function updateCombo() {
-const bladeId = document.getElementById('bladeSelect').value;
-const ratchetId = document.getElementById('ratchetSelect').value;
-const bitId = document.getElementById('bitSelect').value;
-const blade = getPart(bladeId, DATA.blades);
-const ratchet = getPart(ratchetId, DATA.ratchets);
-const bit = getPart(bitId, DATA.bits);
-renderPreview('bladePreview', blade);
-renderPreview('ratchetPreview', ratchet);
-renderPreview('bitPreview', bit);
-if (blade && ratchet && bit) {
-showResults(blade, ratchet, bit);
-} else {
-document.getElementById('resultsPanel').style.display = 'none';
-document.getElementById('emptyState').style.display = 'block';
-}
+  const b = getPart(document.getElementById('bladeSelect').value, DATA.blades);
+  const r = getPart(document.getElementById('ratchetSelect').value, DATA.ratchets);
+  const t = getPart(document.getElementById('bitSelect').value, DATA.bits);
+  renderPartPreview('bladePreview', b);
+  renderPartPreview('ratchetPreview', r);
+  renderPartPreview('bitPreview', t);
+  if (b && r && t) showAnalysis({ blade: b, ratchet: r, bit: t, name: b.name + ' ' + r.name + ' ' + t.name });
+  else {
+    document.getElementById('resultsPanel').classList.add('hidden');
+    document.getElementById('emptyState').classList.remove('hidden');
+  }
 }
 
-function showResults(blade, ratchet, bit) {
-document.getElementById('emptyState').style.display = 'none';
-document.getElementById('resultsPanel').style.display = 'block';
-// Combo display
-const comboHtml = [blade, ratchet, bit].map((p, i) => {
-const labels = ['Blade', 'Ratchet', 'Bit'];
-const img = getImageUrl(p);
-const imgHtml = img ? `<img src="${img}" onerror="this.style.display='none'">` : '<div class="no-image">No img</div>';
-return `<div class="combo-part">${imgHtml}<div class="label">${labels[i]}</div><div class="name">${p.name}</div></div>`;
-}).join('');
-document.getElementById('comboDisplay').innerHTML = comboHtml;
-// Combo name
-document.getElementById('comboName').textContent = `${blade.name} ${ratchet.name} ${bit.name}`;
-// Summary
-const totalWeight = (blade.w || 0) + (ratchet.w || 0) + (bit.w || 0);
-const bladeType = blade.type || 'Balance';
-const bitType = bit.type || 'Balance';
-let playstyle = 'Unknown';
-if (bladeType === 'Attack' && (bit.mob || 0) >= 7) playstyle = 'Aggressive Attack — high mobility KO attempts';
-else if (bladeType === 'Stamina' && (bit.sta || 0) >= 7) playstyle = 'Outspin Stamina — win by spinning longer';
-else if (bladeType === 'Defense' && (bit.stb || 0) >= 8) playstyle = 'Tank Defense — absorb hits and survive';
-else if (bladeType === 'Balance') playstyle = 'Balance — adaptable but not specialized';
-else playstyle = `${bladeType} with ${bitType} bit — mixed approach`;
-document.getElementById('comboSummary').textContent = `${playstyle} • ${totalWeight}g total • ${blade.spin || 'R'}-spin`;
-// Cost
-const totalCost = (blade.price || 0) + (ratchet.price || 0) + (bit.price || 0);
-document.getElementById('totalCost').textContent = `Total cost: ~$${totalCost}`;
-// Viability cards
-const cards = [blade, ratchet, bit].map(p => {
-const labels = ['Blade', 'Ratchet', 'Bit'];
-const comp = p.competitive || {};
-const viability = comp.viability || 'Unknown';
-let statusClass = 'status-situational';
-if (viability.includes('Competitively viable')) statusClass = 'status-viable';
-else if (viability.includes('Not competitively') || viability.includes('Not recommended')) statusClass = 'status-not-viable';
-const assessment = comp.assessment || p.desc || '';
-const tier = p.tier ? `<span class="tier-badge tier-${p.tier.replace('+','\\+')}">${p.tier}</span>` : '';
-return `<div class="viability-card"><h3>${labels.find(l => true)}: ${p.name} ${tier}<span class="viability-status ${statusClass}">${viability}</span></h3><div class="assessment">${assessment}</div></div>`;
-}).join('');
-document.getElementById('viabilityCards').innerHTML = cards;
-// Matchup box
-const matchups = DATA.typeMatchups || {};
-const bType = blade.type || 'Balance';
-const mu = matchups[bType] || { strong_vs: 'None', weak_vs: 'None' };
-let matchupHtml = '';
-if (mu.strong_vs && mu.strong_vs !== 'None') {
-matchupHtml += `<div class="matchup-item matchup-strong">✅ Strong vs ${mu.strong_vs}</div>`;
-} else {
-matchupHtml += `<div class="matchup-item" style="background:var(--surface2)">⚖️ No type advantage</div>`;
-}
-if (mu.weak_vs && mu.weak_vs !== 'None') {
-matchupHtml += `<div class="matchup-item matchup-weak">⚠️ Weak vs ${mu.weak_vs}</div>`;
-} else {
-matchupHtml += `<div class="matchup-item" style="background:var(--surface2)">⚖️ No type weakness</div>`;
-}
-// Add tier-based matchup
-if (blade.tier) {
-const tierOrder = ['S+', 'S', 'A', 'B', 'C'];
-const tierIdx = tierOrder.indexOf(blade.tier);
-if (tierIdx <= 1) {
-matchupHtml += `<div class="matchup-item matchup-strong">🔥 Meta pick — top ${blade.tier} tier</div>`;
-} else if (tierIdx >= 3) {
-matchupHtml += `<div class="matchup-item matchup-weak">📉 Outclassed by higher tiers</div>`;
-}
-}
-document.getElementById('matchupBox').innerHTML = matchupHtml;
-// Buy links
-const buyHtml = [blade, ratchet, bit].map(p => {
-const query = encodeURIComponent(`Beyblade X ${p.name}`);
-return `<a href="https://www.amazon.com/s?k=${query}&tag=beyforgex-20" target="_blank" rel="nofollow">Buy ${p.name} on Amazon →</a>`;
-}).join('');
-document.getElementById('buyLinks').innerHTML = `<h3 style="margin-bottom:8px;">🛒 Where to Buy</h3>${buyHtml}`;
+function showAnalysis(rc) {
+  document.getElementById('emptyState').classList.add('hidden');
+  document.getElementById('resultsPanel').classList.remove('hidden');
+  const labels = ['Blade', 'Ratchet', 'Bit'];
+  const parts = [rc.blade, rc.ratchet, rc.bit];
+  document.getElementById('comboDisplay').innerHTML = parts.map((p, i) => {
+    const u = imgUrl(p);
+    const img = u ? `<img src="${u}" onerror="this.style.display='none'">` : '<div class="no-image">No img</div>';
+    return `<div class="combo-part">${img}<div class="label">${labels[i]}</div><div class="name">${p.name}</div></div>`;
+  }).join('');
+  document.getElementById('comboName').textContent = rc.name;
+  const totalWeight = comboWeight(rc);
+  const spin = rc.blade.spin || 'R';
+  document.getElementById('comboSummary').textContent = `${comboPlaystyle(rc)} • ${totalWeight}g total • ${spin}-spin`;
+  const totalCost = (rc.blade.price || 0) + (rc.ratchet.price || 0) + (rc.bit.price || 0);
+  document.getElementById('totalCost').textContent = `Total cost: ~$${totalCost}`;
+
+  // Viability cards
+  document.getElementById('viabilityCards').innerHTML = parts.map((p, i) => {
+    const comp = p.competitive || {};
+    const viability = comp.viability || 'Unknown';
+    let statusClass = 'status-situational';
+    if (viability.includes('Competitively viable')) statusClass = 'status-viable';
+    else if (viability.includes('Not competitively') || viability.includes('Not recommended')) statusClass = 'status-not-viable';
+    const assessment = comp.assessment || p.desc || '';
+    const tier = p.tier ? `<span class="tier-badge ${tierClass(p.tier)}">${p.tier}</span>` : '';
+    return `<div class="viability-card"><h3>${labels[i]}: ${p.name} ${tier}<span class="viability-status ${statusClass}">${viability}</span></h3><div class="assessment">${assessment}</div></div>`;
+  }).join('');
+
+  // Matchup
+  const matchups = DATA.typeMatchups || {};
+  const bType = rc.blade.type || 'Balance';
+  const mu = matchups[bType] || { strong_vs: 'None', weak_vs: 'None' };
+  let mh = '';
+  if (mu.strong_vs && mu.strong_vs !== 'None') mh += `<div class="matchup-item matchup-strong">✅ Strong vs ${mu.strong_vs}</div>`;
+  else mh += `<div class="matchup-item" style="background:var(--surface2)">⚖️ No type advantage</div>`;
+  if (mu.weak_vs && mu.weak_vs !== 'None') mh += `<div class="matchup-item matchup-weak">⚠️ Weak vs ${mu.weak_vs}</div>`;
+  else mh += `<div class="matchup-item" style="background:var(--surface2)">⚖️ No type weakness</div>`;
+  if (rc.blade.tier) {
+    const idx = TIER_ORDER.indexOf(rc.blade.tier);
+    if (idx <= 1) mh += `<div class="matchup-item matchup-strong">🔥 Meta pick — top ${rc.blade.tier} tier</div>`;
+    else if (idx >= 3) mh += `<div class="matchup-item matchup-weak">📉 Outclassed by higher tiers</div>`;
+  }
+  document.getElementById('matchupBox').innerHTML = mh;
 }
 
 function randomCombo() {
-// Pick from S+ and S tier blades
-const topBlades = DATA.blades.filter(b => b.tier === 'S+' || b.tier === 'S');
-const blade = topBlades[Math.floor(Math.random() * topBlades.length)];
-// Pick a good ratchet (high teeth)
-const goodRatchets = DATA.ratchets.filter(r => r.teeth >= 4);
-const ratchet = goodRatchets[Math.floor(Math.random() * goodRatchets.length)];
-// Pick a bit that matches blade type
-const matchingBits = DATA.bits.filter(b => b.type === blade.type);
-const bit = matchingBits.length > 0
-? matchingBits[Math.floor(Math.random() * matchingBits.length)]
-: DATA.bits[Math.floor(Math.random() * DATA.bits.length)];
-document.getElementById('bladeSelect').value = blade.id;
-document.getElementById('ratchetSelect').value = ratchet.id;
-document.getElementById('bitSelect').value = bit.id;
-updateCombo();
+  const topBlades = DATA.blades.filter(b => b.tier === 'S+' || b.tier === 'S');
+  const blade = topBlades[Math.floor(Math.random() * topBlades.length)];
+  const goodRatchets = DATA.ratchets.filter(r => r.teeth >= 4);
+  const ratchet = goodRatchets[Math.floor(Math.random() * goodRatchets.length)];
+  const matchingBits = DATA.bits.filter(b => b.type === blade.type);
+  const bit = matchingBits.length ? matchingBits[Math.floor(Math.random() * matchingBits.length)] : DATA.bits[Math.floor(Math.random() * DATA.bits.length)];
+  document.getElementById('bladeSelect').value = blade.id;
+  document.getElementById('ratchetSelect').value = ratchet.id;
+  document.getElementById('bitSelect').value = bit.id;
+  updateCombo();
+}
+
+function saveCombo() {
+  const rc = currentCombo();
+  if (!rc) { toast('Select all 3 parts first'); return; }
+  const combos = lsGet(LS.combos, []);
+  const name = prompt('Combo name (optional):', rc.name);
+  if (name === null) return;
+  const combo = {
+    id: uid(),
+    name: (name && name.trim()) ? name.trim() : rc.name,
+    bladeId: rc.blade.id, ratchetId: rc.ratchet.id, bitId: rc.bit.id,
+    createdAt: Date.now()
+  };
+  combos.push(combo);
+  lsSet(LS.combos, combos);
+  toast('💾 Combo saved!');
 }
 
 function shareCombo() {
-const bladeId = document.getElementById('bladeSelect').value;
-const ratchetId = document.getElementById('ratchetSelect').value;
-const bitId = document.getElementById('bitSelect').value;
-const url = `${window.location.origin}${window.location.pathname}?b=${bladeId}&r=${ratchetId}&t=${bitId}`;
-navigator.clipboard.writeText(url).then(() => {
-alert('Link copied! Share it anywhere.');
-}).catch(() => {
-prompt('Copy this link:', url);
-});
+  const rc = currentCombo();
+  if (!rc) { toast('Select all 3 parts first'); return; }
+  const url = `${location.origin}${location.pathname}?b=${rc.blade.id}&r=${rc.ratchet.id}&t=${rc.bit.id}`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => toast('📋 Link copied!')).catch(() => prompt('Copy this link:', url));
+  } else {
+    prompt('Copy this link:', url);
+  }
 }
 
-function downloadComboImage() {
-const bladeId = document.getElementById('bladeSelect').value;
-const ratchetId = document.getElementById('ratchetSelect').value;
-const bitId = document.getElementById('bitSelect').value;
-const blade = getPart(bladeId, DATA.blades);
-const ratchet = getPart(ratchetId, DATA.ratchets);
-const bit = getPart(bitId, DATA.bits);
-if (!blade || !ratchet || !bit) return;
-const canvas = document.createElement('canvas');
-canvas.width = 900;
-canvas.height = 500;
-const ctx = canvas.getContext('2d');
-// Background
-ctx.fillStyle = '#14142b';
-ctx.fillRect(0, 0, 900, 500);
-// Title
-ctx.fillStyle = '#e8e8f0';
-ctx.font = 'bold 28px sans-serif';
-ctx.textAlign = 'center';
-ctx.fillText(`${blade.name} ${ratchet.name} ${bit.name}`, 450, 40);
-ctx.font = '14px sans-serif';
-ctx.fillStyle = '#8888aa';
-const totalWeight = (blade.w || 0) + (ratchet.w || 0) + (bit.w || 0);
-ctx.fillText(`${blade.type} • ${totalWeight}g • ${blade.tier} tier • ${blade.spin || 'R'}-spin`, 450, 65);
-// Tier badge
-if (blade.tier) {
-ctx.font = 'bold 20px sans-serif';
-const tierColors = { 'S+': '#ff4444', 'S': '#ff8800', 'A': '#ffcc00', 'B': '#88cc00', 'C': '#888888' };
-ctx.fillStyle = tierColors[blade.tier] || '#888888';
-ctx.fillText(`Tier: ${blade.tier}`, 450, 100);
+function downloadCard() {
+  const rc = currentCombo();
+  if (!rc) { toast('Select all 3 parts first'); return; }
+  const canvas = document.createElement('canvas');
+  canvas.width = 900; canvas.height = 500;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#14142b'; ctx.fillRect(0, 0, 900, 500);
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 28px sans-serif';
+  ctx.fillText(rc.name, 450, 40);
+  ctx.fillStyle = '#8888aa'; ctx.font = '14px sans-serif';
+  ctx.fillText(`${rc.blade.type} • ${comboWeight(rc)}g • ${rc.blade.tier} tier • ${rc.blade.spin || 'R'}-spin`, 450, 65);
+  if (rc.blade.tier) {
+    const tc = { 'S+': '#ff4444', 'S': '#ff8800', 'A': '#ffcc00', 'B': '#88cc00', 'C': '#888888' };
+    ctx.fillStyle = tc[rc.blade.tier] || '#888888'; ctx.font = 'bold 20px sans-serif';
+    ctx.fillText('Tier: ' + rc.blade.tier, 450, 100);
+  }
+  const labels = ['BLADE', 'RATCHET', 'BIT'];
+  const parts = [rc.blade, rc.ratchet, rc.bit];
+  let loaded = 0;
+  function finish() {
+    loaded++;
+    if (loaded === 3) {
+      ctx.fillStyle = '#6c5ce7'; ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('BeyForge X', 450, 470);
+      const a = document.createElement('a');
+      a.download = rc.name.replace(/[^a-z0-9]+/gi, '_') + '.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    }
+  }
+  parts.forEach((part, i) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      ctx.drawImage(img, 150 + i * 250, 120, 200, 200);
+      ctx.fillStyle = '#8888aa'; ctx.font = '12px sans-serif';
+      ctx.fillText(labels[i], 250 + i * 250, 340);
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
+      ctx.fillText(part.name, 250 + i * 250, 360);
+      finish();
+    };
+    img.onerror = () => {
+      ctx.fillStyle = '#2a2a4a'; ctx.fillRect(150 + i * 250, 120, 200, 200);
+      ctx.fillStyle = '#8888aa'; ctx.font = '12px sans-serif';
+      ctx.fillText(labels[i], 250 + i * 250, 340);
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
+      ctx.fillText(part.name, 250 + i * 250, 360);
+      finish();
+    };
+    const u = imgUrl(part);
+    if (u) img.src = u; else img.onerror();
+  });
 }
-// Load and draw images
-const labels = ['BLADE', 'RATCHET', 'BIT'];
-const parts = [blade, ratchet, bit];
-let loaded = 0;
-parts.forEach((part, i) => {
-const img = new Image();
-img.crossOrigin = 'anonymous';
-img.onload = () => {
-ctx.drawImage(img, 150 + i * 250, 120, 200, 200);
-ctx.fillStyle = '#8888aa';
-ctx.font = '12px sans-serif';
-ctx.textAlign = 'center';
-ctx.fillText(labels[i], 250 + i * 250, 340);
-ctx.fillStyle = '#e8e8f0';
-ctx.font = 'bold 14px sans-serif';
-ctx.fillText(part.name, 250 + i * 250, 360);
-loaded++;
-if (loaded === 3) {
-// Add BeyForge watermark
-ctx.fillStyle = '#6c5ce7';
-ctx.font = 'bold 16px sans-serif';
-ctx.fillText('BeyForge X', 450, 470);
-// Download
-const link = document.createElement('a');
-link.download = `${blade.name}_${ratchet.name}_${bit.name}.png`;
-link.href = canvas.toDataURL();
-link.click();
+
+/* ============================================================
+   TAB 2: DECKS
+   ============================================================ */
+let deckDraft = null; // { id, name, comboIds: [] }
+let dragIndex = null;
+
+function getSavedCombos() { return lsGet(LS.combos, []); }
+function getSavedDecks() { return lsGet(LS.decks, []); }
+
+function renderSavedCombos() {
+  const combos = getSavedCombos();
+  const picker = document.getElementById('deckComboPicker');
+  if (!picker) return;
+  if (!combos.length) {
+    picker.innerHTML = '<div class="empty-state"><div class="icon">💾</div><p>No saved combos yet. Save a combo in the Combos tab first.</p></div>';
+    return;
+  }
+  picker.innerHTML = combos.map(c => {
+    const rc = resolveCombo(c);
+    if (!rc) return '';
+    const selected = deckDraft && deckDraft.comboIds.includes(c.id);
+    return `<div class="combo-card ${selected ? 'selected' : ''}" onclick="toggleDeckCombo('${c.id}')">
+      <div class="thumbs">${comboImgHtml(rc, 40)}</div>
+      <div class="cinfo"><div class="cname">${esc(c.name)}</div><div class="cmeta">${rc.blade.type} · ${comboWeight(rc)}g · ${rc.blade.tier} tier</div></div>
+    </div>`;
+  }).join('');
 }
-};
-img.onerror = () => {
-ctx.fillStyle = '#2a2a4a';
-ctx.fillRect(150 + i * 250, 120, 200, 200);
-ctx.fillStyle = '#8888aa';
-ctx.font = '12px sans-serif';
-ctx.textAlign = 'center';
-ctx.fillText(labels[i], 250 + i * 250, 340);
-ctx.fillStyle = '#e8e8f0';
-ctx.font = 'bold 14px sans-serif';
-ctx.fillText(part.name, 250 + i * 250, 360);
-loaded++;
-if (loaded === 3) {
-ctx.fillStyle = '#6c5ce7';
-ctx.font = 'bold 16px sans-serif';
-ctx.fillText('BeyForge X', 450, 470);
-const link = document.createElement('a');
-link.download = `${blade.name}_${ratchet.name}_${bit.name}.png`;
-link.href = canvas.toDataURL();
-link.click();
+
+function renderDeckSlots() {
+  const slots = document.getElementById('deckSlots');
+  if (!deckDraft) { slots.innerHTML = ''; return; }
+  if (!deckDraft.comboIds.length) {
+    slots.innerHTML = '<div class="muted small mb">Tap combos below to add them to your deck (3 needed).</div>';
+    return;
+  }
+  slots.innerHTML = deckDraft.comboIds.map((cid, i) => {
+    const c = getSavedCombos().find(x => x.id === cid);
+    const rc = c ? resolveCombo(c) : null;
+    const name = rc ? rc.name : 'Unknown';
+    const meta = rc ? `${rc.blade.type} · ${comboWeight(rc)}g` : '';
+    return `<div class="deck-slot" draggable="true"
+        ondragstart="onDeckDragStart(event, ${i})" ondragover="onDeckDragOver(event)" ondrop="onDeckDrop(event, ${i})" ondragend="onDeckDragEnd()">
+      <div class="slot-num">${i + 1}</div>
+      <div class="slot-body"><div class="slot-name">${esc(name)}</div><div class="slot-meta">${meta}</div></div>
+      <div class="slot-arrows">
+        <button onclick="moveDeckCombo(${i}, ${i - 1})" ${i === 0 ? 'disabled' : ''}>▲</button>
+        <button onclick="moveDeckCombo(${i}, ${i + 1})" ${i === deckDraft.comboIds.length - 1 ? 'disabled' : ''}>▼</button>
+      </div>
+      <button class="btn small red" onclick="removeDeckCombo(${i})">✕</button>
+    </div>`;
+  }).join('');
 }
-};
-const imgUrl = getImageUrl(part);
-if (imgUrl) img.src = imgUrl;
-else img.onerror();
-});
+
+function onDeckDragStart(e, i) { dragIndex = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
+function onDeckDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function onDeckDrop(e, i) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (dragIndex !== null && dragIndex !== i) moveDeckCombo(dragIndex, i);
+  dragIndex = null;
+}
+function onDeckDragEnd() { dragIndex = null; document.querySelectorAll('.deck-slot').forEach(s => s.classList.remove('dragging', 'drag-over')); }
+
+function startNewDeck() {
+  deckDraft = { id: null, name: '', comboIds: [] };
+  document.getElementById('deckNameInput').value = '';
+  document.getElementById('deckBuilder').classList.remove('hidden');
+  renderDeckSlots();
+  renderSavedCombos();
+  document.getElementById('deckBuilder').scrollIntoView({ behavior: 'smooth' });
+}
+function cancelDeck() {
+  deckDraft = null;
+  document.getElementById('deckBuilder').classList.add('hidden');
+  renderSavedCombos();
+}
+function toggleDeckCombo(id) {
+  if (!deckDraft) return;
+  const idx = deckDraft.comboIds.indexOf(id);
+  if (idx >= 0) deckDraft.comboIds.splice(idx, 1);
+  else {
+    if (deckDraft.comboIds.length >= 3) { toast('A deck holds exactly 3 combos'); return; }
+    deckDraft.comboIds.push(id);
+  }
+  renderDeckSlots();
+  renderSavedCombos();
+}
+function moveDeckCombo(from, to) {
+  if (!deckDraft) return;
+  if (to < 0 || to >= deckDraft.comboIds.length) return;
+  const arr = deckDraft.comboIds;
+  const [item] = arr.splice(from, 1);
+  arr.splice(to, 0, item);
+  renderDeckSlots();
+}
+function removeDeckCombo(i) {
+  if (!deckDraft) return;
+  deckDraft.comboIds.splice(i, 1);
+  renderDeckSlots();
+  renderSavedCombos();
+}
+function saveDeck() {
+  if (!deckDraft) return;
+  if (deckDraft.comboIds.length !== 3) { toast('Select exactly 3 combos'); return; }
+  const name = document.getElementById('deckNameInput').value.trim() || 'Untitled Deck';
+  const decks = getSavedDecks();
+  if (deckDraft.id) {
+    const d = decks.find(x => x.id === deckDraft.id);
+    if (d) { d.name = name; d.comboIds = deckDraft.comboIds.slice(); }
+  } else {
+    decks.push({ id: uid(), name, comboIds: deckDraft.comboIds.slice(), createdAt: Date.now() });
+  }
+  lsSet(LS.decks, decks);
+  deckDraft = null;
+  document.getElementById('deckBuilder').classList.add('hidden');
+  renderDecks();
+  toast('💾 Deck saved!');
+}
+function renderDecks() {
+  const decks = getSavedDecks();
+  const el = document.getElementById('decksList');
+  if (!decks.length) {
+    el.innerHTML = '<div class="empty-state"><div class="icon">🃏</div><p>No decks yet. Create your first 3v3 deck!</p></div>';
+    return;
+  }
+  el.innerHTML = decks.map(d => {
+    const combos = d.comboIds.map(id => getSavedCombos().find(c => c.id === id)).filter(Boolean);
+    const comboHtml = combos.map(c => {
+      const rc = resolveCombo(c);
+      return rc ? `<div class="dcombo">${comboImgHtml(rc, 52)}<div class="n">${esc(rc.blade.name)}</div></div>` : '';
+    }).join('');
+    return `<div class="deck-card">
+      <div class="dhead">
+        <div class="dname">${esc(d.name)}</div>
+        <div class="btn-row">
+          <button class="btn small" onclick="editDeck('${d.id}')">✏️ Edit</button>
+          <button class="btn small red" onclick="deleteDeck('${d.id}')">🗑️</button>
+        </div>
+      </div>
+      <div class="dcombos">${comboHtml}</div>
+    </div>`;
+  }).join('');
+}
+function editDeck(id) {
+  const d = getSavedDecks().find(x => x.id === id);
+  if (!d) return;
+  deckDraft = { id: d.id, name: d.name, comboIds: d.comboIds.slice() };
+  document.getElementById('deckNameInput').value = d.name;
+  document.getElementById('deckBuilder').classList.remove('hidden');
+  renderDeckSlots();
+  renderSavedCombos();
+  document.getElementById('deckBuilder').scrollIntoView({ behavior: 'smooth' });
+}
+function deleteDeck(id) {
+  if (!confirm('Delete this deck?')) return;
+  lsSet(LS.decks, getSavedDecks().filter(d => d.id !== id));
+  renderDecks();
+  toast('Deck deleted');
+}
+
+/* ============================================================
+   TAB 3: TRACK
+   ============================================================ */
+let trackMode = 'solo';
+let trackFormat = '1v1';
+let trackSetup = { my: [], opp: [] }; // arrays of combo ids (saved) or temp combo objects
+let tempCombos = {}; // tempId -> combo object
+let sessionMatches = 0, sessionWins = 0;
+
+function setTrackMode(mode) {
+  trackMode = mode;
+  document.getElementById('seg-solo').classList.toggle('active', mode === 'solo');
+  document.getElementById('seg-history').classList.toggle('active', mode === 'history');
+  document.getElementById('trackSolo').classList.toggle('hidden', mode !== 'solo');
+  document.getElementById('trackHistory').classList.toggle('hidden', mode !== 'history');
+  if (mode === 'history') { renderHistory(); renderStats(); }
+}
+function setFormat(f) {
+  trackFormat = f;
+  document.getElementById('fmt-1v1').classList.toggle('active', f === '1v1');
+  document.getElementById('fmt-3v3').classList.toggle('active', f === '3v3');
+  trackSetup = { my: [], opp: [] };
+  renderTrackSetup();
+}
+
+function renderComboSlot(side, index) {
+  const slots = trackFormat === '3v3' ? 3 : 1;
+  const val = trackSetup[side][index] || null;
+  const savedCombos = getSavedCombos();
+  const isTemp = val && typeof val === 'object' && val.bladeId;
+  const comboId = isTemp ? null : val;
+  let opts = '<option value="">— None —</option>';
+  savedCombos.forEach(c => {
+    opts += `<option value="${c.id}" ${comboId === c.id ? 'selected' : ''}>${esc(c.name)}</option>`;
+  });
+  const label = side === 'my' ? 'Your combo' : 'Opponent combo';
+  const slotLabel = slots > 1 ? ` (slot ${index + 1})` : '';
+  const tempName = isTemp ? val.name : '';
+  return `<div class="card" style="margin-bottom:10px">
+    <label class="field">${label}${slotLabel}</label>
+    <select onchange="setTrackCombo('${side}', ${index}, this.value)">${opts}</select>
+    <div class="btn-row mt">
+      <button class="btn small" onclick="openQuickBuild('${side}', ${index})">⚡ Quick build</button>
+      ${isTemp ? `<button class="btn small red" onclick="clearTrackCombo('${side}', ${index})">Clear</button>` : ''}
+    </div>
+    ${isTemp ? `<div class="part-preview mt">${comboImgHtml(resolveCombo(val), 44)}<div class="part-info"><div class="pname">${esc(tempName)}</div><div class="pmeta">${comboType(resolveCombo(val))} · ${comboWeight(resolveCombo(val))}g</div></div></div>` : ''}
+  </div>`;
+}
+
+function renderTrackSetup() {
+  const el = document.getElementById('trackSetup');
+  const slots = trackFormat === '3v3' ? 3 : 1;
+  let html = '<div class="divider"></div><h3 style="margin-bottom:8px">🟢 You</h3>';
+  for (let i = 0; i < slots; i++) html += renderComboSlot('my', i);
+  html += '<div class="divider"></div><h3 style="margin-bottom:8px">🔴 Opponent <span class="sub">(optional)</span></h3>';
+  for (let i = 0; i < slots; i++) html += renderComboSlot('opp', i);
+  el.innerHTML = html;
+}
+
+function setTrackCombo(side, index, comboId) {
+  trackSetup[side][index] = comboId || null;
+  renderTrackSetup();
+}
+function clearTrackCombo(side, index) {
+  trackSetup[side][index] = null;
+  renderTrackSetup();
+}
+
+/* Quick build modal */
+let quickBuildTarget = null;
+function openQuickBuild(side, index) {
+  quickBuildTarget = { side, index };
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <h3>⚡ Quick Build Combo</h3>
+      <label class="field">Blade</label>
+      <select id="qbBlade">${DATA.blades.map(b => `<option value="${b.id}">${b.name} [${b.tier}]</option>`).join('')}</select>
+      <label class="field">Ratchet</label>
+      <select id="qbRatchet">${DATA.ratchets.map(r => `<option value="${r.id}">${r.name}</option>`).join('')}</select>
+      <label class="field">Bit</label>
+      <select id="qbBit">${DATA.bits.map(b => `<option value="${b.id}">${b.name} (${b.type})</option>`).join('')}</select>
+      <div class="btn-row mt">
+        <button class="btn green" style="flex:1" onclick="confirmQuickBuild()">Use this combo</button>
+        <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>`;
+}
+function confirmQuickBuild() {
+  const b = getPart(document.getElementById('qbBlade').value, DATA.blades);
+  const r = getPart(document.getElementById('qbRatchet').value, DATA.ratchets);
+  const t = getPart(document.getElementById('qbBit').value, DATA.bits);
+  if (!b || !r || !t) { toast('Pick all 3 parts'); return; }
+  const combo = { id: 'temp_' + uid(), name: b.name + ' ' + r.name + ' ' + t.name, bladeId: b.id, ratchetId: r.id, bitId: t.id };
+  tempCombos[combo.id] = combo;
+  trackSetup[quickBuildTarget.side][quickBuildTarget.index] = combo;
+  closeModal();
+  renderTrackSetup();
+}
+function closeModal() { document.getElementById('modalRoot').innerHTML = ''; quickBuildTarget = null; }
+
+function resolveTrackCombo(v) {
+  if (!v) return null;
+  if (typeof v === 'object' && v.bladeId) return resolveCombo(v);
+  return resolveCombo(getSavedCombos().find(c => c.id === v));
+}
+
+function startMatch() {
+  const slots = trackFormat === '3v3' ? 3 : 1;
+  const myCombos = [];
+  const oppCombos = [];
+  for (let i = 0; i < slots; i++) {
+    const m = resolveTrackCombo(trackSetup.my[i]);
+    const o = resolveTrackCombo(trackSetup.opp[i]);
+    if (!m) { toast('Select your combo' + (slots > 1 ? ' for slot ' + (i + 1) : '')); return; }
+    myCombos.push(m);
+    if (o) oppCombos.push(o);
+  }
+  const oppLabel = oppCombos.length ? oppCombos.map(c => c.name).join(' / ') : 'Opponent';
+  startScoring({
+    format: trackFormat,
+    left: { label: 'You', combos: myCombos },
+    right: { label: oppLabel, combos: oppCombos },
+    onComplete: (result) => {
+      logMatch(result);
+      renderTrackSetup();
+      renderStats();
+    }
+  });
+}
+
+function logMatch(result) {
+  const matches = lsGet(LS.matches, []);
+  const myIds = result.left.combos.map(c => c.id);
+  const oppIds = result.right.combos.map(c => c.id);
+  const myScore = result.scores.left;
+  const oppScore = result.scores.right;
+  let outcome = 'draw';
+  if (myScore > oppScore) outcome = 'win';
+  else if (oppScore > myScore) outcome = 'loss';
+  matches.push({
+    id: uid(),
+    format: result.format,
+    myCombos: myIds,
+    oppCombos: oppIds,
+    myNames: result.left.combos.map(c => c.name),
+    oppNames: result.right.combos.map(c => c.name),
+    result: outcome,
+    myScore, oppScore,
+    rounds: result.rounds,
+    finishTypes: result.finishTypes,
+    timestamp: Date.now()
+  });
+  lsSet(LS.matches, matches);
+  sessionMatches++;
+  if (outcome === 'win') sessionWins++;
+  toast(outcome === 'win' ? '🏆 You win!' : outcome === 'loss' ? '😞 Loss' : '🤝 Draw');
+  renderSessionSummary();
+}
+
+function renderSessionSummary() {
+  const el = document.getElementById('sessionStats');
+  if (!sessionMatches) {
+    el.innerHTML = '<div class="muted small">No matches this session yet.</div>';
+    return;
+  }
+  const wr = Math.round((sessionWins / sessionMatches) * 100);
+  el.innerHTML = `
+    <div class="stat-box"><div class="val">${sessionMatches}</div><div class="lbl">Matches</div></div>
+    <div class="stat-box"><div class="val">${sessionWins}</div><div class="lbl">Wins</div></div>
+    <div class="stat-box"><div class="val">${wr}%</div><div class="lbl">Win rate</div></div>
+    <div class="stat-box"><div class="val">${sessionMatches - sessionWins}</div><div class="lbl">Losses</div></div>`;
+}
+
+/* ---------- Match history & stats ---------- */
+function getMatches() { return lsGet(LS.matches, []); }
+
+function renderHistory() {
+  const el = document.getElementById('historyList');
+  const comboFilter = document.getElementById('historyFilterCombo').value;
+  const formatFilter = document.getElementById('historyFilterFormat').value;
+  let matches = getMatches().slice().sort((a, b) => b.timestamp - a.timestamp);
+  if (formatFilter) matches = matches.filter(m => m.format === formatFilter);
+  if (comboFilter) matches = matches.filter(m => (m.myCombos || []).includes(comboFilter) || (m.oppCombos || []).includes(comboFilter));
+
+  // populate combo filter options
+  const comboSel = document.getElementById('historyFilterCombo');
+  const cur = comboSel.value;
+  const allCombos = getSavedCombos();
+  comboSel.innerHTML = '<option value="">All combos</option>' + allCombos.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  if (cur) comboSel.value = cur;
+
+  if (!matches.length) {
+    el.innerHTML = '<div class="empty-state"><div class="icon">📜</div><p>No matches logged yet.</p></div>';
+    return;
+  }
+  el.innerHTML = matches.map(m => {
+    const when = new Date(m.timestamp).toLocaleString();
+    const resClass = m.result;
+    const resLabel = m.result === 'win' ? 'WIN' : m.result === 'loss' ? 'LOSS' : 'DRAW';
+    const myNames = (m.myNames || []).join(' / ') || '—';
+    const oppNames = (m.oppNames || []).join(' / ') || '—';
+    const finishes = (m.finishTypes || []).map(f => FINISH_LABELS[f] || f).join(', ') || '—';
+    return `<div class="match-item">
+      <div class="mhead">
+        <span class="mresult ${resClass}">${resLabel}</span>
+        <span class="muted small">${m.format} · ${when}</span>
+      </div>
+      <div class="mbody">
+        <strong>You:</strong> ${esc(myNames)}<br>
+        <strong>Opp:</strong> ${esc(oppNames)}<br>
+        <strong>Score:</strong> ${m.myScore} – ${m.oppScore} · <strong>Finishes:</strong> ${finishes}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderStats() {
+  const matches = getMatches();
+  const statsEl = document.getElementById('historyStats');
+  const finishEl = document.getElementById('finishBreakdown');
+  const topEl = document.getElementById('topCombos');
+  if (!matches.length) {
+    statsEl.innerHTML = '<div class="muted small">Log matches to see stats.</div>';
+    finishEl.innerHTML = '';
+    topEl.innerHTML = '';
+    return;
+  }
+  const wins = matches.filter(m => m.result === 'win').length;
+  const losses = matches.filter(m => m.result === 'loss').length;
+  const draws = matches.filter(m => m.result === 'draw').length;
+  const wr = Math.round((wins / matches.length) * 100);
+  statsEl.innerHTML = `
+    <div class="stat-box"><div class="val">${matches.length}</div><div class="lbl">Total matches</div></div>
+    <div class="stat-box"><div class="val">${wr}%</div><div class="lbl">Win rate</div></div>
+    <div class="stat-box"><div class="val">${wins}</div><div class="lbl">Wins</div></div>
+    <div class="stat-box"><div class="val">${losses}</div><div class="lbl">Losses</div></div>`;
+
+  // finish breakdown
+  const finishCounts = {};
+  matches.forEach(m => (m.finishTypes || []).forEach(f => { finishCounts[f] = (finishCounts[f] || 0) + 1; }));
+  const totalFinishes = Object.values(finishCounts).reduce((a, b) => a + b, 0) || 1;
+  finishEl.innerHTML = '<h3 style="margin-bottom:8px">🎯 Finish Type Breakdown</h3>' +
+    Object.keys(finishCounts).map(f => {
+      const pct = Math.round((finishCounts[f] / totalFinishes) * 100);
+      return `<div class="bar-row"><span class="blbl">${FINISH_LABELS[f] || f}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="small muted">${finishCounts[f]}</span></div>`;
+    }).join('');
+
+  // most used combos
+  const comboUsage = {};
+  matches.forEach(m => (m.myCombos || []).forEach(id => { comboUsage[id] = (comboUsage[id] || 0) + 1; }));
+  const top = Object.entries(comboUsage).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  topEl.innerHTML = '<h3 style="margin-bottom:8px">🔥 Most Used Combos</h3>' +
+    (top.length ? top.map(([id, count]) => {
+      const c = getSavedCombos().find(x => x.id === id);
+      const name = c ? c.name : id;
+      return `<div class="bar-row"><span class="blbl" style="width:auto;flex:1">${esc(name)}</span><span class="small muted">${count}×</span></div>`;
+    }).join('') : '<div class="muted small">No combo data.</div>');
+}
+
+/* ============================================================
+   SHARED SCORING ENGINE (used by Track + Tournament judge)
+   ============================================================ */
+let scorer = null;
+
+function startScoring(config) {
+  const totalRounds = config.format === '3v3' ? 3 : 1;
+  scorer = {
+    config,
+    totalRounds,
+    currentRound: 0,
+    rounds: Array.from({ length: totalRounds }, () => ({ left: 0, right: 0, finishes: [] })),
+    roundWinners: [],
+    finished: false
+  };
+  renderScoreScreen();
+}
+
+function renderScoreScreen() {
+  const root = document.getElementById('modalRoot');
+  const cfg = scorer.config;
+  const round = scorer.rounds[scorer.currentRound];
+  const leftCombo = cfg.left.combos[scorer.currentRound] || cfg.left.combos[0];
+  const rightCombo = cfg.right.combos[scorer.currentRound] || cfg.right.combos[0];
+  const roundLabel = scorer.totalRounds > 1 ? `Round ${scorer.currentRound + 1}/${scorer.totalRounds}` : 'First to 4';
+  const leftWon = scorer.roundWinners[scorer.currentRound] === 'left';
+  const rightWon = scorer.roundWinners[scorer.currentRound] === 'right';
+
+  function sideHtml(side, label, combo, score, won) {
+    const hasParts = combo && combo.blade;
+    const img = hasParts ? comboImgHtml(combo, 44) : '';
+    return `<div class="score-side ${won ? 'winner' : ''}">
+      <div class="sname">${esc(label)}</div>
+      <div class="scombo">${img}${combo ? esc(combo.name) : '—'}</div>
+      <div class="sbig ${score >= WIN_TARGET ? 'win' : ''}">${score}</div>
+      <div class="result-btns">
+        <button class="result-btn rb-spin" onclick="scorePoint('${side}', 'spin')">Spin<span class="pts">+1</span></button>
+        <button class="result-btn rb-over" onclick="scorePoint('${side}', 'over')">Over<span class="pts">+2</span></button>
+        <button class="result-btn rb-burst" onclick="scorePoint('${side}', 'burst')">Burst<span class="pts">+2</span></button>
+        <button class="result-btn rb-extreme" onclick="scorePoint('${side}', 'extreme')">Extreme<span class="pts">+3</span></button>
+      </div>
+      <button class="penalty-btn" onclick="scorePenalty('${side}')">⚠️ Penalty −1</button>
+    </div>`;
+  }
+
+  root.innerHTML = `<div class="score-screen">
+    <div class="score-top">
+      <button class="btn small ghost" onclick="exitScoring()">✕ Exit</button>
+      <span class="round-label">${roundLabel}</span>
+      <span class="small muted">First to ${WIN_TARGET}</span>
+    </div>
+    ${scorer.totalRounds > 1 ? `<div class="round-banner" style="background:var(--surface2)">${roundBannerHtml()}</div>` : ''}
+    <div class="score-grid">
+      ${sideHtml('left', cfg.left.label, leftCombo, round.left, leftWon)}
+      ${sideHtml('right', cfg.right.label, rightCombo, round.right, rightWon)}
+    </div>
+    <div class="score-center">
+      <span class="vs">${round.left} – ${round.right}</span>
+    </div>
+    <div class="score-footer">
+      <button class="btn ghost" style="flex:1" onclick="undoPoint()">↩️ Undo</button>
+    </div>
+  </div>`;
+}
+
+function roundBannerHtml() {
+  const w = scorer.roundWinners;
+  return w.map((winner, i) => {
+    const label = winner === 'left' ? scorer.config.left.label : scorer.config.right.label;
+    return `<span style="margin:0 6px">R${i + 1}: <strong style="color:${winner === 'left' ? 'var(--green)' : 'var(--red)'}">${esc(label)}</strong></span>`;
+  }).join('');
+}
+
+function scorePoint(side, type) {
+  if (!scorer || scorer.finished) return;
+  const round = scorer.rounds[scorer.currentRound];
+  if (scorer.roundWinners[scorer.currentRound]) return; // round already decided
+  round[side] += FINISH_POINTS[type];
+  round.finishes.push({ side, type });
+  if (round[side] >= WIN_TARGET) {
+    scorer.roundWinners[scorer.currentRound] = side;
+    endRound();
+  } else {
+    renderScoreScreen();
+  }
+}
+
+function scorePenalty(side) {
+  if (!scorer || scorer.finished) return;
+  const round = scorer.rounds[scorer.currentRound];
+  if (scorer.roundWinners[scorer.currentRound]) return;
+  round[side] = Math.max(0, round[side] - 1);
+  renderScoreScreen();
+}
+
+function undoPoint() {
+  if (!scorer || scorer.finished) return;
+  const round = scorer.rounds[scorer.currentRound];
+  if (scorer.roundWinners[scorer.currentRound]) {
+    // undo a completed round: clear winner, drop the winning finish, recompute
+    scorer.roundWinners[scorer.currentRound] = null;
+    if (round.finishes.length) round.finishes.pop();
+    round.left = 0; round.right = 0;
+    round.finishes.forEach(f => { round[f.side] += FINISH_POINTS[f.type]; });
+  } else if (round.finishes.length) {
+    const last = round.finishes.pop();
+    round[last.side] = Math.max(0, round[last.side] - FINISH_POINTS[last.type]);
+  }
+  renderScoreScreen();
+}
+
+function endRound() {
+  const cfg = scorer.config;
+  const winner = scorer.roundWinners[scorer.currentRound];
+  const round = scorer.rounds[scorer.currentRound];
+  const winnerLabel = winner === 'left' ? cfg.left.label : cfg.right.label;
+  const winVerb = winnerLabel === 'You' ? 'win' : 'wins';
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="score-screen">
+    <div class="score-top"><span class="round-label">Round ${scorer.currentRound + 1} complete</span></div>
+    <div class="round-banner" style="background:rgba(0,184,148,0.15);border:1px solid var(--green)">
+      🏆 ${esc(winnerLabel)} ${winVerb} the round ${round.left}–${round.right}
+    </div>
+    <div class="score-footer">
+      <button class="btn primary" style="flex:1" onclick="nextRound()">${scorer.currentRound + 1 < scorer.totalRounds ? 'Next Round →' : 'Finish Match'}</button>
+    </div>
+  </div>`;
+}
+
+function nextRound() {
+  if (scorer.currentRound + 1 < scorer.totalRounds) {
+    scorer.currentRound++;
+    renderScoreScreen();
+  } else {
+    finishMatch();
+  }
+}
+
+function finishMatch() {
+  const cfg = scorer.config;
+  const leftWins = scorer.roundWinners.filter(w => w === 'left').length;
+  const rightWins = scorer.roundWinners.filter(w => w === 'right').length;
+  let winner = 'left';
+  if (scorer.totalRounds === 1) {
+    winner = scorer.rounds[0].left >= WIN_TARGET ? 'left' : 'right';
+  } else {
+    winner = leftWins > rightWins ? 'left' : (rightWins > leftWins ? 'right' : 'left');
+  }
+  const scores = {
+    left: scorer.rounds.reduce((a, r) => a + r.left, 0),
+    right: scorer.rounds.reduce((a, r) => a + r.right, 0)
+  };
+  const finishTypes = [];
+  scorer.rounds.forEach(r => r.finishes.forEach(f => finishTypes.push(f.type)));
+  const result = {
+    format: cfg.format,
+    winner,
+    scores,
+    rounds: scorer.rounds.map(r => ({ left: r.left, right: r.right })),
+    finishTypes,
+    left: cfg.left,
+    right: cfg.right
+  };
+  scorer.finished = true;
+  const root = document.getElementById('modalRoot');
+  const winnerLabel = winner === 'left' ? cfg.left.label : cfg.right.label;
+  const winVerb = winnerLabel === 'You' ? 'win' : 'wins';
+  root.innerHTML = `<div class="score-screen">
+    <div class="score-top"><span class="round-label">Match complete</span></div>
+    <div class="round-banner" style="background:rgba(0,184,148,0.15);border:1px solid var(--green)">
+      🏆 ${esc(winnerLabel)} ${winVerb} ${scores.left}–${scores.right}
+    </div>
+    <div class="score-footer">
+      <button class="btn primary" style="flex:1" onclick="closeScoring()">Done</button>
+    </div>
+  </div>`;
+  if (cfg.onComplete) cfg.onComplete(result);
+}
+
+function exitScoring() {
+  if (confirm('Exit match? Progress will be lost.')) closeScoring();
+}
+function closeScoring() {
+  scorer = null;
+  document.getElementById('modalRoot').innerHTML = '';
+}
+
+/* ============================================================
+   TAB 4: TOURNAMENT
+   ============================================================ */
+function getTournaments() { return lsGet(LS.tournaments, []); }
+
+function renderTournaments() {
+  const el = document.getElementById('tournamentList');
+  const ts = getTournaments();
+  if (!ts.length) {
+    el.innerHTML = '<div class="empty-state"><div class="icon">🏆</div><p>No tournaments yet. Create one or join with a code.</p></div>';
+    return;
+  }
+  el.innerHTML = ts.map(t => {
+    const status = t.status || 'open';
+    return `<div class="tournament-card" onclick="viewTournament('${t.id}')">
+      <div class="thead">
+        <div class="tname">${esc(t.name)}</div>
+        <span class="tier-badge tier-S">${status.toUpperCase()}</span>
+      </div>
+      <div class="tmeta">${formatLabel(t.format)} · ${t.type} · ${t.players.length}/${t.maxPlayers} players · Code: <strong>${t.joinCode}</strong></div>
+    </div>`;
+  }).join('');
+}
+
+function formatLabel(f) {
+  return { single: 'Single Elim', roundrobin: 'Round Robin', swiss: 'Swiss' }[f] || f;
+}
+
+function showCreateTournament() {
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <h3>➕ Create Tournament</h3>
+      <label class="field">Name</label>
+      <input type="text" id="tName" placeholder="e.g. Friday Night Beyblade">
+      <label class="field">Format</label>
+      <select id="tFormat">
+        <option value="single">Single Elimination</option>
+        <option value="roundrobin">Round Robin</option>
+        <option value="swiss">Swiss</option>
+      </select>
+      <label class="field">Match type</label>
+      <select id="tType"><option value="1v1">1v1</option><option value="3v3">3v3</option></select>
+      <label class="field">Max players</label>
+      <input type="number" id="tMax" value="8" min="2" max="64">
+      <label class="field">Privacy</label>
+      <select id="tPrivacy" onchange="document.getElementById('tPassWrap').classList.toggle('hidden', this.value!=='private')">
+        <option value="public">Public</option>
+        <option value="private">Private (passphrase)</option>
+      </select>
+      <div id="tPassWrap" class="hidden">
+        <label class="field">Passphrase</label>
+        <input type="text" id="tPass" placeholder="Secret word">
+      </div>
+      <div class="btn-row mt">
+        <button class="btn green" style="flex:1" onclick="createTournament()">Create</button>
+        <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function createTournament() {
+  const name = document.getElementById('tName').value.trim();
+  if (!name) { toast('Enter a name'); return; }
+  const format = document.getElementById('tFormat').value;
+  const type = document.getElementById('tType').value;
+  const maxPlayers = parseInt(document.getElementById('tMax').value, 10) || 8;
+  const privacy = document.getElementById('tPrivacy').value;
+  const passphrase = privacy === 'private' ? document.getElementById('tPass').value.trim() : '';
+  if (privacy === 'private' && !passphrase) { toast('Enter a passphrase'); return; }
+  const joinCode = generateJoinCode();
+  const t = {
+    id: uid(), name, format, type, maxPlayers, passphrase, joinCode,
+    status: 'open', players: [], matches: [], createdAt: Date.now()
+  };
+  const ts = getTournaments();
+  ts.push(t);
+  lsSet(LS.tournaments, ts);
+  closeModal();
+  renderTournaments();
+  viewTournament(t.id);
+  toast('🏆 Tournament created! Code: ' + joinCode);
+}
+
+function generateJoinCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
+function showJoinTournament() {
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <h3>🔑 Join Tournament</h3>
+      <label class="field">Join code</label>
+      <input type="text" id="jCode" placeholder="e.g. ABC123" style="text-transform:uppercase">
+      <label class="field">Passphrase (if private)</label>
+      <input type="text" id="jPass" placeholder="Leave blank if public">
+      <div class="btn-row mt">
+        <button class="btn green" style="flex:1" onclick="joinTournament()">Join</button>
+        <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function joinTournament() {
+  const code = document.getElementById('jCode').value.trim().toUpperCase();
+  const pass = document.getElementById('jPass').value.trim();
+  const t = getTournaments().find(x => x.joinCode.toUpperCase() === code);
+  if (!t) { toast('Tournament not found'); return; }
+  if (t.passphrase && t.passphrase !== pass) { toast('Wrong passphrase'); return; }
+  closeModal();
+  viewTournament(t.id);
+}
+
+function viewTournament(id) {
+  const t = getTournaments().find(x => x.id === id);
+  if (!t) { toast('Tournament not found'); return; }
+  const root = document.getElementById('modalRoot');
+  const playersHtml = t.players.length
+    ? t.players.map(p => `<span class="player-chip">${esc(p.name)}</span>`).join('')
+    : '<div class="muted small">No players yet.</div>';
+  const canStart = t.players.length >= 2 && t.status === 'open';
+  const matchesHtml = t.matches.length ? renderBracketHtml(t) : '<div class="muted small">No matches yet.</div>';
+
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="max-width:560px">
+      <h3>🏆 ${esc(t.name)}</h3>
+      <div class="muted small mb">${formatLabel(t.format)} · ${t.type} · Code: <strong>${t.joinCode}</strong>${t.passphrase ? ' · 🔒 Private' : ' · 🌐 Public'}</div>
+      <div class="mb"><strong>Players (${t.players.length}/${t.maxPlayers}):</strong><div class="mt">${playersHtml}</div></div>
+      ${t.status === 'open' ? `
+        <div class="btn-row mb">
+          <button class="btn small" onclick="addPlayer('${t.id}')">➕ Add player</button>
+          <button class="btn small green" ${canStart ? '' : 'disabled'} onclick="startTournament('${t.id}')">▶️ Start</button>
+        </div>` : ''}
+      <div class="divider"></div>
+      <div id="tMatches">${matchesHtml}</div>
+      <div class="divider"></div>
+      <div class="btn-row">
+        <button class="btn small" onclick="exportTournament('${t.id}')">📤 Export</button>
+        <button class="btn small red" onclick="deleteTournament('${t.id}')">🗑️ Delete</button>
+        <button class="btn small ghost" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function addPlayer(id) {
+  const t = getTournaments().find(x => x.id === id);
+  if (!t) return;
+  if (t.players.length >= t.maxPlayers) { toast('Tournament is full'); return; }
+  const name = prompt('Player name:');
+  if (!name || !name.trim()) return;
+  t.players.push({ id: uid(), name: name.trim() });
+  lsSet(LS.tournaments, getTournaments().map(x => x.id === id ? t : x));
+  viewTournament(id);
+}
+
+function startTournament(id) {
+  const t = getTournaments().find(x => x.id === id);
+  if (!t) return;
+  t.status = 'inprogress';
+  t.matches = generateMatches(t);
+  lsSet(LS.tournaments, getTournaments().map(x => x.id === id ? t : x));
+  viewTournament(id);
+  toast('Tournament started!');
+}
+
+function generateMatches(t) {
+  const players = t.players.map(p => p.id);
+  const matches = [];
+  if (t.format === 'roundrobin') {
+    // everyone plays everyone
+    for (let i = 0; i < players.length; i++) {
+      for (let j = i + 1; j < players.length; j++) {
+        matches.push({ id: uid(), round: 1, p1Id: players[i], p2Id: players[j], winnerId: null, p1Score: 0, p2Score: 0, status: 'pending' });
+      }
+    }
+  } else if (t.format === 'swiss') {
+    // round 1: pair adjacent players
+    for (let i = 0; i < players.length; i += 2) {
+      if (i + 1 < players.length) {
+        matches.push({ id: uid(), round: 1, p1Id: players[i], p2Id: players[i + 1], winnerId: null, p1Score: 0, p2Score: 0, status: 'pending' });
+      } else {
+        matches.push({ id: uid(), round: 1, p1Id: players[i], p2Id: null, winnerId: players[i], p1Score: 0, p2Score: 0, status: 'bye' });
+      }
+    }
+  } else {
+    // single elimination bracket (byes distributed so no double-byes)
+    let n = players.length;
+    let size = 1;
+    while (size < n) size *= 2;
+    const firstRoundMatches = n - size / 2;
+    const byes = size - n;
+    let round = 1;
+    let current = [];
+    for (let i = 0; i < firstRoundMatches; i++) {
+      const p1 = players[i * 2], p2 = players[i * 2 + 1];
+      matches.push({ id: uid(), round, p1Id: p1, p2Id: p2, winnerId: null, p1Score: 0, p2Score: 0, status: 'pending' });
+      current.push(null);
+    }
+    for (let i = 0; i < byes; i++) {
+      const p = players[firstRoundMatches * 2 + i];
+      matches.push({ id: uid(), round, p1Id: p, p2Id: null, winnerId: p, p1Score: 0, p2Score: 0, status: 'bye' });
+      current.push(p);
+    }
+    round++;
+    while (current.length > 1) {
+      const next = [];
+      for (let i = 0; i < current.length; i += 2) {
+        const p1 = current[i], p2 = current[i + 1];
+        matches.push({ id: uid(), round, p1Id: p1, p2Id: p2, winnerId: null, p1Score: 0, p2Score: 0, status: 'pending' });
+        next.push(null);
+      }
+      current = next;
+      round++;
+    }
+  }
+  return matches;
+}
+
+function renderBracketHtml(t) {
+  const playerName = id => { const p = t.players.find(x => x.id === id); return p ? p.name : 'BYE'; };
+  const rounds = {};
+  t.matches.forEach(m => { (rounds[m.round] = rounds[m.round] || []).push(m); });
+  const roundNums = Object.keys(rounds).map(Number).sort((a, b) => a - b);
+  return roundNums.map(rn => {
+    const label = t.format === 'roundrobin' ? 'Matches' : (t.format === 'swiss' ? 'Round ' + rn : (rn === Math.max(...roundNums) ? 'Final' : 'Round ' + rn));
+    const matchesHtml = rounds[rn].map(m => {
+      const p1 = playerName(m.p1Id), p2 = playerName(m.p2Id);
+      const p1win = m.winnerId === m.p1Id, p2win = m.winnerId === m.p2Id;
+      const score = m.status === 'pending' ? 'vs' : `${m.p1Score}–${m.p2Score}`;
+      return `<div class="bracket-match">
+        <div class="bp ${p1win ? 'winner' : ''}"><span>${esc(p1)}</span><span class="bscore">${p1win ? score : ''}</span></div>
+        <div class="bp ${p2win ? 'winner' : ''}"><span>${esc(p2)}</span><span class="bscore">${p2win ? score : ''}</span></div>
+        ${m.status === 'pending' ? `<div class="btn-row mt"><button class="btn small primary" onclick="judgeMatch('${t.id}','${m.id}')">⚖️ Judge</button></div>` : ''}
+      </div>`;
+    }).join('');
+    return `<div class="bracket-round"><div class="rlabel">${label}</div>${matchesHtml}</div>`;
+  }).join('');
+}
+
+function judgeMatch(tid, mid) {
+  const t = getTournaments().find(x => x.id === tid);
+  if (!t) return;
+  const m = t.matches.find(x => x.id === mid);
+  if (!m) return;
+  const p1 = t.players.find(x => x.id === m.p1Id);
+  const p2 = t.players.find(x => x.id === m.p2Id);
+  const p1Name = p1 ? p1.name : 'BYE';
+  const p2Name = p2 ? p2.name : 'BYE';
+  // For judge mode, combos are optional (players may not have decks locked)
+  const p1Combo = { id: 'p1', name: '', bladeId: null, ratchetId: null, bitId: null };
+  const p2Combo = { id: 'p2', name: '', bladeId: null, ratchetId: null, bitId: null };
+  startScoring({
+    format: t.type,
+    left: { label: p1Name, combos: [p1Combo, p1Combo, p1Combo] },
+    right: { label: p2Name, combos: [p2Combo, p2Combo, p2Combo] },
+    onComplete: (result) => {
+      const winnerId = result.winner === 'left' ? m.p1Id : m.p2Id;
+      m.winnerId = winnerId;
+      m.p1Score = result.scores.left;
+      m.p2Score = result.scores.right;
+      m.status = 'done';
+      m.finishes = result.finishTypes;
+      // advance winner in single elim
+      if (t.format === 'single') advanceWinner(t, m);
+      lsSet(LS.tournaments, getTournaments().map(x => x.id === tid ? t : x));
+      viewTournament(tid);
+    }
+  });
+}
+
+function advanceWinner(t, doneMatch) {
+  // Map the finished match to its slot in the next round using positional pairing.
+  // Matches are stored in creation order (round 1 pending first, then byes), which
+  // matches the bracket's `current` array ordering used to build later rounds.
+  const roundMatches = t.matches.filter(m => m.round === doneMatch.round);
+  const idx = roundMatches.findIndex(m => m.id === doneMatch.id);
+  if (idx < 0) return;
+  const nextRound = doneMatch.round + 1;
+  const nextMatches = t.matches.filter(m => m.round === nextRound);
+  const targetIdx = Math.floor(idx / 2);
+  const slot = idx % 2;
+  const target = nextMatches[targetIdx];
+  if (!target) return;
+  if (slot === 0) target.p1Id = doneMatch.winnerId;
+  else target.p2Id = doneMatch.winnerId;
+}
+
+function exportTournament(id) {
+  const t = getTournaments().find(x => x.id === id);
+  if (!t) return;
+  const data = JSON.stringify(t, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = t.name.replace(/[^a-z0-9]+/gi, '_') + '_results.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('📤 Exported results');
+}
+
+function deleteTournament(id) {
+  if (!confirm('Delete this tournament?')) return;
+  lsSet(LS.tournaments, getTournaments().filter(t => t.id !== id));
+  closeModal();
+  renderTournaments();
+  toast('Tournament deleted');
+}
+
+/* ============================================================
+   UTIL
+   ============================================================ */
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/* ============================================================
+   PWA: manifest (data URI) + service worker (inline Blob)
+   ============================================================ */
+function setupPWA() {
+  // Manifest as data URI
+  const manifest = {
+    name: 'BeyForge X',
+    short_name: 'BeyForge',
+    description: 'Beyblade X combo builder, deck builder, match tracker & tournament tool',
+    start_url: '.',
+    display: 'standalone',
+    background_color: '#0a0a1a',
+    theme_color: '#0a0a1a',
+    icons: [
+      { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E", sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
+    ]
+  };
+  const manifestUrl = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
+  document.getElementById('manifestLink').href = manifestUrl;
+
+  // Service worker via Blob (note: most browsers block SW registration from blob: URLs;
+  // this is a best-effort inline registration that degrades gracefully)
+  const swCode = `
+    const CACHE = 'beyforge-v1';
+    self.addEventListener('install', e => { self.skipWaiting(); });
+    self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
+    self.addEventListener('fetch', e => {
+      e.respondWith(
+        caches.match(e.request).then(cached => {
+          const fetchPromise = fetch(e.request).then(res => {
+            if (res && res.status === 200 && (e.request.method === 'GET')) {
+              const clone = res.clone();
+              caches.open(CACHE).then(c => c.put(e.request, clone));
+            }
+            return res;
+          }).catch(() => cached);
+          return cached || fetchPromise;
+        })
+      );
+    });
+  `;
+  try {
+    const blob = new Blob([swCode], { type: 'text/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register(swUrl).catch(err => {
+        console.warn('Service worker registration via Blob not supported; skipping offline cache.', err);
+      });
+    }
+  } catch (e) {
+    console.warn('Service worker setup failed:', e);
+  }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function init() {
+  renderTierFilter();
+  populateBlades();
+  populateRatchets();
+  populateBits();
+  renderSessionSummary();
+  renderDecks();
+  renderSavedCombos();
+  renderTrackSetup();
+  renderHistory();
+  renderStats();
+  renderTournaments();
+  setupPWA();
+
+  // URL params for shared combo
+  const params = new URLSearchParams(location.search);
+  const b = params.get('b'), r = params.get('r'), t = params.get('t');
+  if (b || r || t) {
+    if (b) document.getElementById('bladeSelect').value = b;
+    if (r) document.getElementById('ratchetSelect').value = r;
+    if (t) document.getElementById('bitSelect').value = t;
+    updateCombo();
+  }
 }
 
 init();
