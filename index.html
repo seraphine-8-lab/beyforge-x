@@ -829,7 +829,7 @@ function checkDeckDuplicates() {
     for (let i = 0; i < combos.length; i++) {
       const part = combos[i][pt.key];
       if (!part || part.id === 'integrated') continue;
-      if (seen[part.id]) {
+      if (seen[part.id] !== undefined) {
         const comboNames = [seen[part.id] + 1, i + 1].map(n => `#${n}`).join(' and ');
         warnings.push(`${pt.label} "${part.name}" is shared between combos ${comboNames} — most tournaments don't allow repeated parts.`);
       } else {
