@@ -177,6 +177,7 @@ select option { background: var(--surface2); color: var(--text); }
 .deck-slot .slot-meta { font-size: 0.75em; color: var(--muted); }
 .deck-slot .slot-arrows { display: flex; flex-direction: column; gap: 2px; }
 .deck-slot .slot-arrows button { background: var(--surface3); border: 1px solid var(--border); color: var(--text); border-radius: 5px; width: 28px; height: 24px; font-size: 0.7em; }
+.deck-warning { background: rgba(233, 69, 96, 0.12); border: 1px solid var(--accent); border-radius: 10px; padding: 10px 12px; margin-top: 10px; font-size: 0.82em; color: var(--accent); line-height: 1.5; }
 
 /* Deck cards */
 .deck-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
@@ -627,8 +628,8 @@ function updateCombo() {
   const r = rc ? rc.ratchet : (b && b.integratedRatchet ? { name: 'Integrated' } : getPart(document.getElementById('ratchetSelect').value, DATA.ratchets));
   const t = rc ? rc.bit : getPart(document.getElementById('bitSelect').value, DATA.bits);
   renderPartPreview('bladePreview', b, true);
-  renderPartPreview('ratchetPreview', r, false);
-  renderPartPreview('bitPreview', t, false);
+  renderPartPreview('ratchetPreview', r, true);
+  renderPartPreview('bitPreview', t, true);
   if (rc) showAnalysis(rc);
   else {
     document.getElementById('resultsPanel').classList.add('hidden');
@@ -781,26 +782,62 @@ function renderSavedCombos() {
 function renderDeckSlots() {
   const slots = document.getElementById('deckSlots');
   if (!deckDraft) { slots.innerHTML = ''; return; }
+  let html = '';
   if (!deckDraft.comboIds.length) {
-    slots.innerHTML = '<div class="muted small mb">Tap combos below to add them to your deck (3 needed).</div>';
-    return;
+    html = '<div class="muted small mb">Tap combos below to add them to your deck (3 needed).</div>';
+  } else {
+    html = deckDraft.comboIds.map((cid, i) => {
+      const c = getSavedCombos().find(x => x.id === cid);
+      const rc = c ? resolveCombo(c) : null;
+      const name = rc ? rc.name : 'Unknown';
+      const meta = rc ? `${rc.blade.type} · ${comboWeight(rc)}g` : '';
+      return `<div class="deck-slot" draggable="true"
+          ondragstart="onDeckDragStart(event, ${i})" ondragover="onDeckDragOver(event)" ondrop="onDeckDrop(event, ${i})" ondragend="onDeckDragEnd()">
+        <div class="slot-num">${i + 1}</div>
+        <div class="slot-body"><div class="slot-name">${esc(name)}</div><div class="slot-meta">${meta}</div></div>
+        <div class="slot-arrows">
+          <button onclick="moveDeckCombo(${i}, ${i - 1})" ${i === 0 ? 'disabled' : ''}>▲</button>
+          <button onclick="moveDeckCombo(${i}, ${i + 1})" ${i === deckDraft.comboIds.length - 1 ? 'disabled' : ''}>▼</button>
+        </div>
+        <button class="btn small red" onclick="removeDeckCombo(${i})">✕</button>
+      </div>`;
+    }).join('');
   }
-  slots.innerHTML = deckDraft.comboIds.map((cid, i) => {
+  // Duplicate part check
+  const warnings = checkDeckDuplicates();
+  if (warnings.length) {
+    html += `<div class="deck-warning">⚠️ ${warnings.join('<br>')}</div>`;
+  }
+  slots.innerHTML = html;
+}
+
+function checkDeckDuplicates() {
+  if (!deckDraft || deckDraft.comboIds.length < 2) return [];
+  const combos = deckDraft.comboIds.map(cid => {
     const c = getSavedCombos().find(x => x.id === cid);
-    const rc = c ? resolveCombo(c) : null;
-    const name = rc ? rc.name : 'Unknown';
-    const meta = rc ? `${rc.blade.type} · ${comboWeight(rc)}g` : '';
-    return `<div class="deck-slot" draggable="true"
-        ondragstart="onDeckDragStart(event, ${i})" ondragover="onDeckDragOver(event)" ondrop="onDeckDrop(event, ${i})" ondragend="onDeckDragEnd()">
-      <div class="slot-num">${i + 1}</div>
-      <div class="slot-body"><div class="slot-name">${esc(name)}</div><div class="slot-meta">${meta}</div></div>
-      <div class="slot-arrows">
-        <button onclick="moveDeckCombo(${i}, ${i - 1})" ${i === 0 ? 'disabled' : ''}>▲</button>
-        <button onclick="moveDeckCombo(${i}, ${i + 1})" ${i === deckDraft.comboIds.length - 1 ? 'disabled' : ''}>▼</button>
-      </div>
-      <button class="btn small red" onclick="removeDeckCombo(${i})">✕</button>
-    </div>`;
-  }).join('');
+    return c ? resolveCombo(c) : null;
+  }).filter(Boolean);
+  const warnings = [];
+  // Check each part type
+  const partTypes = [
+    { key: 'blade', label: 'Blade', prop: 'id' },
+    { key: 'ratchet', label: 'Ratchet', prop: 'id' },
+    { key: 'bit', label: 'Bit', prop: 'id' }
+  ];
+  for (const pt of partTypes) {
+    const seen = {};
+    for (let i = 0; i < combos.length; i++) {
+      const part = combos[i][pt.key];
+      if (!part || part.id === 'integrated') continue;
+      if (seen[part.id]) {
+        const comboNames = [seen[part.id] + 1, i + 1].map(n => `#${n}`).join(' and ');
+        warnings.push(`${pt.label} "${part.name}" is shared between combos ${comboNames} — most tournaments don't allow repeated parts.`);
+      } else {
+        seen[part.id] = i;
+      }
+    }
+  }
+  return warnings;
 }
 
 function onDeckDragStart(e, i) { dragIndex = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
@@ -854,6 +891,10 @@ function removeDeckCombo(i) {
 function saveDeck() {
   if (!deckDraft) return;
   if (deckDraft.comboIds.length !== 3) { toast('Select exactly 3 combos'); return; }
+  const warnings = checkDeckDuplicates();
+  if (warnings.length) {
+    if (!confirm('⚠️ This deck has repeated parts:\n\n' + warnings.map(w => '• ' + w.replace(/<br>/g, '\n')).join('\n') + '\n\nMost tournaments don\'t allow this. Save anyway?')) return;
+  }
   const name = document.getElementById('deckNameInput').value.trim() || 'Untitled Deck';
   const decks = getSavedDecks();
   if (deckDraft.id) {
