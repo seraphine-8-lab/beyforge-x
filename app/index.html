@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BeyForge X — Beyblade X Combo Builder, Deck Builder & Tournament Tracker</title>
+<meta name="description" content="Build Beyblade X combos, check competitive viability, build 3v3 decks, track matches, and run tournaments. The ultimate Beyblade X strategy tool.">
+<meta name="theme-color" content="#0a0a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BeyForge X">
+<meta property="og:title" content="BeyForge X — Beyblade X Combo Builder">
+<meta property="og:description" content="Build combos, check competitive viability, and dominate the meta.">
+<meta property="og:type" content="website">
+<link rel="manifest" id="manifestLink" href="">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+:root {
+  --bg: #0d0d0d; --surface: #1a1a2e; --surface2: #16213e; --surface3: #0f3460; --border: #1a1a3e;
+  --text: #e8e8f0; --muted: #7f8c9a; --accent: #e94560; --accent2: #0f3460;
+  --gold: #ffd700; --green: #00b894; --red: #e94560; --orange: #f39c12; --blue: #00a8ff;
+  --tier-sp: #ff4444; --tier-s: #ff8800; --tier-a: #ffcc00; --tier-b: #88cc00; --tier-c: #888888;
+  --tabbar-h: 62px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100vh;
+  padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: inherit; cursor: pointer; }
+select, input, textarea { font-family: inherit; }
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #0f3460, #0d0d0d);
+  border-bottom: 2px solid var(--gold);
+  padding: 14px 16px; text-align: center;
+  position: sticky; top: 0; z-index: 50;
+}
+header h1 {
+  font-size: 1.6em; font-weight: 800;
+  background: linear-gradient(135deg, var(--gold), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px;
+}
+header p { color: var(--muted); font-size: 0.8em; margin-top: 2px; }
+
+/* Main + sections */
+main { max-width: 900px; margin: 0 auto; padding: 14px 14px 20px; }
+.section { display: none; animation: fadeIn 0.22s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Bottom tab bar */
+#tabbar {
+  position: fixed; bottom: 0; left: 0; right: 0; height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--surface); border-top: 1px solid var(--border);
+  display: flex; z-index: 100;
+}
+#tabbar button {
+  flex: 1; background: none; border: none; color: var(--muted);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  font-size: 0.68em; transition: color 0.15s;
+}
+#tabbar button .ico { font-size: 1.5em; line-height: 1; }
+#tabbar button.active { color: var(--accent2); }
+#tabbar button.active .ico { transform: scale(1.1); }
+
+/* Cards & panels */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.card h2 { font-size: 1.05em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card h2 .sub { font-size: 0.7em; color: var(--muted); font-weight: normal; }
+.section-title { font-size: 1.3em; font-weight: 800; margin: 4px 0 14px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px 18px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text); font-size: 0.95em; font-weight: 600;
+  transition: transform 0.06s, background 0.15s, border-color 0.15s;
+  min-height: 44px;
+}
+.btn:active { transform: scale(0.97); }
+.btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; }
+.btn.primary:hover { opacity: 0.92; }
+.btn.green { background: var(--green); color: #fff; border: none; }
+.btn.red { background: var(--red); color: #fff; border: none; }
+.btn.ghost { background: transparent; }
+.btn.small { padding: 8px 12px; min-height: 36px; font-size: 0.85em; }
+.btn.block { width: 100%; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Forms */
+label.field { display: block; font-size: 0.8em; color: var(--muted); margin: 10px 0 4px; }
+select, input[type=text], input[type=number], input[type=password], textarea {
+  width: 100%; padding: 12px; background: var(--surface2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px; font-size: 1em; min-height: 44px;
+}
+select:focus, input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+select option { background: var(--surface2); color: var(--text); }
+
+/* Tier badges */
+.tier-badge { display: inline-block; padding: 2px 9px; border-radius: 6px; font-weight: 800; font-size: 0.78em; }
+.tier-S\+ { background: var(--tier-sp); color: #fff; }
+.tier-S { background: var(--tier-s); color: #fff; }
+.tier-A { background: var(--tier-a); color: #000; }
+.tier-B { background: var(--tier-b); color: #000; }
+.tier-C { background: var(--tier-c); color: #fff; }
+.type-badge { display: inline-block; padding: 2px 9px; border-radius: 6px; font-size: 0.75em; background: var(--surface3); color: var(--muted); margin-left: 4px; }
+
+/* Tier filter */
+.tier-filter { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+.tier-filter button {
+  padding: 6px 13px; border: 1px solid var(--border); background: var(--surface2);
+  color: var(--muted); border-radius: 20px; font-size: 0.8em; font-weight: 600;
+}
+.tier-filter button.active { border-color: var(--accent); color: #fff; background: var(--accent); }
+
+/* Part preview */
+.part-preview { display: flex; gap: 12px; align-items: center; margin-top: 8px; }
+.part-preview img { width: 84px; height: 84px; object-fit: contain; background: var(--surface2); border-radius: 10px; padding: 4px; flex-shrink: 0; }
+.part-preview .no-image { width: 84px; height: 84px; background: var(--surface2); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.6em; flex-shrink: 0; }
+.part-info { flex: 1; min-width: 0; }
+.part-info .pname { font-weight: 700; margin-top: 4px; }
+.part-info .pmeta { font-size: 0.78em; color: var(--muted); margin-top: 2px; }
+.part-info .pdesc { font-size: 0.8em; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.part-info .pprice { font-size: 0.8em; color: var(--green); margin-top: 3px; }
+
+/* Combo display */
+.combo-display { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; padding: 16px; background: var(--surface2); border-radius: 12px; margin-bottom: 12px; }
+.combo-part { text-align: center; }
+.combo-part img { width: 88px; height: 88px; object-fit: contain; }
+.combo-part .label { font-size: 0.7em; color: var(--muted); margin-top: 4px; }
+.combo-part .name { font-size: 0.8em; font-weight: 700; max-width: 110px; }
+.combo-name { font-size: 1.35em; font-weight: 800; text-align: center; margin-bottom: 4px; }
+.combo-summary { text-align: center; color: var(--muted); font-size: 0.9em; margin-bottom: 4px; }
+.total-cost { font-size: 0.85em; color: var(--green); text-align: center; margin-bottom: 12px; }
+
+/* Viability */
+.viability-card { background: var(--surface2); border-radius: 10px; padding: 13px; margin-top: 10px; }
+.viability-card h3 { font-size: 0.9em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.viability-status { padding: 2px 9px; border-radius: 6px; font-size: 0.72em; font-weight: 700; }
+.status-viable { background: rgba(0,184,148,0.2); color: var(--green); border: 1px solid var(--green); }
+.status-not-viable { background: rgba(231,76,60,0.2); color: var(--red); border: 1px solid var(--red); }
+.status-situational { background: rgba(253,121,168,0.2); color: var(--orange); border: 1px solid var(--orange); }
+.viability-card .assessment { font-size: 0.85em; color: var(--text); line-height: 1.5; margin-top: 6px; }
+
+/* Matchup */
+.matchup-box { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.matchup-item { padding: 9px; border-radius: 8px; font-size: 0.82em; text-align: center; }
+.matchup-strong { background: rgba(0,184,148,0.15); border: 1px solid var(--green); }
+.matchup-weak { background: rgba(231,76,60,0.15); border: 1px solid var(--red); }
+
+/* Combo list cards (saved combos) */
+.combo-list { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 600px) { .combo-list { grid-template-columns: 1fr 1fr; } }
+.combo-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 12px; display: flex; gap: 10px; align-items: center; cursor: pointer; transition: border-color 0.15s; }
+.combo-card.selected { border-color: var(--accent2); box-shadow: 0 0 0 1px var(--accent2); }
+.combo-card .thumbs { display: flex; gap: 4px; }
+.combo-card .thumbs img { width: 40px; height: 40px; object-fit: contain; background: var(--surface3); border-radius: 6px; }
+.combo-card .cinfo { flex: 1; min-width: 0; }
+.combo-card .cname { font-weight: 700; font-size: 0.9em; }
+.combo-card .cmeta { font-size: 0.75em; color: var(--muted); margin-top: 2px; }
+.combo-card .cactions { display: flex; gap: 4px; flex-direction: column; }
+
+/* Deck builder */
+.deck-slot { display: flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px dashed var(--border); border-radius: 10px; padding: 10px; margin-bottom: 8px; }
+.deck-slot.dragging { opacity: 0.5; }
+.deck-slot.drag-over { border-color: var(--accent2); }
+.deck-slot .slot-num { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8em; flex-shrink: 0; }
+.deck-slot .slot-body { flex: 1; min-width: 0; }
+.deck-slot .slot-name { font-weight: 700; font-size: 0.9em; }
+.deck-slot .slot-meta { font-size: 0.75em; color: var(--muted); }
+.deck-slot .slot-arrows { display: flex; flex-direction: column; gap: 2px; }
+.deck-slot .slot-arrows button { background: var(--surface3); border: 1px solid var(--border); color: var(--text); border-radius: 5px; width: 28px; height: 24px; font-size: 0.7em; }
+
+/* Deck cards */
+.deck-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+.deck-card .dhead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.deck-card .dname { font-weight: 800; font-size: 1em; }
+.deck-card .dcombos { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.deck-card .dcombo { text-align: center; }
+.deck-card .dcombo img { width: 52px; height: 52px; object-fit: contain; background: var(--surface3); border-radius: 8px; }
+.deck-card .dcombo .n { font-size: 0.7em; max-width: 80px; margin-top: 2px; }
+
+/* Scoring screen */
+.score-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: flex; flex-direction: column; overflow-y: auto; }
+.score-top { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.score-top .round-label { font-weight: 800; color: var(--accent2); }
+.score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; flex: 1; }
+.score-side { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; }
+.score-side.winner { border-color: var(--green); box-shadow: 0 0 0 1px var(--green); }
+.score-side .sname { font-weight: 800; font-size: 1em; text-align: center; }
+.score-side .scombo { text-align: center; font-size: 0.78em; color: var(--muted); margin: 4px 0; min-height: 1.2em; }
+.score-side .scombo img { width: 44px; height: 44px; object-fit: contain; display: block; margin: 4px auto; }
+.score-side .sbig { font-size: 3em; font-weight: 900; text-align: center; line-height: 1; margin: 6px 0; }
+.score-side .sbig.win { color: var(--green); }
+.result-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: auto; }
+.result-btn { border: none; border-radius: 10px; padding: 12px 6px; font-weight: 800; font-size: 0.85em; color: #fff; min-height: 48px; }
+.result-btn:active { transform: scale(0.95); }
+.result-btn .pts { display: block; font-size: 0.7em; font-weight: 600; opacity: 0.85; }
+.rb-spin { background: #2d6cdf; }
+.rb-over { background: #e67e22; }
+.rb-burst { background: #9b59b6; }
+.rb-extreme { background: #e74c3c; }
+.penalty-btn { width: 100%; margin-top: 6px; background: var(--surface3); border: 1px solid var(--border); color: var(--muted); border-radius: 8px; padding: 8px; font-size: 0.8em; font-weight: 700; }
+.score-center { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 4px 12px; }
+.score-center .vs { font-weight: 900; font-size: 1.1em; color: var(--muted); }
+.score-center .target { font-size: 0.75em; color: var(--muted); }
+.score-footer { padding: 10px 14px; display: flex; gap: 8px; }
+
+/* Round result banner */
+.round-banner { text-align: center; padding: 10px; font-weight: 800; font-size: 1.1em; border-radius: 10px; margin: 8px 12px; }
+
+/* Stats */
+.stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.stat-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+.stat-box .val { font-size: 1.8em; font-weight: 900; }
+.stat-box .lbl { font-size: 0.75em; color: var(--muted); margin-top: 2px; }
+.bar-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.bar-row .blbl { width: 90px; font-size: 0.8em; color: var(--muted); flex-shrink: 0; }
+.bar-track { flex: 1; height: 14px; background: var(--surface3); border-radius: 7px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 7px; }
+
+/* Match history */
+.match-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 8px; }
+.match-item .mhead { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.match-item .mresult { font-weight: 800; padding: 2px 10px; border-radius: 6px; font-size: 0.8em; }
+.mresult.win { background: rgba(0,184,148,0.2); color: var(--green); }
+.mresult.loss { background: rgba(231,76,60,0.2); color: var(--red); }
+.mresult.draw { background: rgba(136,136,170,0.2); color: var(--muted); }
+.match-item .mbody { font-size: 0.82em; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+/* Tournament */
+.tournament-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+.tournament-card .thead { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.tournament-card .tname { font-weight: 800; }
+.tournament-card .tmeta { font-size: 0.78em; color: var(--muted); margin-top: 4px; }
+.bracket-round { margin-bottom: 12px; }
+.bracket-round .rlabel { font-size: 0.75em; color: var(--muted); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+.bracket-match { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 6px; }
+.bracket-match .bp { display: flex; justify-content: space-between; padding: 4px 6px; border-radius: 6px; font-size: 0.85em; }
+.bracket-match .bp.winner { background: rgba(0,184,148,0.15); color: var(--green); font-weight: 700; }
+.bracket-match .bp .bscore { font-weight: 800; }
+.standings-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+.standings-table th, .standings-table td { padding: 8px 6px; text-align: left; border-bottom: 1px solid var(--border); }
+.standings-table th { color: var(--muted); font-size: 0.75em; }
+.player-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface3); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 0.85em; margin: 3px; }
+
+/* Modal */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+.modal h3 { margin-bottom: 12px; }
+
+/* Toast */
+#toast { position: fixed; bottom: calc(var(--tabbar-h) + 20px); left: 50%; transform: translateX(-50%) translateY(20px); background: var(--surface3); color: var(--text); border: 1px solid var(--accent); padding: 10px 18px; border-radius: 24px; font-size: 0.9em; z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; max-width: 90vw; text-align: center; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 36px 16px; color: var(--muted); }
+.empty-state .icon { font-size: 3em; margin-bottom: 10px; }
+
+/* Segmented control */
+.seg { display: flex; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
+.seg button { flex: 1; background: none; border: none; color: var(--muted); padding: 11px; font-weight: 700; font-size: 0.9em; }
+.seg button.active { background: var(--accent); color: #fff; }
+
+/* Misc */
+.muted { color: var(--muted); }
+.small { font-size: 0.8em; }
+.mt { margin-top: 10px; }
+.mb { margin-bottom: 10px; }
+.hidden { display: none !important; }
+.divider { height: 1px; background: var(--border); margin: 14px 0; }
+a { color: var(--accent2); }
+footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.75em; border-top: 1px solid var(--border); margin-top: 20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>⚔️ BeyForge X</h1>
+  <p>Combo Builder · Decks · Match Tracker · Tournaments</p>
+</header>
+
+<main>
+  <!-- ============ TAB 1: COMBOS ============ -->
+  <section id="tab-combos" class="section active">
+    <div class="card">
+      <h2>🗡️ Blade <span class="sub">pick your blade</span></h2>
+      <div class="tier-filter" id="bladeTierFilter"></div>
+      <select id="bladeSelect" onchange="updateCombo()"></select>
+      <div id="bladePreview" class="part-preview"></div>
+    </div>
+    <div class="card">
+      <h2>⚙️ Ratchet <span class="sub">pick your ratchet</span></h2>
+      <select id="ratchetSelect" onchange="updateCombo()"></select>
+      <div id="ratchetPreview" class="part-preview"></div>
+    </div>
+    <div class="card">
+      <h2>🎯 Bit <span class="sub">pick your bit</span></h2>
+      <select id="bitSelect" onchange="updateCombo()"></select>
+      <div id="bitPreview" class="part-preview"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn green" style="flex:1" onclick="saveCombo()">💾 Save Combo</button>
+    </div>
+
+    <div id="emptyState" class="empty-state">
+      <div class="icon">⚔️</div>
+      <p>Select a blade, ratchet, and bit to see competitive analysis</p>
+    </div>
+
+    <div id="resultsPanel" class="card hidden">
+      <h2>🏆 Combo Analysis</h2>
+      <div id="comboDisplay" class="combo-display"></div>
+      <div id="comboName" class="combo-name"></div>
+      <div id="comboSummary" class="combo-summary"></div>
+      <div id="totalCost" class="total-cost"></div>
+      <div id="viabilityCards"></div>
+      <div id="matchupBox" class="matchup-box"></div>
+      <div class="btn-row mt">
+        <button class="btn" style="flex:1" onclick="shareCombo()">📋 Share Link</button>
+        <button class="btn" style="flex:1" onclick="downloadCard()">📸 Combo Card</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 2: DECKS ============ -->
+  <section id="tab-decks" class="section">
+    <div class="section-title">🃏 Deck Builder</div>
+    <div class="btn-row mb">
+      <button class="btn primary" style="flex:1" onclick="startNewDeck()">➕ New Deck</button>
+    </div>
+    <div id="deckBuilder" class="card hidden">
+      <h2>Build 3v3 Deck</h2>
+      <label class="field">Deck name</label>
+      <input type="text" id="deckNameInput" placeholder="e.g. My Tournament Deck">
+      <label class="field">Select 3 combos (tap to add, drag or use arrows to reorder)</label>
+      <div id="deckSlots"></div>
+      <div class="divider"></div>
+      <label class="field">Available combos</label>
+      <div id="deckComboPicker" class="combo-list"></div>
+      <div class="btn-row mt">
+        <button class="btn green" style="flex:1" onclick="saveDeck()">💾 Save Deck</button>
+        <button class="btn ghost" onclick="cancelDeck()">Cancel</button>
+      </div>
+    </div>
+    <div id="decksList"></div>
+  </section>
+
+  <!-- ============ TAB 3: TRACK ============ -->
+  <section id="tab-track" class="section">
+    <div class="section-title">📊 Match Tracker</div>
+    <div class="seg">
+      <button id="seg-solo" class="active" onclick="setTrackMode('solo')">🎮 Solo Testing</button>
+      <button id="seg-history" onclick="setTrackMode('history')">📜 History & Stats</button>
+    </div>
+
+    <div id="trackSolo">
+      <div class="card">
+        <h2>Match Setup</h2>
+        <label class="field">Format</label>
+        <div class="seg" id="formatSeg">
+          <button id="fmt-1v1" class="active" onclick="setFormat('1v1')">1v1</button>
+          <button id="fmt-3v3" onclick="setFormat('3v3')">3v3</button>
+        </div>
+        <div id="trackSetup"></div>
+        <button class="btn primary block mt" onclick="startMatch()">▶️ Start Match</button>
+      </div>
+      <div class="card" id="sessionSummary">
+        <h2>📈 Session Summary</h2>
+        <div id="sessionStats" class="stat-grid"></div>
+      </div>
+    </div>
+
+    <div id="trackHistory" class="hidden">
+      <div class="card">
+        <h2>📈 Stats Dashboard</h2>
+        <div id="historyStats" class="stat-grid"></div>
+        <div class="divider"></div>
+        <div id="finishBreakdown"></div>
+        <div class="divider"></div>
+        <div id="topCombos"></div>
+      </div>
+      <div class="card">
+        <h2>📜 Match History</h2>
+        <div class="btn-row mb">
+          <select id="historyFilterCombo" onchange="renderHistory()"><option value="">All combos</option></select>
+          <select id="historyFilterFormat" onchange="renderHistory()">
+            <option value="">All formats</option>
+            <option value="1v1">1v1</option>
+            <option value="3v3">3v3</option>
+          </select>
+        </div>
+        <div id="historyList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 4: TOURNAMENT ============ -->
+  <section id="tab-tournament" class="section">
+    <div class="section-title">🏆 Tournament</div>
+    <div class="btn-row mb">
+      <button class="btn primary" style="flex:1" onclick="showCreateTournament()">➕ Create</button>
+      <button class="btn" style="flex:1" onclick="showJoinTournament()">🔑 Join</button>
+    </div>
+    <div id="tournamentList"></div>
+  </section>
+</main>
+
+<nav id="tabbar">
+  <button class="active" data-tab="combos" onclick="switchTab('combos')"><span class="ico">⚔️</span>Combos</button>
+  <button data-tab="decks" onclick="switchTab('decks')"><span class="ico">🃏</span>Decks</button>
+  <button data-tab="track" onclick="switchTab('track')"><span class="ico">📊</span>Track</button>
+  <button data-tab="tournament" onclick="switchTab('tournament')"><span class="ico">🏆</span>Tournament</button>
+</nav>
+
+<div id="toast"></div>
+<div id="modalRoot"></div>
+
+<footer>
+  <p>BeyForge X is a fan-made tool. Not affiliated with Takara Tomy or Hasbro.</p>
+  <p>Part images from <a href="https://github.com/hinfok/beys" target="_blank" rel="nofollow">Beypedia</a>. Competitive data from community sources.</p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+/* ============================================================
+   BeyForge X — vanilla JS PWA
+   ============================================================ */
+'use strict';
+
+const DATA = window.BEY_DATA;
+const IMG_BASE = DATA.imageBaseUrl;
+const LS = {
+  combos: 'beyforge_combos',
+  decks: 'beyforge_decks',
+  matches: 'beyforge_matches',
+  tournaments: 'beyforge_tournaments'
+};
+const TIER_ORDER = ['S+', 'S', 'A', 'B', 'C'];
+const FINISH_POINTS = { spin: 1, over: 2, burst: 2, extreme: 3 };
+const FINISH_LABELS = { spin: 'Spin', over: 'Over', burst: 'Burst', extreme: 'Extreme' };
+const WIN_TARGET = 4;
+
+/* ---------- Storage helpers ---------- */
+function lsGet(key, def) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; }
+  catch (e) { return def; }
+}
+function lsSet(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { console.warn('storage full', e); }
+}
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+/* ---------- Data helpers ---------- */
+function getPart(id, list) { return list.find(p => p.id === id); }
+function imgUrl(part) { return (part && part.image) ? IMG_BASE + part.image : null; }
+function tierClass(tier) { return tier ? 'tier-' + tier.replace('+', '\\+') : ''; }
+function resolveCombo(c) {
+  if (!c) return null;
+  const blade = getPart(c.bladeId, DATA.blades);
+  const ratchet = getPart(c.ratchetId, DATA.ratchets);
+  const bit = getPart(c.bitId, DATA.bits);
+  if (!blade || !ratchet || !bit) return null;
+  return { blade, ratchet, bit, id: c.id, name: c.name || (blade.name + ' ' + ratchet.name + ' ' + bit.name) };
+}
+function comboWeight(rc) {
+  if (!rc) return 0;
+  return (rc.blade.w || 0) + (rc.ratchet.w || 0) + (rc.bit.w || 0);
+}
+function comboType(rc) { return rc ? (rc.blade.type || 'Balance') : 'Balance'; }
+function comboPlaystyle(rc) {
+  if (!rc) return 'Unknown';
+  const bt = rc.blade.type || 'Balance';
+  const bit = rc.bit;
+  if (bt === 'Attack' && (bit.mob || 0) >= 7) return 'Aggressive Attack — high mobility KO attempts';
+  if (bt === 'Stamina' && (bit.sta || 0) >= 7) return 'Outspin Stamina — win by spinning longer';
+  if (bt === 'Defense' && (bit.stb || 0) >= 8) return 'Tank Defense — absorb hits and survive';
+  if (bt === 'Balance') return 'Balance — adaptable but not specialized';
+  return bt + ' with ' + (bit.type || '') + ' bit — mixed approach';
+}
+function comboImgHtml(rc, size) {
+  const s = size || 40;
+  const parts = [rc.blade, rc.ratchet, rc.bit];
+  return parts.map(p => {
+    const u = imgUrl(p);
+    return u ? `<img src="${u}" alt="${p.name}" style="width:${s}px;height:${s}px;object-fit:contain;background:var(--surface3);border-radius:6px" onerror="this.style.display='none'">`
+             : `<div style="width:${s}px;height:${s}px;background:var(--surface3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:${s*0.4}px">?</div>`;
+  }).join('');
+}
+
+/* ---------- Toast ---------- */
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ---------- Tab navigation ---------- */
+function switchTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelectorAll('#tabbar button').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  if (name === 'decks') { renderSavedCombos(); renderDecks(); }
+  if (name === 'track') { renderTrackSetup(); renderHistory(); renderStats(); }
+  if (name === 'tournament') { renderTournaments(); }
+  window.scrollTo({ top: 0 });
+}
+
+/* ============================================================
+   TAB 1: COMBOS
+   ============================================================ */
+let bladeFilter = '';
+
+function populateBlades() {
+  const sel = document.getElementById('bladeSelect');
+  const cur = sel.value;
+  const list = bladeFilter ? DATA.blades.filter(b => b.tier === bladeFilter) : DATA.blades;
+  let html = '<option value="">— Choose a blade —</option>';
+  list.forEach(b => { html += `<option value="${b.id}">${b.name} [${b.tier}] (${b.type})</option>`; });
+  sel.innerHTML = html;
+  if (cur && list.some(b => b.id === cur)) sel.value = cur;
+}
+function populateRatchets() {
+  const sel = document.getElementById('ratchetSelect');
+  const cur = sel.value;
+  let html = '<option value="">— Choose a ratchet —</option>';
+  DATA.ratchets.forEach(r => { html += `<option value="${r.id}">${r.name} (${r.teeth} teeth, ${r.h}mm)</option>`; });
+  sel.innerHTML = html;
+  if (cur) sel.value = cur;
+}
+function populateBits() {
+  const sel = document.getElementById('bitSelect');
+  const cur = sel.value;
+  let html = '<option value="">— Choose a bit —</option>';
+  DATA.bits.forEach(b => { html += `<option value="${b.id}">${b.name} (${b.type})</option>`; });
+  sel.innerHTML = html;
+  if (cur) sel.value = cur;
+}
+function renderTierFilter() {
+  const div = document.getElementById('bladeTierFilter');
+  const tiers = ['', 'S+', 'S', 'A', 'B', 'C'];
+  const labels = ['All', 'S+', 'S', 'A', 'B', 'C'];
+  div.innerHTML = tiers.map((t, i) =>
+    `<button class="${bladeFilter === t ? 'active' : ''}" onclick="setBladeFilter('${t}')">${labels[i]}</button>`
+  ).join('');
+}
+function setBladeFilter(tier) {
+  bladeFilter = tier;
+  renderTierFilter();
+  populateBlades();
+  updateCombo();
+}
+
+function renderPartPreview(containerId, part) {
+  const c = document.getElementById(containerId);
+  if (!part) { c.innerHTML = ''; return; }
+  const u = imgUrl(part);
+  const tier = part.tier ? `<span class="tier-badge ${tierClass(part.tier)}">${part.tier}</span>` : '';
+  const type = part.type ? `<span class="type-badge">${part.type}</span>` : '';
+  const weight = part.w ? `${part.w}g` : '';
+  const price = part.price ? `$${part.price}` : '';
+  const desc = part.desc || (part.competitive && part.competitive.assessment) || '';
+  let meta = weight;
+  if (part.spin) meta += (meta ? ' · ' : '') + 'Spin: ' + part.spin;
+  if (part.h !== undefined) meta += (meta ? ' · ' : '') + 'Height: ' + part.h + 'mm';
+  if (part.teeth !== undefined) meta += (meta ? ' · ' : '') + 'Teeth: ' + part.teeth;
+  if (part.mob !== undefined) meta += (meta ? ' · ' : '') + `Mob ${part.mob} · Sta ${part.sta} · Stb ${part.stb}`;
+  const imgHtml = u ? `<img src="${u}" alt="${part.name}" onerror="this.style.display='none'">` : '<div class="no-image">No image</div>';
+  c.innerHTML = `${imgHtml}<div class="part-info">${tier}${type}<div class="pname">${part.name}</div><div class="pmeta">${meta}</div><div class="pdesc">${desc}</div><div class="pprice">${price}</div></div>`;
+}
+
+function currentCombo() {
+  const b = getPart(document.getElementById('bladeSelect').value, DATA.blades);
+  const r = getPart(document.getElementById('ratchetSelect').value, DATA.ratchets);
+  const t = getPart(document.getElementById('bitSelect').value, DATA.bits);
+  if (!b || !r || !t) return null;
+  return { blade: b, ratchet: r, bit: t, name: b.name + ' ' + r.name + ' ' + t.name };
+}
+
+function updateCombo() {
+  const b = getPart(document.getElementById('bladeSelect').value, DATA.blades);
+  const r = getPart(document.getElementById('ratchetSelect').value, DATA.ratchets);
+  const t = getPart(document.getElementById('bitSelect').value, DATA.bits);
+  renderPartPreview('bladePreview', b);
+  renderPartPreview('ratchetPreview', r);
+  renderPartPreview('bitPreview', t);
+  if (b && r && t) showAnalysis({ blade: b, ratchet: r, bit: t, name: b.name + ' ' + r.name + ' ' + t.name });
+  else {
+    document.getElementById('resultsPanel').classList.add('hidden');
+    document.getElementById('emptyState').classList.remove('hidden');
+  }
+}
+
+function showAnalysis(rc) {
+  document.getElementById('emptyState').classList.add('hidden');
+  document.getElementById('resultsPanel').classList.remove('hidden');
+  const labels = ['Blade', 'Ratchet', 'Bit'];
+  const parts = [rc.blade, rc.ratchet, rc.bit];
+  document.getElementById('comboDisplay').innerHTML = parts.map((p, i) => {
+    const u = imgUrl(p);
+    const img = u ? `<img src="${u}" onerror="this.style.display='none'">` : '<div class="no-image">No img</div>';
+    return `<div class="combo-part">${img}<div class="label">${labels[i]}</div><div class="name">${p.name}</div></div>`;
+  }).join('');
+  document.getElementById('comboName').textContent = rc.name;
+  const totalWeight = comboWeight(rc);
+  const spin = rc.blade.spin || 'R';
+  document.getElementById('comboSummary').textContent = `${comboPlaystyle(rc)} • ${totalWeight}g total • ${spin}-spin`;
+  const totalCost = (rc.blade.price || 0) + (rc.ratchet.price || 0) + (rc.bit.price || 0);
+  document.getElementById('totalCost').textContent = `Total cost: ~$${totalCost}`;
+
+  // Viability cards
+  document.getElementById('viabilityCards').innerHTML = parts.map((p, i) => {
+    const comp = p.competitive || {};
+    const viability = comp.viability || 'Unknown';
+    let statusClass = 'status-situational';
+    if (viability.includes('Competitively viable')) statusClass = 'status-viable';
+    else if (viability.includes('Not competitively') || viability.includes('Not recommended')) statusClass = 'status-not-viable';
+    const assessment = comp.assessment || p.desc || '';
+    const tier = p.tier ? `<span class="tier-badge ${tierClass(p.tier)}">${p.tier}</span>` : '';
+    return `<div class="viability-card"><h3>${labels[i]}: ${p.name} ${tier}<span class="viability-status ${statusClass}">${viability}</span></h3><div class="assessment">${assessment}</div></div>`;
+  }).join('');
+
+  // Matchup
+  const matchups = DATA.typeMatchups || {};
+  const bType = rc.blade.type || 'Balance';
+  const mu = matchups[bType] || { strong_vs: 'None', weak_vs: 'None' };
+  let mh = '';
+  if (mu.strong_vs && mu.strong_vs !== 'None') mh += `<div class="matchup-item matchup-strong">✅ Strong vs ${mu.strong_vs}</div>`;
+  else mh += `<div class="matchup-item" style="background:var(--surface2)">⚖️ No type advantage</div>`;
+  if (mu.weak_vs && mu.weak_vs !== 'None') mh += `<div class="matchup-item matchup-weak">⚠️ Weak vs ${mu.weak_vs}</div>`;
+  else mh += `<div class="matchup-item" style="background:var(--surface2)">⚖️ No type weakness</div>`;
+  if (rc.blade.tier) {
+    const idx = TIER_ORDER.indexOf(rc.blade.tier);
+    if (idx <= 1) mh += `<div class="matchup-item matchup-strong">🔥 Meta pick — top ${rc.blade.tier} tier</div>`;
+    else if (idx >= 3) mh += `<div class="matchup-item matchup-weak">📉 Outclassed by higher tiers</div>`;
+  }
+  document.getElementById('matchupBox').innerHTML = mh;
+}
+
+function randomCombo() {
+  const topBlades = DATA.blades.filter(b => b.tier === 'S+' || b.tier === 'S');
+  const blade = topBlades[Math.floor(Math.random() * topBlades.length)];
+  const goodRatchets = DATA.ratchets.filter(r => r.teeth >= 4);
+  const ratchet = goodRatchets[Math.floor(Math.random() * goodRatchets.length)];
+  const matchingBits = DATA.bits.filter(b => b.type === blade.type);
+  const bit = matchingBits.length ? matchingBits[Math.floor(Math.random() * matchingBits.length)] : DATA.bits[Math.floor(Math.random() * DATA.bits.length)];
+  document.getElementById('bladeSelect').value = blade.id;
+  document.getElementById('ratchetSelect').value = ratchet.id;
+  document.getElementById('bitSelect').value = bit.id;
+  updateCombo();
+}
+
+function saveCombo() {
+  const rc = currentCombo();
+  if (!rc) { toast('Select all 3 parts first'); return; }
+  const combos = lsGet(LS.combos, []);
+  const name = prompt('Combo name (optional):', rc.name);
+  if (name === null) return;
+  const combo = {
+    id: uid(),
+    name: (name && name.trim()) ? name.trim() : rc.name,
+    bladeId: rc.blade.id, ratchetId: rc.ratchet.id, bitId: rc.bit.id,
+    createdAt: Date.now()
+  };
+  combos.push(combo);
+  lsSet(LS.combos, combos);
+  toast('💾 Combo saved!');
+}
+
+function shareCombo() {
+  const rc = currentCombo();
+  if (!rc) { toast('Select all 3 parts first'); return; }
+  const url = `${location.origin}${location.pathname}?b=${rc.blade.id}&r=${rc.ratchet.id}&t=${rc.bit.id}`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => toast('📋 Link copied!')).catch(() => prompt('Copy this link:', url));
+  } else {
+    prompt('Copy this link:', url);
+  }
+}
+
+function downloadCard() {
+  const rc = currentCombo();
+  if (!rc) { toast('Select all 3 parts first'); return; }
+  const canvas = document.createElement('canvas');
+  canvas.width = 900; canvas.height = 500;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#14142b'; ctx.fillRect(0, 0, 900, 500);
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 28px sans-serif';
+  ctx.fillText(rc.name, 450, 40);
+  ctx.fillStyle = '#8888aa'; ctx.font = '14px sans-serif';
+  ctx.fillText(`${rc.blade.type} • ${comboWeight(rc)}g • ${rc.blade.tier} tier • ${rc.blade.spin || 'R'}-spin`, 450, 65);
+  if (rc.blade.tier) {
+    const tc = { 'S+': '#ff4444', 'S': '#ff8800', 'A': '#ffcc00', 'B': '#88cc00', 'C': '#888888' };
+    ctx.fillStyle = tc[rc.blade.tier] || '#888888'; ctx.font = 'bold 20px sans-serif';
+    ctx.fillText('Tier: ' + rc.blade.tier, 450, 100);
+  }
+  const labels = ['BLADE', 'RATCHET', 'BIT'];
+  const parts = [rc.blade, rc.ratchet, rc.bit];
+  let loaded = 0;
+  function finish() {
+    loaded++;
+    if (loaded === 3) {
+      ctx.fillStyle = '#6c5ce7'; ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('BeyForge X', 450, 470);
+      const a = document.createElement('a');
+      a.download = rc.name.replace(/[^a-z0-9]+/gi, '_') + '.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    }
+  }
+  parts.forEach((part, i) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      ctx.drawImage(img, 150 + i * 250, 120, 200, 200);
+      ctx.fillStyle = '#8888aa'; ctx.font = '12px sans-serif';
+      ctx.fillText(labels[i], 250 + i * 250, 340);
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
+      ctx.fillText(part.name, 250 + i * 250, 360);
+      finish();
+    };
+    img.onerror = () => {
+      ctx.fillStyle = '#2a2a4a'; ctx.fillRect(150 + i * 250, 120, 200, 200);
+      ctx.fillStyle = '#8888aa'; ctx.font = '12px sans-serif';
+      ctx.fillText(labels[i], 250 + i * 250, 340);
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
+      ctx.fillText(part.name, 250 + i * 250, 360);
+      finish();
+    };
+    const u = imgUrl(part);
+    if (u) img.src = u; else img.onerror();
+  });
+}
+
+/* ============================================================
+   TAB 2: DECKS
+   ============================================================ */
+let deckDraft = null; // { id, name, comboIds: [] }
+let dragIndex = null;
+
+function getSavedCombos() { return lsGet(LS.combos, []); }
+function getSavedDecks() { return lsGet(LS.decks, []); }
+
+function renderSavedCombos() {
+  const combos = getSavedCombos();
+  const picker = document.getElementById('deckComboPicker');
+  if (!picker) return;
+  if (!combos.length) {
+    picker.innerHTML = '<div class="empty-state"><div class="icon">💾</div><p>No saved combos yet. Save a combo in the Combos tab first.</p></div>';
+    return;
+  }
+  picker.innerHTML = combos.map(c => {
+    const rc = resolveCombo(c);
+    if (!rc) return '';
+    const selected = deckDraft && deckDraft.comboIds.includes(c.id);
+    return `<div class="combo-card ${selected ? 'selected' : ''}" onclick="toggleDeckCombo('${c.id}')">
+      <div class="thumbs">${comboImgHtml(rc, 40)}</div>
+      <div class="cinfo"><div class="cname">${esc(c.name)}</div><div class="cmeta">${rc.blade.type} · ${comboWeight(rc)}g · ${rc.blade.tier} tier</div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderDeckSlots() {
+  const slots = document.getElementById('deckSlots');
+  if (!deckDraft) { slots.innerHTML = ''; return; }
+  if (!deckDraft.comboIds.length) {
+    slots.innerHTML = '<div class="muted small mb">Tap combos below to add them to your deck (3 needed).</div>';
+    return;
+  }
+  slots.innerHTML = deckDraft.comboIds.map((cid, i) => {
+    const c = getSavedCombos().find(x => x.id === cid);
+    const rc = c ? resolveCombo(c) : null;
+    const name = rc ? rc.name : 'Unknown';
+    const meta = rc ? `${rc.blade.type} · ${comboWeight(rc)}g` : '';
+    return `<div class="deck-slot" draggable="true"
+        ondragstart="onDeckDragStart(event, ${i})" ondragover="onDeckDragOver(event)" ondrop="onDeckDrop(event, ${i})" ondragend="onDeckDragEnd()">
+      <div class="slot-num">${i + 1}</div>
+      <div class="slot-body"><div class="slot-name">${esc(name)}</div><div class="slot-meta">${meta}</div></div>
+      <div class="slot-arrows">
+        <button onclick="moveDeckCombo(${i}, ${i - 1})" ${i === 0 ? 'disabled' : ''}>▲</button>
+        <button onclick="moveDeckCombo(${i}, ${i + 1})" ${i === deckDraft.comboIds.length - 1 ? 'disabled' : ''}>▼</button>
+      </div>
+      <button class="btn small red" onclick="removeDeckCombo(${i})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function onDeckDragStart(e, i) { dragIndex = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
+function onDeckDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function onDeckDrop(e, i) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (dragIndex !== null && dragIndex !== i) moveDeckCombo(dragIndex, i);
+  dragIndex = null;
+}
+function onDeckDragEnd() { dragIndex = null; document.querySelectorAll('.deck-slot').forEach(s => s.classList.remove('dragging', 'drag-over')); }
+
+function startNewDeck() {
+  deckDraft = { id: null, name: '', comboIds: [] };
+  document.getElementById('deckNameInput').value = '';
+  document.getElementById('deckBuilder').classList.remove('hidden');
+  renderDeckSlots();
+  renderSavedCombos();
+  document.getElementById('deckBuilder').scrollIntoView({ behavior: 'smooth' });
+}
+function cancelDeck() {
+  deckDraft = null;
+  document.getElementById('deckBuilder').classList.add('hidden');
+  renderSavedCombos();
+}
+function toggleDeckCombo(id) {
+  if (!deckDraft) return;
+  const idx = deckDraft.comboIds.indexOf(id);
+  if (idx >= 0) deckDraft.comboIds.splice(idx, 1);
+  else {
+    if (deckDraft.comboIds.length >= 3) { toast('A deck holds exactly 3 combos'); return; }
+    deckDraft.comboIds.push(id);
+  }
+  renderDeckSlots();
+  renderSavedCombos();
+}
+function moveDeckCombo(from, to) {
+  if (!deckDraft) return;
+  if (to < 0 || to >= deckDraft.comboIds.length) return;
+  const arr = deckDraft.comboIds;
+  const [item] = arr.splice(from, 1);
+  arr.splice(to, 0, item);
+  renderDeckSlots();
+}
+function removeDeckCombo(i) {
+  if (!deckDraft) return;
+  deckDraft.comboIds.splice(i, 1);
+  renderDeckSlots();
+  renderSavedCombos();
+}
+function saveDeck() {
+  if (!deckDraft) return;
+  if (deckDraft.comboIds.length !== 3) { toast('Select exactly 3 combos'); return; }
+  const name = document.getElementById('deckNameInput').value.trim() || 'Untitled Deck';
+  const decks = getSavedDecks();
+  if (deckDraft.id) {
+    const d = decks.find(x => x.id === deckDraft.id);
+    if (d) { d.name = name; d.comboIds = deckDraft.comboIds.slice(); }
+  } else {
+    decks.push({ id: uid(), name, comboIds: deckDraft.comboIds.slice(), createdAt: Date.now() });
+  }
+  lsSet(LS.decks, decks);
+  deckDraft = null;
+  document.getElementById('deckBuilder').classList.add('hidden');
+  renderDecks();
+  toast('💾 Deck saved!');
+}
+function renderDecks() {
+  const decks = getSavedDecks();
+  const el = document.getElementById('decksList');
+  if (!decks.length) {
+    el.innerHTML = '<div class="empty-state"><div class="icon">🃏</div><p>No decks yet. Create your first 3v3 deck!</p></div>';
+    return;
+  }
+  el.innerHTML = decks.map(d => {
+    const combos = d.comboIds.map(id => getSavedCombos().find(c => c.id === id)).filter(Boolean);
+    const comboHtml = combos.map(c => {
+      const rc = resolveCombo(c);
+      return rc ? `<div class="dcombo">${comboImgHtml(rc, 52)}<div class="n">${esc(rc.blade.name)}</div></div>` : '';
+    }).join('');
+    return `<div class="deck-card">
+      <div class="dhead">
+        <div class="dname">${esc(d.name)}</div>
+        <div class="btn-row">
+          <button class="btn small" onclick="editDeck('${d.id}')">✏️ Edit</button>
+          <button class="btn small red" onclick="deleteDeck('${d.id}')">🗑️</button>
+        </div>
+      </div>
+      <div class="dcombos">${comboHtml}</div>
+    </div>`;
+  }).join('');
+}
+function editDeck(id) {
+  const d = getSavedDecks().find(x => x.id === id);
+  if (!d) return;
+  deckDraft = { id: d.id, name: d.name, comboIds: d.comboIds.slice() };
+  document.getElementById('deckNameInput').value = d.name;
+  document.getElementById('deckBuilder').classList.remove('hidden');
+  renderDeckSlots();
+  renderSavedCombos();
+  document.getElementById('deckBuilder').scrollIntoView({ behavior: 'smooth' });
+}
+function deleteDeck(id) {
+  if (!confirm('Delete this deck?')) return;
+  lsSet(LS.decks, getSavedDecks().filter(d => d.id !== id));
+  renderDecks();
+  toast('Deck deleted');
+}
+
+/* ============================================================
+   TAB 3: TRACK
+   ============================================================ */
+let trackMode = 'solo';
+let trackFormat = '1v1';
+let trackSetup = { my: [], opp: [] }; // arrays of combo ids (saved) or temp combo objects
+let tempCombos = {}; // tempId -> combo object
+let sessionMatches = 0, sessionWins = 0;
+
+function setTrackMode(mode) {
+  trackMode = mode;
+  document.getElementById('seg-solo').classList.toggle('active', mode === 'solo');
+  document.getElementById('seg-history').classList.toggle('active', mode === 'history');
+  document.getElementById('trackSolo').classList.toggle('hidden', mode !== 'solo');
+  document.getElementById('trackHistory').classList.toggle('hidden', mode !== 'history');
+  if (mode === 'history') { renderHistory(); renderStats(); }
+}
+function setFormat(f) {
+  trackFormat = f;
+  document.getElementById('fmt-1v1').classList.toggle('active', f === '1v1');
+  document.getElementById('fmt-3v3').classList.toggle('active', f === '3v3');
+  trackSetup = { my: [], opp: [] };
+  renderTrackSetup();
+}
+
+function renderComboSlot(side, index) {
+  const slots = trackFormat === '3v3' ? 3 : 1;
+  const val = trackSetup[side][index] || null;
+  const savedCombos = getSavedCombos();
+  const isTemp = val && typeof val === 'object' && val.bladeId;
+  const comboId = isTemp ? null : val;
+  let opts = '<option value="">— None —</option>';
+  savedCombos.forEach(c => {
+    opts += `<option value="${c.id}" ${comboId === c.id ? 'selected' : ''}>${esc(c.name)}</option>`;
+  });
+  const label = side === 'my' ? 'Your combo' : 'Opponent combo';
+  const slotLabel = slots > 1 ? ` (slot ${index + 1})` : '';
+  const tempName = isTemp ? val.name : '';
+  return `<div class="card" style="margin-bottom:10px">
+    <label class="field">${label}${slotLabel}</label>
+    <select onchange="setTrackCombo('${side}', ${index}, this.value)">${opts}</select>
+    <div class="btn-row mt">
+      <button class="btn small" onclick="openQuickBuild('${side}', ${index})">⚡ Quick build</button>
+      ${isTemp ? `<button class="btn small red" onclick="clearTrackCombo('${side}', ${index})">Clear</button>` : ''}
+    </div>
+    ${isTemp ? `<div class="part-preview mt">${comboImgHtml(resolveCombo(val), 44)}<div class="part-info"><div class="pname">${esc(tempName)}</div><div class="pmeta">${comboType(resolveCombo(val))} · ${comboWeight(resolveCombo(val))}g</div></div></div>` : ''}
+  </div>`;
+}
+
+function renderTrackSetup() {
+  const el = document.getElementById('trackSetup');
+  const slots = trackFormat === '3v3' ? 3 : 1;
+  let html = '<div class="divider"></div><h3 style="margin-bottom:8px">🟢 You</h3>';
+  for (let i = 0; i < slots; i++) html += renderComboSlot('my', i);
+  html += '<div class="divider"></div><h3 style="margin-bottom:8px">🔴 Opponent <span class="sub">(optional)</span></h3>';
+  for (let i = 0; i < slots; i++) html += renderComboSlot('opp', i);
+  el.innerHTML = html;
+}
+
+function setTrackCombo(side, index, comboId) {
+  trackSetup[side][index] = comboId || null;
+  renderTrackSetup();
+}
+function clearTrackCombo(side, index) {
+  trackSetup[side][index] = null;
+  renderTrackSetup();
+}
+
+/* Quick build modal */
+let quickBuildTarget = null;
+function openQuickBuild(side, index) {
+  quickBuildTarget = { side, index };
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <h3>⚡ Quick Build Combo</h3>
+      <label class="field">Blade</label>
+      <select id="qbBlade">${DATA.blades.map(b => `<option value="${b.id}">${b.name} [${b.tier}]</option>`).join('')}</select>
+      <label class="field">Ratchet</label>
+      <select id="qbRatchet">${DATA.ratchets.map(r => `<option value="${r.id}">${r.name}</option>`).join('')}</select>
+      <label class="field">Bit</label>
+      <select id="qbBit">${DATA.bits.map(b => `<option value="${b.id}">${b.name} (${b.type})</option>`).join('')}</select>
+      <div class="btn-row mt">
+        <button class="btn green" style="flex:1" onclick="confirmQuickBuild()">Use this combo</button>
+        <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>`;
+}
+function confirmQuickBuild() {
+  const b = getPart(document.getElementById('qbBlade').value, DATA.blades);
+  const r = getPart(document.getElementById('qbRatchet').value, DATA.ratchets);
+  const t = getPart(document.getElementById('qbBit').value, DATA.bits);
+  if (!b || !r || !t) { toast('Pick all 3 parts'); return; }
+  const combo = { id: 'temp_' + uid(), name: b.name + ' ' + r.name + ' ' + t.name, bladeId: b.id, ratchetId: r.id, bitId: t.id };
+  tempCombos[combo.id] = combo;
+  trackSetup[quickBuildTarget.side][quickBuildTarget.index] = combo;
+  closeModal();
+  renderTrackSetup();
+}
+function closeModal() { document.getElementById('modalRoot').innerHTML = ''; quickBuildTarget = null; }
+
+function resolveTrackCombo(v) {
+  if (!v) return null;
+  if (typeof v === 'object' && v.bladeId) return resolveCombo(v);
+  return resolveCombo(getSavedCombos().find(c => c.id === v));
+}
+
+function startMatch() {
+  const slots = trackFormat === '3v3' ? 3 : 1;
+  const myCombos = [];
+  const oppCombos = [];
+  for (let i = 0; i < slots; i++) {
+    const m = resolveTrackCombo(trackSetup.my[i]);
+    const o = resolveTrackCombo(trackSetup.opp[i]);
+    if (!m) { toast('Select your combo' + (slots > 1 ? ' for slot ' + (i + 1) : '')); return; }
+    myCombos.push(m);
+    if (o) oppCombos.push(o);
+  }
+  const oppLabel = oppCombos.length ? oppCombos.map(c => c.name).join(' / ') : 'Opponent';
+  startScoring({
+    format: trackFormat,
+    left: { label: 'You', combos: myCombos },
+    right: { label: oppLabel, combos: oppCombos },
+    onComplete: (result) => {
+      logMatch(result);
+      renderTrackSetup();
+      renderStats();
+    }
+  });
+}
+
+function logMatch(result) {
+  const matches = lsGet(LS.matches, []);
+  const myIds = result.left.combos.map(c => c.id);
+  const oppIds = result.right.combos.map(c => c.id);
+  const myScore = result.scores.left;
+  const oppScore = result.scores.right;
+  let outcome = 'draw';
+  if (myScore > oppScore) outcome = 'win';
+  else if (oppScore > myScore) outcome = 'loss';
+  matches.push({
+    id: uid(),
+    format: result.format,
+    myCombos: myIds,
+    oppCombos: oppIds,
+    myNames: result.left.combos.map(c => c.name),
+    oppNames: result.right.combos.map(c => c.name),
+    result: outcome,
+    myScore, oppScore,
+    rounds: result.rounds,
+    finishTypes: result.finishTypes,
+    timestamp: Date.now()
+  });
+  lsSet(LS.matches, matches);
+  sessionMatches++;
+  if (outcome === 'win') sessionWins++;
+  toast(outcome === 'win' ? '🏆 You win!' : outcome === 'loss' ? '😞 Loss' : '🤝 Draw');
+  renderSessionSummary();
+}
+
+function renderSessionSummary() {
+  const el = document.getElementById('sessionStats');
+  if (!sessionMatches) {
+    el.innerHTML = '<div class="muted small">No matches this session yet.</div>';
+    return;
+  }
+  const wr = Math.round((sessionWins / sessionMatches) * 100);
+  el.innerHTML = `
+    <div class="stat-box"><div class="val">${sessionMatches}</div><div class="lbl">Matches</div></div>
+    <div class="stat-box"><div class="val">${sessionWins}</div><div class="lbl">Wins</div></div>
+    <div class="stat-box"><div class="val">${wr}%</div><div class="lbl">Win rate</div></div>
+    <div class="stat-box"><div class="val">${sessionMatches - sessionWins}</div><div class="lbl">Losses</div></div>`;
+}
+
+/* ---------- Match history & stats ---------- */
+function getMatches() { return lsGet(LS.matches, []); }
+
+function renderHistory() {
+  const el = document.getElementById('historyList');
+  const comboFilter = document.getElementById('historyFilterCombo').value;
+  const formatFilter = document.getElementById('historyFilterFormat').value;
+  let matches = getMatches().slice().sort((a, b) => b.timestamp - a.timestamp);
+  if (formatFilter) matches = matches.filter(m => m.format === formatFilter);
+  if (comboFilter) matches = matches.filter(m => (m.myCombos || []).includes(comboFilter) || (m.oppCombos || []).includes(comboFilter));
+
+  // populate combo filter options
+  const comboSel = document.getElementById('historyFilterCombo');
+  const cur = comboSel.value;
+  const allCombos = getSavedCombos();
+  comboSel.innerHTML = '<option value="">All combos</option>' + allCombos.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  if (cur) comboSel.value = cur;
+
+  if (!matches.length) {
+    el.innerHTML = '<div class="empty-state"><div class="icon">📜</div><p>No matches logged yet.</p></div>';
+    return;
+  }
+  el.innerHTML = matches.map(m => {
+    const when = new Date(m.timestamp).toLocaleString();
+    const resClass = m.result;
+    const resLabel = m.result === 'win' ? 'WIN' : m.result === 'loss' ? 'LOSS' : 'DRAW';
+    const myNames = (m.myNames || []).join(' / ') || '—';
+    const oppNames = (m.oppNames || []).join(' / ') || '—';
+    const finishes = (m.finishTypes || []).map(f => FINISH_LABELS[f] || f).join(', ') || '—';
+    return `<div class="match-item">
+      <div class="mhead">
+        <span class="mresult ${resClass}">${resLabel}</span>
+        <span class="muted small">${m.format} · ${when}</span>
+      </div>
+      <div class="mbody">
+        <strong>You:</strong> ${esc(myNames)}<br>
+        <strong>Opp:</strong> ${esc(oppNames)}<br>
+        <strong>Score:</strong> ${m.myScore} – ${m.oppScore} · <strong>Finishes:</strong> ${finishes}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderStats() {
+  const matches = getMatches();
+  const statsEl = document.getElementById('historyStats');
+  const finishEl = document.getElementById('finishBreakdown');
+  const topEl = document.getElementById('topCombos');
+  if (!matches.length) {
+    statsEl.innerHTML = '<div class="muted small">Log matches to see stats.</div>';
+    finishEl.innerHTML = '';
+    topEl.innerHTML = '';
+    return;
+  }
+  const wins = matches.filter(m => m.result === 'win').length;
+  const losses = matches.filter(m => m.result === 'loss').length;
+  const draws = matches.filter(m => m.result === 'draw').length;
+  const wr = Math.round((wins / matches.length) * 100);
+  statsEl.innerHTML = `
+    <div class="stat-box"><div class="val">${matches.length}</div><div class="lbl">Total matches</div></div>
+    <div class="stat-box"><div class="val">${wr}%</div><div class="lbl">Win rate</div></div>
+    <div class="stat-box"><div class="val">${wins}</div><div class="lbl">Wins</div></div>
+    <div class="stat-box"><div class="val">${losses}</div><div class="lbl">Losses</div></div>`;
+
+  // finish breakdown
+  const finishCounts = {};
+  matches.forEach(m => (m.finishTypes || []).forEach(f => { finishCounts[f] = (finishCounts[f] || 0) + 1; }));
+  const totalFinishes = Object.values(finishCounts).reduce((a, b) => a + b, 0) || 1;
+  finishEl.innerHTML = '<h3 style="margin-bottom:8px">🎯 Finish Type Breakdown</h3>' +
+    Object.keys(finishCounts).map(f => {
+      const pct = Math.round((finishCounts[f] / totalFinishes) * 100);
+      return `<div class="bar-row"><span class="blbl">${FINISH_LABELS[f] || f}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="small muted">${finishCounts[f]}</span></div>`;
+    }).join('');
+
+  // most used combos
+  const comboUsage = {};
+  matches.forEach(m => (m.myCombos || []).forEach(id => { comboUsage[id] = (comboUsage[id] || 0) + 1; }));
+  const top = Object.entries(comboUsage).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  topEl.innerHTML = '<h3 style="margin-bottom:8px">🔥 Most Used Combos</h3>' +
+    (top.length ? top.map(([id, count]) => {
+      const c = getSavedCombos().find(x => x.id === id);
+      const name = c ? c.name : id;
+      return `<div class="bar-row"><span class="blbl" style="width:auto;flex:1">${esc(name)}</span><span class="small muted">${count}×</span></div>`;
+    }).join('') : '<div class="muted small">No combo data.</div>');
+}
+
+/* ============================================================
+   SHARED SCORING ENGINE (used by Track + Tournament judge)
+   ============================================================ */
+let scorer = null;
+
+function startScoring(config) {
+  const totalRounds = config.format === '3v3' ? 3 : 1;
+  scorer = {
+    config,
+    totalRounds,
+    currentRound: 0,
+    rounds: Array.from({ length: totalRounds }, () => ({ left: 0, right: 0, finishes: [] })),
+    roundWinners: [],
+    finished: false
+  };
+  renderScoreScreen();
+}
+
+function renderScoreScreen() {
+  const root = document.getElementById('modalRoot');
+  const cfg = scorer.config;
+  const round = scorer.rounds[scorer.currentRound];
+  const leftCombo = cfg.left.combos[scorer.currentRound] || cfg.left.combos[0];
+  const rightCombo = cfg.right.combos[scorer.currentRound] || cfg.right.combos[0];
+  const roundLabel = scorer.totalRounds > 1 ? `Round ${scorer.currentRound + 1}/${scorer.totalRounds}` : 'First to 4';
+  const leftWon = scorer.roundWinners[scorer.currentRound] === 'left';
+  const rightWon = scorer.roundWinners[scorer.currentRound] === 'right';
+
+  function sideHtml(side, label, combo, score, won) {
+    const hasParts = combo && combo.blade;
+    const img = hasParts ? comboImgHtml(combo, 44) : '';
+    return `<div class="score-side ${won ? 'winner' : ''}">
+      <div class="sname">${esc(label)}</div>
+      <div class="scombo">${img}${combo ? esc(combo.name) : '—'}</div>
+      <div class="sbig ${score >= WIN_TARGET ? 'win' : ''}">${score}</div>
+      <div class="result-btns">
+        <button class="result-btn rb-spin" onclick="scorePoint('${side}', 'spin')">Spin<span class="pts">+1</span></button>
+        <button class="result-btn rb-over" onclick="scorePoint('${side}', 'over')">Over<span class="pts">+2</span></button>
+        <button class="result-btn rb-burst" onclick="scorePoint('${side}', 'burst')">Burst<span class="pts">+2</span></button>
+        <button class="result-btn rb-extreme" onclick="scorePoint('${side}', 'extreme')">Extreme<span class="pts">+3</span></button>
+      </div>
+      <button class="penalty-btn" onclick="scorePenalty('${side}')">⚠️ Penalty −1</button>
+    </div>`;
+  }
+
+  root.innerHTML = `<div class="score-screen">
+    <div class="score-top">
+      <button class="btn small ghost" onclick="exitScoring()">✕ Exit</button>
+      <span class="round-label">${roundLabel}</span>
+      <span class="small muted">First to ${WIN_TARGET}</span>
+    </div>
+    ${scorer.totalRounds > 1 ? `<div class="round-banner" style="background:var(--surface2)">${roundBannerHtml()}</div>` : ''}
+    <div class="score-grid">
+      ${sideHtml('left', cfg.left.label, leftCombo, round.left, leftWon)}
+      ${sideHtml('right', cfg.right.label, rightCombo, round.right, rightWon)}
+    </div>
+    <div class="score-center">
+      <span class="vs">${round.left} – ${round.right}</span>
+    </div>
+    <div class="score-footer">
+      <button class="btn ghost" style="flex:1" onclick="undoPoint()">↩️ Undo</button>
+    </div>
+  </div>`;
+}
+
+function roundBannerHtml() {
+  const w = scorer.roundWinners;
+  return w.map((winner, i) => {
+    const label = winner === 'left' ? scorer.config.left.label : scorer.config.right.label;
+    return `<span style="margin:0 6px">R${i + 1}: <strong style="color:${winner === 'left' ? 'var(--green)' : 'var(--red)'}">${esc(label)}</strong></span>`;
+  }).join('');
+}
+
+function scorePoint(side, type) {
+  if (!scorer || scorer.finished) return;
+  const round = scorer.rounds[scorer.currentRound];
+  if (scorer.roundWinners[scorer.currentRound]) return; // round already decided
+  round[side] += FINISH_POINTS[type];
+  round.finishes.push({ side, type });
+  if (round[side] >= WIN_TARGET) {
+    scorer.roundWinners[scorer.currentRound] = side;
+    endRound();
+  } else {
+    renderScoreScreen();
+  }
+}
+
+function scorePenalty(side) {
+  if (!scorer || scorer.finished) return;
+  const round = scorer.rounds[scorer.currentRound];
+  if (scorer.roundWinners[scorer.currentRound]) return;
+  round[side] = Math.max(0, round[side] - 1);
+  renderScoreScreen();
+}
+
+function undoPoint() {
+  if (!scorer || scorer.finished) return;
+  const round = scorer.rounds[scorer.currentRound];
+  if (scorer.roundWinners[scorer.currentRound]) {
+    // undo a completed round: clear winner, drop the winning finish, recompute
+    scorer.roundWinners[scorer.currentRound] = null;
+    if (round.finishes.length) round.finishes.pop();
+    round.left = 0; round.right = 0;
+    round.finishes.forEach(f => { round[f.side] += FINISH_POINTS[f.type]; });
+  } else if (round.finishes.length) {
+    const last = round.finishes.pop();
+    round[last.side] = Math.max(0, round[last.side] - FINISH_POINTS[last.type]);
+  }
+  renderScoreScreen();
+}
+
+function endRound() {
+  const cfg = scorer.config;
+  const winner = scorer.roundWinners[scorer.currentRound];
+  const round = scorer.rounds[scorer.currentRound];
+  const winnerLabel = winner === 'left' ? cfg.left.label : cfg.right.label;
+  const winVerb = winnerLabel === 'You' ? 'win' : 'wins';
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="score-screen">
+    <div class="score-top"><span class="round-label">Round ${scorer.currentRound + 1} complete</span></div>
+    <div class="round-banner" style="background:rgba(0,184,148,0.15);border:1px solid var(--green)">
+      🏆 ${esc(winnerLabel)} ${winVerb} the round ${round.left}–${round.right}
+    </div>
+    <div class="score-footer">
+      <button class="btn primary" style="flex:1" onclick="nextRound()">${scorer.currentRound + 1 < scorer.totalRounds ? 'Next Round →' : 'Finish Match'}</button>
+    </div>
+  </div>`;
+}
+
+function nextRound() {
+  if (scorer.currentRound + 1 < scorer.totalRounds) {
+    scorer.currentRound++;
+    renderScoreScreen();
+  } else {
+    finishMatch();
+  }
+}
+
+function finishMatch() {
+  const cfg = scorer.config;
+  const leftWins = scorer.roundWinners.filter(w => w === 'left').length;
+  const rightWins = scorer.roundWinners.filter(w => w === 'right').length;
+  let winner = 'left';
+  if (scorer.totalRounds === 1) {
+    winner = scorer.rounds[0].left >= WIN_TARGET ? 'left' : 'right';
+  } else {
+    winner = leftWins > rightWins ? 'left' : (rightWins > leftWins ? 'right' : 'left');
+  }
+  const scores = {
+    left: scorer.rounds.reduce((a, r) => a + r.left, 0),
+    right: scorer.rounds.reduce((a, r) => a + r.right, 0)
+  };
+  const finishTypes = [];
+  scorer.rounds.forEach(r => r.finishes.forEach(f => finishTypes.push(f.type)));
+  const result = {
+    format: cfg.format,
+    winner,
+    scores,
+    rounds: scorer.rounds.map(r => ({ left: r.left, right: r.right })),
+    finishTypes,
+    left: cfg.left,
+    right: cfg.right
+  };
+  scorer.finished = true;
+  const root = document.getElementById('modalRoot');
+  const winnerLabel = winner === 'left' ? cfg.left.label : cfg.right.label;
+  const winVerb = winnerLabel === 'You' ? 'win' : 'wins';
+  root.innerHTML = `<div class="score-screen">
+    <div class="score-top"><span class="round-label">Match complete</span></div>
+    <div class="round-banner" style="background:rgba(0,184,148,0.15);border:1px solid var(--green)">
+      🏆 ${esc(winnerLabel)} ${winVerb} ${scores.left}–${scores.right}
+    </div>
+    <div class="score-footer">
+      <button class="btn primary" style="flex:1" onclick="closeScoring()">Done</button>
+    </div>
+  </div>`;
+  if (cfg.onComplete) cfg.onComplete(result);
+}
+
+function exitScoring() {
+  if (confirm('Exit match? Progress will be lost.')) closeScoring();
+}
+function closeScoring() {
+  scorer = null;
+  document.getElementById('modalRoot').innerHTML = '';
+}
+
+/* ============================================================
+   TAB 4: TOURNAMENT
+   ============================================================ */
+function getTournaments() { return lsGet(LS.tournaments, []); }
+
+function renderTournaments() {
+  const el = document.getElementById('tournamentList');
+  const ts = getTournaments();
+  if (!ts.length) {
+    el.innerHTML = '<div class="empty-state"><div class="icon">🏆</div><p>No tournaments yet. Create one or join with a code.</p></div>';
+    return;
+  }
+  el.innerHTML = ts.map(t => {
+    const status = t.status || 'open';
+    return `<div class="tournament-card" onclick="viewTournament('${t.id}')">
+      <div class="thead">
+        <div class="tname">${esc(t.name)}</div>
+        <span class="tier-badge tier-S">${status.toUpperCase()}</span>
+      </div>
+      <div class="tmeta">${formatLabel(t.format)} · ${t.type} · ${t.players.length}/${t.maxPlayers} players · Code: <strong>${t.joinCode}</strong></div>
+    </div>`;
+  }).join('');
+}
+
+function formatLabel(f) {
+  return { single: 'Single Elim', roundrobin: 'Round Robin', swiss: 'Swiss' }[f] || f;
+}
+
+function showCreateTournament() {
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <h3>➕ Create Tournament</h3>
+      <label class="field">Name</label>
+      <input type="text" id="tName" placeholder="e.g. Friday Night Beyblade">
+      <label class="field">Format</label>
+      <select id="tFormat">
+        <option value="single">Single Elimination</option>
+        <option value="roundrobin">Round Robin</option>
+        <option value="swiss">Swiss</option>
+      </select>
+      <label class="field">Match type</label>
+      <select id="tType"><option value="1v1">1v1</option><option value="3v3">3v3</option></select>
+      <label class="field">Max players</label>
+      <input type="number" id="tMax" value="8" min="2" max="64">
+      <label class="field">Privacy</label>
+      <select id="tPrivacy" onchange="document.getElementById('tPassWrap').classList.toggle('hidden', this.value!=='private')">
+        <option value="public">Public</option>
+        <option value="private">Private (passphrase)</option>
+      </select>
+      <div id="tPassWrap" class="hidden">
+        <label class="field">Passphrase</label>
+        <input type="text" id="tPass" placeholder="Secret word">
+      </div>
+      <div class="btn-row mt">
+        <button class="btn green" style="flex:1" onclick="createTournament()">Create</button>
+        <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function createTournament() {
+  const name = document.getElementById('tName').value.trim();
+  if (!name) { toast('Enter a name'); return; }
+  const format = document.getElementById('tFormat').value;
+  const type = document.getElementById('tType').value;
+  const maxPlayers = parseInt(document.getElementById('tMax').value, 10) || 8;
+  const privacy = document.getElementById('tPrivacy').value;
+  const passphrase = privacy === 'private' ? document.getElementById('tPass').value.trim() : '';
+  if (privacy === 'private' && !passphrase) { toast('Enter a passphrase'); return; }
+  const joinCode = generateJoinCode();
+  const t = {
+    id: uid(), name, format, type, maxPlayers, passphrase, joinCode,
+    status: 'open', players: [], matches: [], createdAt: Date.now()
+  };
+  const ts = getTournaments();
+  ts.push(t);
+  lsSet(LS.tournaments, ts);
+  closeModal();
+  renderTournaments();
+  viewTournament(t.id);
+  toast('🏆 Tournament created! Code: ' + joinCode);
+}
+
+function generateJoinCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
+function showJoinTournament() {
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <h3>🔑 Join Tournament</h3>
+      <label class="field">Join code</label>
+      <input type="text" id="jCode" placeholder="e.g. ABC123" style="text-transform:uppercase">
+      <label class="field">Passphrase (if private)</label>
+      <input type="text" id="jPass" placeholder="Leave blank if public">
+      <div class="btn-row mt">
+        <button class="btn green" style="flex:1" onclick="joinTournament()">Join</button>
+        <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function joinTournament() {
+  const code = document.getElementById('jCode').value.trim().toUpperCase();
+  const pass = document.getElementById('jPass').value.trim();
+  const t = getTournaments().find(x => x.joinCode.toUpperCase() === code);
+  if (!t) { toast('Tournament not found'); return; }
+  if (t.passphrase && t.passphrase !== pass) { toast('Wrong passphrase'); return; }
+  closeModal();
+  viewTournament(t.id);
+}
+
+function viewTournament(id) {
+  const t = getTournaments().find(x => x.id === id);
+  if (!t) { toast('Tournament not found'); return; }
+  const root = document.getElementById('modalRoot');
+  const playersHtml = t.players.length
+    ? t.players.map(p => `<span class="player-chip">${esc(p.name)}</span>`).join('')
+    : '<div class="muted small">No players yet.</div>';
+  const canStart = t.players.length >= 2 && t.status === 'open';
+  const matchesHtml = t.matches.length ? renderBracketHtml(t) : '<div class="muted small">No matches yet.</div>';
+
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="max-width:560px">
+      <h3>🏆 ${esc(t.name)}</h3>
+      <div class="muted small mb">${formatLabel(t.format)} · ${t.type} · Code: <strong>${t.joinCode}</strong>${t.passphrase ? ' · 🔒 Private' : ' · 🌐 Public'}</div>
+      <div class="mb"><strong>Players (${t.players.length}/${t.maxPlayers}):</strong><div class="mt">${playersHtml}</div></div>
+      ${t.status === 'open' ? `
+        <div class="btn-row mb">
+          <button class="btn small" onclick="addPlayer('${t.id}')">➕ Add player</button>
+          <button class="btn small green" ${canStart ? '' : 'disabled'} onclick="startTournament('${t.id}')">▶️ Start</button>
+        </div>` : ''}
+      <div class="divider"></div>
+      <div id="tMatches">${matchesHtml}</div>
+      <div class="divider"></div>
+      <div class="btn-row">
+        <button class="btn small" onclick="exportTournament('${t.id}')">📤 Export</button>
+        <button class="btn small red" onclick="deleteTournament('${t.id}')">🗑️ Delete</button>
+        <button class="btn small ghost" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function addPlayer(id) {
+  const t = getTournaments().find(x => x.id === id);
+  if (!t) return;
+  if (t.players.length >= t.maxPlayers) { toast('Tournament is full'); return; }
+  const name = prompt('Player name:');
+  if (!name || !name.trim()) return;
+  t.players.push({ id: uid(), name: name.trim() });
+  lsSet(LS.tournaments, getTournaments().map(x => x.id === id ? t : x));
+  viewTournament(id);
+}
+
+function startTournament(id) {
+  const t = getTournaments().find(x => x.id === id);
+  if (!t) return;
+  t.status = 'inprogress';
+  t.matches = generateMatches(t);
+  lsSet(LS.tournaments, getTournaments().map(x => x.id === id ? t : x));
+  viewTournament(id);
+  toast('Tournament started!');
+}
+
+function generateMatches(t) {
+  const players = t.players.map(p => p.id);
+  const matches = [];
+  if (t.format === 'roundrobin') {
+    // everyone plays everyone
+    for (let i = 0; i < players.length; i++) {
+      for (let j = i + 1; j < players.length; j++) {
+        matches.push({ id: uid(), round: 1, p1Id: players[i], p2Id: players[j], winnerId: null, p1Score: 0, p2Score: 0, status: 'pending' });
+      }
+    }
+  } else if (t.format === 'swiss') {
+    // round 1: pair adjacent players
+    for (let i = 0; i < players.length; i += 2) {
+      if (i + 1 < players.length) {
+        matches.push({ id: uid(), round: 1, p1Id: players[i], p2Id: players[i + 1], winnerId: null, p1Score: 0, p2Score: 0, status: 'pending' });
+      } else {
+        matches.push({ id: uid(), round: 1, p1Id: players[i], p2Id: null, winnerId: players[i], p1Score: 0, p2Score: 0, status: 'bye' });
+      }
+    }
+  } else {
+    // single elimination bracket (byes distributed so no double-byes)
+    let n = players.length;
+    let size = 1;
+    while (size < n) size *= 2;
+    const firstRoundMatches = n - size / 2;
+    const byes = size - n;
+    let round = 1;
+    let current = [];
+    for (let i = 0; i < firstRoundMatches; i++) {
+      const p1 = players[i * 2], p2 = players[i * 2 + 1];
+      matches.push({ id: uid(), round, p1Id: p1, p2Id: p2, winnerId: null, p1Score: 0, p2Score: 0, status: 'pending' });
+      current.push(null);
+    }
+    for (let i = 0; i < byes; i++) {
+      const p = players[firstRoundMatches * 2 + i];
+      matches.push({ id: uid(), round, p1Id: p, p2Id: null, winnerId: p, p1Score: 0, p2Score: 0, status: 'bye' });
+      current.push(p);
+    }
+    round++;
+    while (current.length > 1) {
+      const next = [];
+      for (let i = 0; i < current.length; i += 2) {
+        const p1 = current[i], p2 = current[i + 1];
+        matches.push({ id: uid(), round, p1Id: p1, p2Id: p2, winnerId: null, p1Score: 0, p2Score: 0, status: 'pending' });
+        next.push(null);
+      }
+      current = next;
+      round++;
+    }
+  }
+  return matches;
+}
+
+function renderBracketHtml(t) {
+  const playerName = id => { const p = t.players.find(x => x.id === id); return p ? p.name : 'BYE'; };
+  const rounds = {};
+  t.matches.forEach(m => { (rounds[m.round] = rounds[m.round] || []).push(m); });
+  const roundNums = Object.keys(rounds).map(Number).sort((a, b) => a - b);
+  return roundNums.map(rn => {
+    const label = t.format === 'roundrobin' ? 'Matches' : (t.format === 'swiss' ? 'Round ' + rn : (rn === Math.max(...roundNums) ? 'Final' : 'Round ' + rn));
+    const matchesHtml = rounds[rn].map(m => {
+      const p1 = playerName(m.p1Id), p2 = playerName(m.p2Id);
+      const p1win = m.winnerId === m.p1Id, p2win = m.winnerId === m.p2Id;
+      const score = m.status === 'pending' ? 'vs' : `${m.p1Score}–${m.p2Score}`;
+      return `<div class="bracket-match">
+        <div class="bp ${p1win ? 'winner' : ''}"><span>${esc(p1)}</span><span class="bscore">${p1win ? score : ''}</span></div>
+        <div class="bp ${p2win ? 'winner' : ''}"><span>${esc(p2)}</span><span class="bscore">${p2win ? score : ''}</span></div>
+        ${m.status === 'pending' ? `<div class="btn-row mt"><button class="btn small primary" onclick="judgeMatch('${t.id}','${m.id}')">⚖️ Judge</button></div>` : ''}
+      </div>`;
+    }).join('');
+    return `<div class="bracket-round"><div class="rlabel">${label}</div>${matchesHtml}</div>`;
+  }).join('');
+}
+
+function judgeMatch(tid, mid) {
+  const t = getTournaments().find(x => x.id === tid);
+  if (!t) return;
+  const m = t.matches.find(x => x.id === mid);
+  if (!m) return;
+  const p1 = t.players.find(x => x.id === m.p1Id);
+  const p2 = t.players.find(x => x.id === m.p2Id);
+  const p1Name = p1 ? p1.name : 'BYE';
+  const p2Name = p2 ? p2.name : 'BYE';
+  // For judge mode, combos are optional (players may not have decks locked)
+  const p1Combo = { id: 'p1', name: '', bladeId: null, ratchetId: null, bitId: null };
+  const p2Combo = { id: 'p2', name: '', bladeId: null, ratchetId: null, bitId: null };
+  startScoring({
+    format: t.type,
+    left: { label: p1Name, combos: [p1Combo, p1Combo, p1Combo] },
+    right: { label: p2Name, combos: [p2Combo, p2Combo, p2Combo] },
+    onComplete: (result) => {
+      const winnerId = result.winner === 'left' ? m.p1Id : m.p2Id;
+      m.winnerId = winnerId;
+      m.p1Score = result.scores.left;
+      m.p2Score = result.scores.right;
+      m.status = 'done';
+      m.finishes = result.finishTypes;
+      // advance winner in single elim
+      if (t.format === 'single') advanceWinner(t, m);
+      lsSet(LS.tournaments, getTournaments().map(x => x.id === tid ? t : x));
+      viewTournament(tid);
+    }
+  });
+}
+
+function advanceWinner(t, doneMatch) {
+  // Map the finished match to its slot in the next round using positional pairing.
+  // Matches are stored in creation order (round 1 pending first, then byes), which
+  // matches the bracket's `current` array ordering used to build later rounds.
+  const roundMatches = t.matches.filter(m => m.round === doneMatch.round);
+  const idx = roundMatches.findIndex(m => m.id === doneMatch.id);
+  if (idx < 0) return;
+  const nextRound = doneMatch.round + 1;
+  const nextMatches = t.matches.filter(m => m.round === nextRound);
+  const targetIdx = Math.floor(idx / 2);
+  const slot = idx % 2;
+  const target = nextMatches[targetIdx];
+  if (!target) return;
+  if (slot === 0) target.p1Id = doneMatch.winnerId;
+  else target.p2Id = doneMatch.winnerId;
+}
+
+function exportTournament(id) {
+  const t = getTournaments().find(x => x.id === id);
+  if (!t) return;
+  const data = JSON.stringify(t, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = t.name.replace(/[^a-z0-9]+/gi, '_') + '_results.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('📤 Exported results');
+}
+
+function deleteTournament(id) {
+  if (!confirm('Delete this tournament?')) return;
+  lsSet(LS.tournaments, getTournaments().filter(t => t.id !== id));
+  closeModal();
+  renderTournaments();
+  toast('Tournament deleted');
+}
+
+/* ============================================================
+   UTIL
+   ============================================================ */
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/* ============================================================
+   PWA: manifest (data URI) + service worker (inline Blob)
+   ============================================================ */
+function setupPWA() {
+  // Manifest as data URI
+  const manifest = {
+    name: 'BeyForge X',
+    short_name: 'BeyForge',
+    description: 'Beyblade X combo builder, deck builder, match tracker & tournament tool',
+    start_url: '.',
+    display: 'standalone',
+    background_color: '#0a0a1a',
+    theme_color: '#0a0a1a',
+    icons: [
+      { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E", sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
+    ]
+  };
+  const manifestUrl = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
+  document.getElementById('manifestLink').href = manifestUrl;
+
+  // Service worker via Blob (note: most browsers block SW registration from blob: URLs;
+  // this is a best-effort inline registration that degrades gracefully)
+  const swCode = `
+    const CACHE = 'beyforge-v1';
+    self.addEventListener('install', e => { self.skipWaiting(); });
+    self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
+    self.addEventListener('fetch', e => {
+      e.respondWith(
+        caches.match(e.request).then(cached => {
+          const fetchPromise = fetch(e.request).then(res => {
+            if (res && res.status === 200 && (e.request.method === 'GET')) {
+              const clone = res.clone();
+              caches.open(CACHE).then(c => c.put(e.request, clone));
+            }
+            return res;
+          }).catch(() => cached);
+          return cached || fetchPromise;
+        })
+      );
+    });
+  `;
+  try {
+    const blob = new Blob([swCode], { type: 'text/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register(swUrl).catch(err => {
+        console.warn('Service worker registration via Blob not supported; skipping offline cache.', err);
+      });
+    }
+  } catch (e) {
+    console.warn('Service worker setup failed:', e);
+  }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function init() {
+  renderTierFilter();
+  populateBlades();
+  populateRatchets();
+  populateBits();
+  renderSessionSummary();
+  renderDecks();
+  renderSavedCombos();
+  renderTrackSetup();
+  renderHistory();
+  renderStats();
+  renderTournaments();
+  setupPWA();
+
+  // URL params for shared combo
+  const params = new URLSearchParams(location.search);
+  const b = params.get('b'), r = params.get('r'), t = params.get('t');
+  if (b || r || t) {
+    if (b) document.getElementById('bladeSelect').value = b;
+    if (r) document.getElementById('ratchetSelect').value = r;
+    if (t) document.getElementById('bitSelect').value = t;
+    updateCombo();
+  }
+}
+
+init();
+</script>
+</body>
+</html>
