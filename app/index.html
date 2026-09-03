@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>BeyForge X — Beyblade X Combo Builder, Deck Builder & Tournament Tracker</title>
 <meta name="description" content="Build Beyblade X combos, check competitive viability, build 3v3 decks, track matches, and run tournaments. The ultimate Beyblade X strategy tool.">
-<meta name="theme-color" content="#0a0a1a">
+<meta name="theme-color" content="#0d0d0d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="BeyForge X">
@@ -13,7 +13,7 @@
 <meta property="og:description" content="Build combos, check competitive viability, and dominate the meta.">
 <meta property="og:type" content="website">
 <link rel="manifest" id="manifestLink" href="">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f3460'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 :root {
@@ -560,10 +560,10 @@ function setBladeFilter(tier) {
   updateCombo();
 }
 
-function renderPartPreview(containerId, part) {
+function renderPartPreview(containerId, part, showImage) {
   const c = document.getElementById(containerId);
   if (!part) { c.innerHTML = ''; return; }
-  const u = imgUrl(part);
+  const u = showImage ? imgUrl(part) : null;
   const tier = part.tier ? `<span class="tier-badge ${tierClass(part.tier)}">${part.tier}</span>` : '';
   const type = part.type ? `<span class="type-badge">${part.type}</span>` : '';
   const weight = part.w ? `${part.w}g` : '';
@@ -574,7 +574,7 @@ function renderPartPreview(containerId, part) {
   if (part.h !== undefined) meta += (meta ? ' · ' : '') + 'Height: ' + part.h + 'mm';
   if (part.teeth !== undefined) meta += (meta ? ' · ' : '') + 'Teeth: ' + part.teeth;
   if (part.mob !== undefined) meta += (meta ? ' · ' : '') + `Mob ${part.mob} · Sta ${part.sta} · Stb ${part.stb}`;
-  const imgHtml = u ? `<img src="${u}" alt="${part.name}" onerror="this.style.display='none'">` : '<div class="no-image">No image</div>';
+  const imgHtml = u ? `<img src="${u}" alt="${part.name}" onerror="this.style.display='none'">` : '';
   c.innerHTML = `${imgHtml}<div class="part-info">${tier}${type}<div class="pname">${part.name}</div><div class="pmeta">${meta}</div><div class="pdesc">${desc}</div><div class="pprice">${price}</div></div>`;
 }
 
@@ -590,9 +590,9 @@ function updateCombo() {
   const b = getPart(document.getElementById('bladeSelect').value, DATA.blades);
   const r = getPart(document.getElementById('ratchetSelect').value, DATA.ratchets);
   const t = getPart(document.getElementById('bitSelect').value, DATA.bits);
-  renderPartPreview('bladePreview', b);
-  renderPartPreview('ratchetPreview', r);
-  renderPartPreview('bitPreview', t);
+  renderPartPreview('bladePreview', b, true);
+  renderPartPreview('ratchetPreview', r, false);
+  renderPartPreview('bitPreview', t, false);
   if (b && r && t) showAnalysis({ blade: b, ratchet: r, bit: t, name: b.name + ' ' + r.name + ' ' + t.name });
   else {
     document.getElementById('resultsPanel').classList.add('hidden');
@@ -606,8 +606,8 @@ function showAnalysis(rc) {
   const labels = ['Blade', 'Ratchet', 'Bit'];
   const parts = [rc.blade, rc.ratchet, rc.bit];
   document.getElementById('comboDisplay').innerHTML = parts.map((p, i) => {
-    const u = imgUrl(p);
-    const img = u ? `<img src="${u}" onerror="this.style.display='none'">` : '<div class="no-image">No img</div>';
+    const u = i === 0 ? imgUrl(p) : null; // only blade gets image
+    const img = u ? `<img src="${u}" onerror="this.style.display='none'">` : '';
     return `<div class="combo-part">${img}<div class="label">${labels[i]}</div><div class="name">${p.name}</div></div>`;
   }).join('');
   document.getElementById('comboName').textContent = rc.name;
@@ -693,11 +693,11 @@ function downloadCard() {
   const canvas = document.createElement('canvas');
   canvas.width = 900; canvas.height = 500;
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#14142b'; ctx.fillRect(0, 0, 900, 500);
+  ctx.fillStyle = '#1a1a2e'; ctx.fillRect(0, 0, 900, 500);
   ctx.textAlign = 'center';
-  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 28px sans-serif';
+  ctx.fillStyle = '#ffd700'; ctx.font = 'bold 28px sans-serif';
   ctx.fillText(rc.name, 450, 40);
-  ctx.fillStyle = '#8888aa'; ctx.font = '14px sans-serif';
+  ctx.fillStyle = '#7f8c9a'; ctx.font = '14px sans-serif';
   ctx.fillText(`${rc.blade.type} • ${comboWeight(rc)}g • ${rc.blade.tier} tier • ${rc.blade.spin || 'R'}-spin`, 450, 65);
   if (rc.blade.tier) {
     const tc = { 'S+': '#ff4444', 'S': '#ff8800', 'A': '#ffcc00', 'B': '#88cc00', 'C': '#888888' };
@@ -710,7 +710,7 @@ function downloadCard() {
   function finish() {
     loaded++;
     if (loaded === 3) {
-      ctx.fillStyle = '#6c5ce7'; ctx.font = 'bold 16px sans-serif';
+      ctx.fillStyle = '#e94560'; ctx.font = 'bold 16px sans-serif';
       ctx.fillText('BeyForge X', 450, 470);
       const a = document.createElement('a');
       a.download = rc.name.replace(/[^a-z0-9]+/gi, '_') + '.png';
@@ -719,26 +719,36 @@ function downloadCard() {
     }
   }
   parts.forEach((part, i) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      ctx.drawImage(img, 150 + i * 250, 120, 200, 200);
-      ctx.fillStyle = '#8888aa'; ctx.font = '12px sans-serif';
+    const u = i === 0 ? imgUrl(part) : null; // only blade gets image
+    if (u) {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        ctx.drawImage(img, 150 + i * 250, 120, 200, 200);
+        ctx.fillStyle = '#7f8c9a'; ctx.font = '12px sans-serif';
+        ctx.fillText(labels[i], 250 + i * 250, 340);
+        ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
+        ctx.fillText(part.name, 250 + i * 250, 360);
+        finish();
+      };
+      img.onerror = () => {
+        ctx.fillStyle = '#0f3460'; ctx.fillRect(150 + i * 250, 120, 200, 200);
+        ctx.fillStyle = '#7f8c9a'; ctx.font = '12px sans-serif';
+        ctx.fillText(labels[i], 250 + i * 250, 340);
+        ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
+        ctx.fillText(part.name, 250 + i * 250, 360);
+        finish();
+      };
+      img.src = u;
+    } else {
+      // Text-only for ratchet and bit
+      ctx.fillStyle = '#0f3460'; ctx.fillRect(150 + i * 250, 120, 200, 200);
+      ctx.fillStyle = '#7f8c9a'; ctx.font = '12px sans-serif';
       ctx.fillText(labels[i], 250 + i * 250, 340);
       ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
       ctx.fillText(part.name, 250 + i * 250, 360);
       finish();
-    };
-    img.onerror = () => {
-      ctx.fillStyle = '#2a2a4a'; ctx.fillRect(150 + i * 250, 120, 200, 200);
-      ctx.fillStyle = '#8888aa'; ctx.font = '12px sans-serif';
-      ctx.fillText(labels[i], 250 + i * 250, 340);
-      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
-      ctx.fillText(part.name, 250 + i * 250, 360);
-      finish();
-    };
-    const u = imgUrl(part);
-    if (u) img.src = u; else img.onerror();
+    }
   });
 }
 
@@ -1683,10 +1693,10 @@ function setupPWA() {
     description: 'Beyblade X combo builder, deck builder, match tracker & tournament tool',
     start_url: '.',
     display: 'standalone',
-    background_color: '#0a0a1a',
-    theme_color: '#0a0a1a',
+    background_color: '#0d0d0d',
+    theme_color: '#0d0d0d',
     icons: [
-      { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E", sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
+      { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f3460'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E", sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
     ]
   };
   const manifestUrl = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
