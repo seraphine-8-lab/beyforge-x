@@ -1,1 +1,3329 @@
-window.BEY_DATA = {"blades":[{"id":"cobalt_dragoon","name":"Cobalt Dragoon","type":"Stamina","tier":"S+","w":35,"spin":"L","color":"#1E40AF","desc":"LEFT SPIN \u2014 equalization king","price":25,"image":"images/Blade/BL-PRD-096092-01.png","competitive":{"assessment":"Top-tier competitive blade. LEFT SPIN \u2014 equalization king. Meta-defining pick \u2014 appears in virtually every competitive deck.","viability":"Competitively viable. Top tournament pick.","tier":"S+","type":"Stamina"}},{"id":"aero_pegasus","name":"Aero Pegasus","type":"Attack","tier":"S+","w":47,"color":"#38BDF8","desc":"Ultra-heavy winged attack","price":22,"image":"images/Blade/BL-PRD-096528-00.png","competitive":{"assessment":"Top-tier competitive blade. Ultra-heavy winged attack. Meta-defining pick \u2014 appears in virtually every competitive deck.","viability":"Competitively viable. Top tournament pick.","tier":"S+","type":"Attack"}},{"id":"shark_scale","name":"Shark Scale","type":"Attack","tier":"S+","w":36,"color":"#0891B2","desc":"Scale armor + fierce smash","price":18,"image":"images/Blade/BL-PRD-982432-01.png","competitive":{"assessment":"Top-tier competitive blade. Scale armor + fierce smash. Meta-defining pick \u2014 appears in virtually every competitive deck.","viability":"Competitively viable. Top tournament pick.","tier":"S+","type":"Attack"}},{"id":"hells_hammer","name":"Hells Hammer","type":"Attack","tier":"S+","w":40,"color":"#581C87","desc":"Heaviest smash blade","price":15,"image":"images/Blade/BL-PRD-096146-04.png","competitive":{"assessment":"Top-tier competitive blade. Heaviest smash blade. Meta-defining pick \u2014 appears in virtually every competitive deck.","viability":"Competitively viable. Top tournament pick.","tier":"S+","type":"Attack"}},{"id":"phoenix_wing","name":"Phoenix Wing","type":"Attack","tier":"S","w":38,"color":"#F97316","desc":"Upper + Smash combo","price":15,"image":"images/Blade/BL-PRD-913092-00.png","competitive":{"assessment":"Strong competitive blade. Upper + Smash combo. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"tyranno_beat","name":"Tyranno Beat","type":"Attack","tier":"S","w":36,"color":"#16A34A","desc":"8-sided heavy smash","price":23,"image":"images/Blade/BL-PRD-096146-05.png","competitive":{"assessment":"Strong competitive blade. 8-sided heavy smash. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"tyranno_roar","name":"Tyranno Roar","type":"Attack","tier":"S","w":37,"color":"#15803D","desc":"Heavy smash evolution","price":20,"image":"images/Blade/BL-PRD-982432-02.png","competitive":{"assessment":"Strong competitive blade. Heavy smash evolution. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"silver_wolf","name":"Silver Wolf","type":"Stamina","tier":"S","w":33,"color":"#94A3B8","desc":"Free-spin ring LAD","price":18,"image":"images/Blade/BL-PRD-939498-00.png","competitive":{"assessment":"Strong competitive blade. Free-spin ring LAD. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Stamina"}},{"id":"wyvern_hover","name":"Wyvern Hover","type":"Balance","tier":"S","w":33,"color":"#06B6D4","desc":"Incredible reversal","price":16,"image":"images/Blade/BL-PRD-993636-00.png","competitive":{"assessment":"Strong competitive blade. Incredible reversal. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Balance"}},{"id":"samurai_saber","name":"Samurai Saber","type":"Attack","tier":"S","w":34,"color":"#B91C1C","desc":"Retractable blades","price":15,"image":"images/Blade/BL-PRD-085515-00.png","competitive":{"assessment":"Strong competitive blade. Retractable blades. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"lightning_ldrago_rh","name":"Lightning L-Drago (Rapid-Hit)","type":"Attack","tier":"S","w":35,"spin":"L","color":"#7C3AED","desc":"LEFT SPIN \u2014 rapid-hit dragon","price":20,"image":"images/Blade/BL-PRD-930358-00.png","competitive":{"assessment":"Strong competitive blade. LEFT SPIN \u2014 rapid-hit dragon. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"knight_mail","name":"Knight Mail","type":"Defense","tier":"S","w":37,"color":"#A8A29E","desc":"Full-armor knight guard","price":16,"image":"images/Blade/BL-PRD-919124-00.png","competitive":{"assessment":"Strong competitive blade. Full-armor knight guard. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Defense"}},{"id":"ghost_circle","name":"Ghost Circle","type":"Defense","tier":"S","w":35,"color":"#C4B5FD","desc":"Ghost ring absorbs hits","price":15,"image":"images/Blade/BL-PRD-939566-01.png","competitive":{"assessment":"Strong competitive blade. Ghost ring absorbs hits. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Defense"}},{"id":"unicorn_delta","name":"Unicorn Delta","type":"Attack","tier":"S","w":35,"color":"#E879F9","desc":"CX-17 Prize \u2014 delta wing smash","price":18,"image":"images/Blade/BL-PRD-096146-01.png","competitive":{"assessment":"Strong competitive blade. CX-17 Prize \u2014 delta wing smash. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"brachio_whip","name":"Brachio Whip","type":"Stamina","tier":"B","w":34,"color":"#0E7490","desc":"CX-18 \u2014 whip-tail stamina","price":14,"image":"images/Blade/BL-PRD-096177-01.png","competitive":{"assessment":"Budget/casual blade. CX-18 \u2014 whip-tail stamina. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"ragna_rage","name":"Ragna Rage","type":"Attack","tier":"A","w":35,"color":"#7C3AED","desc":"CX-15 \u2014 raging smash","price":18,"image":"images/Blade/BL-EVE-088899-00.png","competitive":{"assessment":"Solid competitive blade. CX-15 \u2014 raging smash. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"knight_armor","name":"Knight Armor","type":"Defense","tier":"A","w":38,"color":"#94A3B8","desc":"CX-14 \u2014 heavy armor guard","price":18,"image":"images/Blade/BL-PRD-097266-00.png","competitive":{"assessment":"Solid competitive blade. CX-14 \u2014 heavy armor guard. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"dran_strike","name":"Dran Strike","type":"Attack","tier":"A","w":34,"color":"#DC2626","desc":"BX-49 \u2014 strike smash attack","price":12,"image":"images/Blade/BL-EVE-077428-01.png","competitive":{"assessment":"Solid competitive blade. BX-49 \u2014 strike smash attack. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"griffon_rocket","name":"Griffon Rocket","type":"Balance","tier":"B","w":33,"color":"#0EA5E9","desc":"UX \u2014 rocket balance","price":14,"image":"images/Blade/BL-PRD-096160-00.png","competitive":{"assessment":"Budget/casual blade. UX \u2014 rocket balance. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"rampart_aegis","name":"Rampart Aegis","type":"Defense","tier":"B","w":36,"color":"#475569","desc":"UX \u2014 ratchet-integrated shield","price":13,"image":"images/Blade/BL-PRD-097266-00.png","competitive":{"assessment":"Budget/casual blade. UX \u2014 ratchet-integrated shield. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"cutter_shinobi","name":"Cutter Shinobi","type":"Attack","tier":"B","w":32,"color":"#1F2937","desc":"UX \u2014 mode-switch attack","price":13,"image":"images/Blade/BL-PRD-914549-01.png","competitive":{"assessment":"Budget/casual blade. UX \u2014 mode-switch attack. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"impact_drake","name":"Impact Drake","type":"Attack","tier":"S","w":36,"color":"#1E3A5F","desc":"Heavy impact smash","price":16,"image":"images/Blade/BL-PRD-939559-00.png","competitive":{"assessment":"Strong competitive blade. Heavy impact smash. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"meteor_dragoon","name":"Meteor Dragoon","type":"Attack","tier":"S","w":36,"color":"#2563EB","desc":"Meteor shower attack","price":18,"image":"images/Blade/BL-PRD-997627-00.png","competitive":{"assessment":"Strong competitive blade. Meteor shower attack. Excellent choice for tournament play.","viability":"Competitively viable. Strong tournament pick.","tier":"S","type":"Attack"}},{"id":"dran_buster","name":"Dran Buster","type":"Attack","tier":"A","w":33,"color":"#F87171","desc":"Explosive attack","price":12,"image":"images/Blade/BL-PRD-096092-05.png","competitive":{"assessment":"Solid competitive blade. Explosive attack. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"hells_chain","name":"Hells Chain","type":"Balance","tier":"A","w":35,"color":"#6D28D9","desc":"High stamina balance","price":14,"image":"images/Blade/BL-PRD-913085-01.png","competitive":{"assessment":"Solid competitive blade. High stamina balance. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"shark_edge","name":"Shark Edge","type":"Attack","tier":"A","w":31,"color":"#2DD4BF","desc":"Low-profile aggression","price":8,"image":"images/Blade/BL-PRD-085706-00.png","competitive":{"assessment":"Solid competitive blade. Low-profile aggression. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"viper_tail","name":"Viper Tail","type":"Stamina","tier":"A","w":32,"color":"#A3E635","desc":"Whip attack stamina","price":10,"image":"images/Blade/BL-PRD-912972-01.png","competitive":{"assessment":"Solid competitive blade. Whip attack stamina. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"cobalt_drake","name":"Cobalt Drake","type":"Attack","tier":"A","w":34,"color":"#1D4ED8","desc":"Cobalt dragon strike","price":12,"image":"images/Blade/BL-PRD-910510-00.png","competitive":{"assessment":"Solid competitive blade. Cobalt dragon strike. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"knight_lance","name":"Knight Lance","type":"Defense","tier":"A","w":33,"color":"#CBD5E1","desc":"Silver lance guard","price":25,"image":"images/Blade/BL-PRD-910565-00.png","competitive":{"assessment":"Solid competitive blade. Silver lance guard. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"hells_scythe","name":"Hells Scythe","type":"Attack","tier":"A","w":30,"color":"#9333EA","desc":"Reaper smash","price":14,"image":"images/Blade/BL-PRD-096092-04.png","competitive":{"assessment":"Solid competitive blade. Reaper smash. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"golem_rock","name":"Golem Rock","type":"Defense","tier":"A","w":36,"color":"#8B6914","desc":"Rock-solid counter defense","price":12,"image":"images/Blade/BL-PRD-098775-02.png","competitive":{"assessment":"Solid competitive blade. Rock-solid counter defense. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"crimson_garuda","name":"Crimson Garuda","type":"Attack","tier":"A","w":34,"color":"#DC2626","desc":"Crimson fire wings","price":9,"image":"images/Blade/BL-PRD-096146-06.png","competitive":{"assessment":"Solid competitive blade. Crimson fire wings. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"leon_crest","name":"Leon Crest","type":"Balance","tier":"A","w":33,"color":"#CA8A04","desc":"Royal lion crest","price":10,"image":"images/Blade/BL-PRD-914600-00.png","competitive":{"assessment":"Solid competitive blade. Royal lion crest. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"phoenix_rudder","name":"Phoenix Rudder","type":"Stamina","tier":"A","w":34,"color":"#FB923C","desc":"Flame rudder outspin","price":13,"image":"images/Blade/BL-PRD-914594-01.png","competitive":{"assessment":"Solid competitive blade. Flame rudder outspin. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"lightning_ldrago_up","name":"Lightning L-Drago (Upper)","type":"Attack","tier":"A","w":34,"spin":"L","color":"#8B5CF6","desc":"LEFT SPIN \u2014 upper attack dragon","price":18,"image":"images/Blade/BL-PRD-930358-00.png","competitive":{"assessment":"Solid competitive blade. LEFT SPIN \u2014 upper attack dragon. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"clock_mirage","name":"Clock Mirage","type":"Stamina","tier":"A","w":34,"color":"#D4AF37","desc":"Time-gear spin trick","price":14,"image":"images/Blade/BL-PRD-990154-01.png","competitive":{"assessment":"Solid competitive blade. Time-gear spin trick. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"orochi_cluster","name":"Orochi Cluster","type":"Balance","tier":"A","w":45,"color":"#166534","desc":"Multi-head serpent, ultra-heavy","price":15,"image":"images/Blade/BL-PRD-997023-00.png","competitive":{"assessment":"Solid competitive blade. Multi-head serpent, ultra-heavy. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"samurai_calibur","name":"Samurai Calibur","type":"Balance","tier":"A","w":32,"color":"#991B1B","desc":"Calibur blade balanced","price":8,"image":"images/Blade/BL-PRD-939580-00.png","competitive":{"assessment":"Solid competitive blade. Calibur blade balanced. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"sphinx_cowl","name":"Sphinx Cowl","type":"Defense","tier":"A","w":34,"color":"#B8860B","desc":"Sphinx guard cowl","price":10,"image":"images/Blade/BL-PRD-913115-01.png","competitive":{"assessment":"Solid competitive blade. Sphinx guard cowl. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"weiss_tiger","name":"Weiss Tiger","type":"Attack","tier":"A","w":33,"color":"#E2E8F0","desc":"White tiger claw strike","price":10,"image":"images/Blade/BL-PRD-097167-06.png","competitive":{"assessment":"Solid competitive blade. White tiger claw strike. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"phoenix_feather","name":"Phoenix Feather","type":"Stamina","tier":"A","w":32,"color":"#EA580C","desc":"Feather-light outspin","price":10,"image":"images/Blade/BL-FRB-CR2312-00.png","competitive":{"assessment":"Solid competitive blade. Feather-light outspin. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"scorpio_spear","name":"Scorpio Spear","type":"Attack","tier":"A","w":33,"color":"#B91C1C","desc":"Scorpion stinger attack","price":14,"image":"images/Blade/BL-PRD-080558-00.png","competitive":{"assessment":"Solid competitive blade. Scorpion stinger attack. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"shinobi_shadow","name":"Shinobi Shadow","type":"Attack","tier":"A","w":32,"color":"#312E81","desc":"Ninja stealth smash","price":14,"image":"images/Blade/BL-PRD-914549-01.png","competitive":{"assessment":"Solid competitive blade. Ninja stealth smash. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"mummy_curse","name":"Mummy Curse","type":"Defense","tier":"A","w":35,"color":"#A3A38C","desc":"Wrap defense absorb","price":14,"image":"images/Blade/BL-PRD-097167-01.png","competitive":{"assessment":"Solid competitive blade. Wrap defense absorb. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Defense"}},{"id":"wizard_rod","name":"Wizard Rod","type":"Stamina","tier":"A","w":32,"color":"#6D28D9","desc":"Magic rod outspin","price":14,"image":"images/Blade/BL-EVE-936138-01.png","competitive":{"assessment":"Solid competitive blade. Magic rod outspin. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Stamina"}},{"id":"shark_gill","name":"Shark Gill","type":"Attack","tier":"A","w":30,"color":"#0369A1","desc":"Gill-edge aggression","price":8,"image":"images/Blade/BL-PRD-098775-03.png","competitive":{"assessment":"Solid competitive blade. Gill-edge aggression. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"storm_spriggan","name":"Storm Spriggan","type":"Balance","tier":"A","w":34,"color":"#DC2626","desc":"X-Over dual-spin balance","price":15,"image":"images/Blade/BL-PRD-997351-00.png","competitive":{"assessment":"Solid competitive blade. X-Over dual-spin balance. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Balance"}},{"id":"victory_valkyrie","name":"Victory Valkyrie","type":"Attack","tier":"A","w":33,"color":"#2563EB","desc":"X-Over winged rush","price":15,"image":"images/Blade/BL-PRD-946816-03.png","competitive":{"assessment":"Solid competitive blade. X-Over winged rush. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"xeno_xcalibur","name":"Xeno Xcalibur","type":"Attack","tier":"A","w":35,"color":"#B91C1C","desc":"X-Over sword strike","price":15,"image":"images/Blade/BL-PRD-946823-00.png","competitive":{"assessment":"Solid competitive blade. X-Over sword strike. Viable in tournament play with the right setup.","viability":"Competitively viable with good matchups.","tier":"A","type":"Attack"}},{"id":"knight_shield","name":"Knight Shield","type":"Defense","tier":"B","w":30,"color":"#94A3B8","desc":"Absorbs hits","price":8,"image":"images/Blade/BL-EVE-910879-01.png","competitive":{"assessment":"Budget/casual blade. Absorbs hits. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"leon_claw","name":"Leon Claw","type":"Balance","tier":"B","w":30,"color":"#EAB308","desc":"Versatile claws","price":7,"image":"images/Blade/BL-PRD-913030-00.png","competitive":{"assessment":"Budget/casual blade. Versatile claws. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"mammoth_tusk","name":"Mammoth Tusk","type":"Defense","tier":"B","w":35,"color":"#78716C","desc":"Heavy immovable","price":12,"image":"images/Blade/BL-PRD-096092-03.png","competitive":{"assessment":"Budget/casual blade. Heavy immovable. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"unicorn_sting","name":"Unicorn Sting","type":"Balance","tier":"B","w":26,"color":"#F0ABFC","desc":"Light & fast","price":7,"image":"images/Blade/BL-PRD-914464-00.png","competitive":{"assessment":"Budget/casual blade. Light & fast. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"dran_sword","name":"Dran Sword","type":"Attack","tier":"B","w":29,"color":"#E53E3E","desc":"Balanced attack","price":6,"image":"images/Blade/BL-EVE-910909-01.png","competitive":{"assessment":"Budget/casual blade. Balanced attack. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"whale_wave","name":"Whale Wave","type":"Stamina","tier":"B","w":33,"color":"#0EA5E9","desc":"Wave stamina","price":8,"image":"images/Blade/BL-PRD-085690-00.png","competitive":{"assessment":"Budget/casual blade. Wave stamina. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"wizard_arrow","name":"Wizard Arrow","type":"Stamina","tier":"B","w":31,"color":"#7E22CE","desc":"Magic bolt spin","price":12,"image":"images/Blade/BL-PRD-910473-00.png","competitive":{"assessment":"Budget/casual blade. Magic bolt spin. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"rhino_horn","name":"Rhino Horn","type":"Attack","tier":"B","w":35,"color":"#A8A29E","desc":"Heavy horn charge","price":8,"image":"images/Blade/BL-PRD-913061-00.png","competitive":{"assessment":"Budget/casual blade. Heavy horn charge. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"bear_scratch","name":"Bear Scratch","type":"Attack","tier":"B","w":32,"color":"#92400E","desc":"Wild claw attack","price":7,"image":"images/Blade/BL-PRD-939481-00.png","competitive":{"assessment":"Budget/casual blade. Wild claw attack. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"croc_crunch","name":"Croc Crunch","type":"Attack","tier":"B","w":31,"color":"#65A30D","desc":"Jaw crunch smash","price":7,"image":"images/Blade/BL-PRD-953678-00.png","competitive":{"assessment":"Budget/casual blade. Jaw crunch smash. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"ptera_swing","name":"Ptera Swing","type":"Stamina","tier":"B","w":30,"color":"#7DD3FC","desc":"Pteranodon air stamina","price":3,"image":"images/Blade/BL-PRD-939542-03.png","competitive":{"assessment":"Budget/casual blade. Pteranodon air stamina. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"draciel_shield","name":"Draciel Shield","type":"Defense","tier":"B","w":33,"color":"#059669","desc":"Emerald turtle guard","price":11,"image":"images/Blade/BL-PRD-945567-00.png","competitive":{"assessment":"Budget/casual blade. Emerald turtle guard. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"dragoon_storm","name":"Dragoon Storm","type":"Attack","tier":"B","w":32,"color":"#3B82F6","desc":"Blue dragon storm","price":11,"image":"images/Blade/BL-PRD-099468-00.png","competitive":{"assessment":"Budget/casual blade. Blue dragon storm. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"dranzer_spiral","name":"Dranzer Spiral","type":"Attack","tier":"B","w":31,"color":"#EF4444","desc":"Red phoenix spiral","price":11,"image":"images/Blade/BL-PRD-910503-00.png","competitive":{"assessment":"Budget/casual blade. Red phoenix spiral. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"driger_slash","name":"Driger Slash","type":"Attack","tier":"B","w":31,"color":"#F59E0B","desc":"Tiger slash strike","price":11,"image":"images/Blade/BL-PRD-930341-00.png","competitive":{"assessment":"Budget/casual blade. Tiger slash strike. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"black_shell","name":"Black Shell","type":"Defense","tier":"B","w":30,"color":"#1E1E1E","desc":"Hard shell defense","price":8,"image":"images/Blade/BL-PRD-914570-01.png","competitive":{"assessment":"Budget/casual blade. Hard shell defense. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"shelter_drake","name":"Shelter Drake","type":"Balance","tier":"B","w":33,"color":"#1E40AF","desc":"Shelter guard balance","price":10,"image":"images/Blade/BL-PRD-939511-01.png","competitive":{"assessment":"Budget/casual blade. Shelter guard balance. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"wyvern_gale","name":"Wyvern Gale","type":"Stamina","tier":"B","w":32,"color":"#14B8A6","desc":"Wind gale outspin","price":10,"image":"images/Blade/BL-PRD-913108-01.png","competitive":{"assessment":"Budget/casual blade. Wind gale outspin. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"tricera_press","name":"Tricera Press","type":"Attack","tier":"B","w":32,"color":"#15803D","desc":"Triceratops press smash","price":8,"image":"images/Blade/BL-PRD-939528-00.png","competitive":{"assessment":"Budget/casual blade. Triceratops press smash. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"kong_yell","name":"Kong Yell","type":"Attack","tier":"B","w":33,"color":"#78350F","desc":"Gorilla yell power","price":8,"image":"images/Blade/BL-PRD-997610-02.png","competitive":{"assessment":"Budget/casual blade. Gorilla yell power. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"samurai_steel","name":"Samurai Steel","type":"Attack","tier":"B","w":32,"color":"#71717A","desc":"Steel blade slash","price":8,"image":"images/Blade/BL-PRD-993766-00.png","competitive":{"assessment":"Budget/casual blade. Steel blade slash. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"shinobi_knife","name":"Shinobi Knife","type":"Attack","tier":"B","w":29,"color":"#4C1D95","desc":"Ninja knife throw","price":8,"image":"images/Blade/BL-PRD-946847-00.png","competitive":{"assessment":"Budget/casual blade. Ninja knife throw. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"hack_viking","name":"Hack Viking","type":"Attack","tier":"B","w":31,"color":"#78716C","desc":"Viking axe hack","price":10,"image":"images/Blade/BL-PRD-993766-00.png","competitive":{"assessment":"Budget/casual blade. Viking axe hack. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"stun_medusa","name":"Stun Medusa","type":"Defense","tier":"B","w":32,"color":"#7C3AED","desc":"Stone gaze stun","price":10,"image":"images/Blade/BL-PRD-939511-01.png","competitive":{"assessment":"Budget/casual blade. Stone gaze stun. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"rock_leone","name":"Rock Leone","type":"Defense","tier":"B","w":33,"color":"#065F46","desc":"X-Over lion rock wall","price":12,"image":"images/Blade/BL-PRD-957492-00.png","competitive":{"assessment":"Budget/casual blade. X-Over lion rock wall. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"storm_pegasis","name":"Storm Pegasis","type":"Attack","tier":"B","w":32,"color":"#2563EB","desc":"X-Over Pegasus storm","price":12,"image":"images/Blade/BL-PRD-946816-02.png","competitive":{"assessment":"Budget/casual blade. X-Over Pegasus storm. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"dran_dagger","name":"Dran Dagger","type":"Attack","tier":"C","w":25,"color":"#FCA5A5","desc":"Small & fast","price":5,"image":"images/Blade/BL-PRD-097167-05.png","competitive":{"assessment":"Entry-level blade. Small & fast. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Attack"}},{"id":"goat_tackle","name":"Goat Tackle","type":"Attack","tier":"C","w":28,"color":"#D4D4D4","desc":"Goat ram tackle","price":7,"image":"images/Blade/BL-PRD-997610-02.png","competitive":{"assessment":"Entry-level blade. Goat ram tackle. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Attack"}},{"id":"tricera_spiky","name":"Tricera Spiky","type":"Attack","tier":"C","w":29,"color":"#22C55E","desc":"Spiky triceratops","price":7,"image":"images/Blade/BL-PRD-939528-00.png","competitive":{"assessment":"Entry-level blade. Spiky triceratops. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Attack"}},{"id":"trypio","name":"Trypio","type":"Balance","tier":"C","w":28,"color":"#F472B6","desc":"X-Over spinning balance","price":10,"image":"images/Blade/BL-EVE-958772-01.png","competitive":{"assessment":"Entry-level blade. X-Over spinning balance. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Balance"}},{"id":"t_rex","name":"T. Rex","type":"Attack","tier":"B","w":33,"color":"#7F1D1D","desc":"Collab \u2014 Jurassic World","price":12,"image":"images/Blade/BL-PRD-982432-02.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Jurassic World. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"mosasaurus","name":"Mosasaurus","type":"Attack","tier":"B","w":34,"color":"#164E63","desc":"Collab \u2014 Jurassic World","price":12,"image":"images/Blade/BL-PRD-085690-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Jurassic World. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"spinosaurus","name":"Spinosaurus","type":"Attack","tier":"B","w":33,"color":"#854D0E","desc":"Collab \u2014 Jurassic World","price":12,"image":"images/Blade/BL-PRD-939542-03.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Jurassic World. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"quetzalcoatlus","name":"Quetzalcoatlus","type":"Stamina","tier":"B","w":31,"color":"#0E7490","desc":"Collab \u2014 Jurassic World","price":12,"image":"images/Blade/BL-PRD-913108-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Jurassic World. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Stamina"}},{"id":"spider_man","name":"Spider-Man","type":"Attack","tier":"B","w":32,"color":"#DC2626","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-085706-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"venom","name":"Venom","type":"Attack","tier":"B","w":34,"color":"#1E1E1E","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-080558-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"iron_man","name":"Iron Man","type":"Attack","tier":"B","w":33,"color":"#B91C1C","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-913092-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"thanos","name":"Thanos","type":"Defense","tier":"B","w":35,"color":"#7C3AED","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-098775-02.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"miles_morales","name":"Miles Morales","type":"Attack","tier":"B","w":31,"color":"#1E1E1E","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-914549-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"green_goblin","name":"Green Goblin","type":"Attack","tier":"B","w":32,"color":"#15803D","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-098775-03.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"captain_america","name":"Captain America","type":"Defense","tier":"B","w":33,"color":"#1D4ED8","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-EVE-910879-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"red_hulk","name":"Red Hulk","type":"Attack","tier":"B","w":36,"color":"#991B1B","desc":"Collab \u2014 Marvel","price":12,"image":"images/Blade/BL-PRD-913061-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Marvel. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"darth_vader","name":"Darth Vader","type":"Attack","tier":"B","w":34,"color":"#1E1E1E","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-910510-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"luke_skywalker","name":"Luke Skywalker","type":"Attack","tier":"B","w":32,"color":"#3B82F6","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-EVE-077428-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"the_mandalorian","name":"The Mandalorian","type":"Defense","tier":"B","w":33,"color":"#71717A","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-EVE-910879-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"moff_gideon","name":"Moff Gideon","type":"Attack","tier":"B","w":32,"color":"#1E1E1E","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-096092-05.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"chewbacca","name":"Chewbacca","type":"Defense","tier":"B","w":35,"color":"#78350F","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-096092-03.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"stormtrooper","name":"Stormtrooper","type":"Defense","tier":"C","w":30,"color":"#E2E8F0","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-914570-01.png","competitive":{"assessment":"Entry-level blade. Collab \u2014 Star Wars. Not recommended for competitive play.","viability":"Not competitively viable. Beginner only.","tier":"C","type":"Defense"}},{"id":"general_grievous","name":"General Grievous","type":"Attack","tier":"B","w":33,"color":"#A3A3A3","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-080558-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"obi_wan_kenobi","name":"Obi-Wan Kenobi","type":"Balance","tier":"B","w":32,"color":"#92400E","desc":"Collab \u2014 Star Wars","price":12,"image":"images/Blade/BL-PRD-914600-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Star Wars. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"optimus_prime","name":"Optimus Prime","type":"Defense","tier":"B","w":34,"color":"#1D4ED8","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-919124-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}},{"id":"megatron","name":"Megatron","type":"Attack","tier":"B","w":35,"color":"#71717A","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-939559-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"bumblebee","name":"Bumblebee","type":"Attack","tier":"B","w":30,"color":"#EAB308","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-EVE-910909-01.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"starscream","name":"Starscream","type":"Attack","tier":"B","w":31,"color":"#9333EA","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-099468-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Attack"}},{"id":"optimus_primal","name":"Optimus Primal","type":"Balance","tier":"B","w":33,"color":"#DC2626","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-913030-00.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Balance"}},{"id":"shockwave","name":"Shockwave","type":"Defense","tier":"B","w":34,"color":"#6D28D9","desc":"Collab \u2014 Transformers","price":12,"image":"images/Blade/BL-PRD-098775-02.png","competitive":{"assessment":"Budget/casual blade. Collab \u2014 Transformers. Works for casual play but outclassed by higher-tier options.","viability":"Not competitively viable. Casual/budget pick.","tier":"B","type":"Defense"}}],"ratchets":[{"id":"0-60","name":"0-60","teeth":0,"h":60,"price":5,"image":"images/Ratchet/RC-PRD-097242-00.png","competitive":{"assessment":"No teeth \u2014 zero burst resistance. Only use with bits that have high burst stats.","viability":"Not recommended for competitive play."}},{"id":"0-70","name":"0-70","teeth":0,"h":70,"price":5,"image":"images/Ratchet/RC-PRD-080558-00.png","competitive":{"assessment":"No teeth \u2014 zero burst resistance. Only use with bits that have high burst stats.","viability":"Not recommended for competitive play."}},{"id":"0-80","name":"0-80","teeth":0,"h":80,"price":5,"image":"images/Ratchet/RC-PRD-939566-01.png","competitive":{"assessment":"No teeth \u2014 zero burst resistance. Only use with bits that have high burst stats. High height \u2014 good for stamina (less friction).","viability":"Not recommended for competitive play."}},{"id":"1-60","name":"1-60","teeth":1,"h":60,"price":9,"image":"images/Ratchet/RC-PRD-090960-00.png","competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"1-70","name":"1-70","teeth":1,"h":70,"price":6,"image":"images/Ratchet/RC-PRD-982432-02.png","competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"1-80","name":"1-80","teeth":1,"h":80,"price":6,"image":"images/Ratchet/RC-PRD-085690-00.png","competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"1-85","name":"1-85","teeth":1,"h":85,"price":8,"image":null,"competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"2-60","name":"2-60","teeth":2,"h":60,"price":5,"image":"images/Ratchet/RC-PRD-085706-00.png","competitive":{"assessment":"Low burst resistance (2 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"2-70","name":"2-70","teeth":2,"h":70,"price":7,"image":"images/Ratchet/RC-PRD-939535-00.png","competitive":{"assessment":"Low burst resistance (2 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"2-80","name":"2-80","teeth":2,"h":80,"price":6,"image":"images/Ratchet/RC-PRD-096092-05.png","competitive":{"assessment":"Low burst resistance (2 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"3-60","name":"3-60","teeth":3,"h":60,"price":5,"image":"images/Ratchet/RC-EVE-910909-01.png","competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"3-65","name":"3-65","teeth":3,"h":65,"price":7,"image":null,"competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"3-70","name":"3-70","teeth":3,"h":70,"price":6,"image":"images/Ratchet/RC-PRD-096528-00.png","competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"3-80","name":"3-80","teeth":3,"h":80,"price":7,"image":"images/Ratchet/RC-EVE-910879-02.png","competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"3-85","name":"3-85","teeth":3,"h":85,"price":10,"image":"images/Ratchet/RC-PRD-096092-04.png","competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"4-45","name":"4-45","teeth":4,"h":45,"price":8,"image":null,"competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. Balanced choice."}},{"id":"4-50","name":"4-50","teeth":4,"h":50,"price":14,"image":"images/Ratchet/RC-EVE-077428-01.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. Balanced choice."}},{"id":"4-55","name":"4-55","teeth":4,"h":55,"price":8,"image":"images/Ratchet/RC-EVE-088899-00.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. Balanced choice."}},{"id":"4-60","name":"4-60","teeth":4,"h":60,"price":5,"image":"images/Ratchet/RC-PRD-097167-02.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"4-70","name":"4-70","teeth":4,"h":70,"price":6,"image":"images/Ratchet/RC-PRD-096092-02.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"4-80","name":"4-80","teeth":4,"h":80,"price":5,"image":"images/Ratchet/RC-PRD-097167-06.png","competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. Balanced choice."}},{"id":"5-60","name":"5-60","teeth":5,"h":60,"price":5,"image":"images/Ratchet/RC-PRD-085515-00.png","competitive":{"assessment":"Good burst resistance (5 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"5-70","name":"5-70","teeth":5,"h":70,"price":6,"image":"images/Ratchet/RC-EVE-936138-02.png","competitive":{"assessment":"Good burst resistance (5 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"5-80","name":"5-80","teeth":5,"h":80,"price":6,"image":"images/Ratchet/RC-PRD-912972-01.png","competitive":{"assessment":"Good burst resistance (5 teeth). Balanced option. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. Balanced choice."}},{"id":"6-60","name":"6-60","teeth":6,"h":60,"price":5,"image":"images/Ratchet/RC-EVE-982524-01.png","competitive":{"assessment":"Good burst resistance (6 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"6-70","name":"6-70","teeth":6,"h":70,"price":6,"image":"images/Ratchet/RC-PRD-939580-00.png","competitive":{"assessment":"Good burst resistance (6 teeth). Balanced option.","viability":"Competitively viable. Balanced choice."}},{"id":"6-80","name":"6-80","teeth":6,"h":80,"price":5,"image":"images/Ratchet/RC-EVE-958772-02.png","competitive":{"assessment":"Good burst resistance (6 teeth). Balanced option. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. Balanced choice."}},{"id":"7-60","name":"7-60","teeth":7,"h":60,"price":6,"image":"images/Ratchet/RC-PRD-096092-03.png","competitive":{"assessment":"High burst resistance (7 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"7-70","name":"7-70","teeth":7,"h":70,"price":14,"image":"images/Ratchet/RC-PRD-939542-03.png","competitive":{"assessment":"High burst resistance (7 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"7-80","name":"7-80","teeth":7,"h":80,"price":6,"image":"images/Ratchet/RC-PRD-096146-06.png","competitive":{"assessment":"High burst resistance (7 teeth). Excellent for survival. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. High burst resistance."}},{"id":"9-60","name":"9-60","teeth":9,"h":60,"price":12,"image":"images/Ratchet/RC-PRD-098843-00.png","competitive":{"assessment":"High burst resistance (9 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"9-65","name":"9-65","teeth":9,"h":65,"price":10,"image":"images/Ratchet/RC-PRD-096146-03.png","competitive":{"assessment":"High burst resistance (9 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"9-70","name":"9-70","teeth":9,"h":70,"price":8,"image":"images/Ratchet/RC-PRD-097167-04.png","competitive":{"assessment":"High burst resistance (9 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"9-80","name":"9-80","teeth":9,"h":80,"price":7,"image":"images/Ratchet/RC-PRD-096092-01.png","competitive":{"assessment":"High burst resistance (9 teeth). Excellent for survival. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. High burst resistance."}},{"id":"8-70","name":"8-70","teeth":8,"h":70,"price":10,"image":"images/Ratchet/RC-PRD-097266-00.png","competitive":{"assessment":"High burst resistance (8 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}},{"id":"4-85","name":"4-85","teeth":4,"h":85,"price":10,"image":null,"competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. High height \u2014 good for stamina (less friction).","viability":"Competitively viable. Balanced choice."}},{"id":"7-55","name":"7-55","teeth":7,"h":55,"price":10,"image":"images/Ratchet/RC-PRD-097167-01.png","competitive":{"assessment":"High burst resistance (7 teeth). Excellent for survival. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. High burst resistance."}},{"id":"1-50","name":"1-50","teeth":1,"h":50,"price":10,"image":"images/Ratchet/RC-PRD-072447-00.png","competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting. Low height \u2014 good for attack (faster movement).","viability":"Situational. Low burst resistance."}},{"id":"M-85","name":"M-85","teeth":0,"h":85,"price":14,"image":"images/Ratchet/RC-PRD-098775-02.png","competitive":{"assessment":"No teeth \u2014 zero burst resistance. Only use with bits that have high burst stats. High height \u2014 good for stamina (less friction).","viability":"Not recommended for competitive play."}},{"id":"PO3-60","name":"PO3-60","teeth":3,"h":60,"price":12,"image":null,"competitive":{"assessment":"Low burst resistance (3 teeth). Risk of bursting.","viability":"Situational. Low burst resistance."}},{"id":"PO1-80","name":"PO1-80","teeth":1,"h":80,"price":12,"image":null,"competitive":{"assessment":"Low burst resistance (1 teeth). Risk of bursting. High height \u2014 good for stamina (less friction).","viability":"Situational. Low burst resistance."}},{"id":"FE4-55","name":"FE4-55","teeth":4,"h":55,"price":12,"image":null,"competitive":{"assessment":"Good burst resistance (4 teeth). Balanced option. Low height \u2014 good for attack (faster movement).","viability":"Competitively viable. Balanced choice."}},{"id":"GV8-70","name":"GV8-70","teeth":8,"h":70,"price":12,"image":null,"competitive":{"assessment":"High burst resistance (8 teeth). Excellent for survival.","viability":"Competitively viable. High burst resistance."}}],"bits":[{"id":"F","name":"Flat","type":"Attack","mob":9,"sta":3,"stb":4,"price":6,"image":"images/Bit/BT-EVE-910909-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"GF","name":"Gear Flat","type":"Attack","mob":10,"sta":2,"stb":3,"price":7,"image":"images/Bit/BT-PRD-085690-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"LF","name":"Low Flat","type":"Attack","mob":8,"sta":3,"stb":5,"price":5,"image":"images/Bit/BT-PRD-912965-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"HF","name":"High Flat","type":"Attack","mob":9,"sta":3,"stb":4,"price":6,"image":"images/Bit/BT-EVE-910909-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"SF","name":"Sharp Flat","type":"Attack","mob":8,"sta":4,"stb":5,"price":7,"image":"images/Bit/BT-EVE-910909-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"XF","name":"Xtreme Flat","type":"Attack","mob":10,"sta":2,"stb":2,"price":8,"image":"images/Bit/BT-EVE-910909-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"R","name":"Rush","type":"Attack","mob":7,"sta":4,"stb":5,"price":5,"image":"images/Bit/BT-PRD-099468-00.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"HR","name":"High Rush","type":"Attack","mob":7,"sta":4,"stb":5,"price":6,"image":"images/Bit/BT-PRD-099468-00.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"LR","name":"Low Rush","type":"Attack","mob":7,"sta":4,"stb":6,"price":5,"image":"images/Bit/BT-PRD-097167-06.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"A","name":"Accel","type":"Attack","mob":8,"sta":4,"stb":5,"price":9,"image":"images/Bit/BT-PRD-096528-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"RA","name":"Rubber Accel","type":"Attack","mob":9,"sta":3,"stb":6,"price":16,"image":"images/Bit/BT-PRD-096528-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"C","name":"Cyclone","type":"Attack","mob":7,"sta":4,"stb":5,"price":7,"image":"images/Bit/BT-PRD-097167-02.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"GR","name":"Gear Rush","type":"Attack","mob":8,"sta":3,"stb":4,"price":6,"image":"images/Bit/BT-PRD-096146-02.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"J","name":"Jolt","type":"Attack","mob":8,"sta":3,"stb":5,"price":6,"image":"images/Bit/BT-PRD-997627-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"V","name":"Variable","type":"Attack","mob":7,"sta":5,"stb":5,"price":6,"image":"images/Bit/BT-EVE-982524-01.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"Q","name":"Quake","type":"Attack","mob":8,"sta":3,"stb":4,"price":7,"image":"images/Bit/BT-PRD-096092-05.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"U","name":"Unite","type":"Attack","mob":7,"sta":5,"stb":6,"price":8,"image":"images/Bit/BT-PRD-914556-00.png","competitive":{"assessment":" Attack bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Attack"}},{"id":"T","name":"Taper","type":"Balance","mob":5,"sta":6,"stb":7,"price":4,"image":"images/Bit/BT-PRD-089193-02.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"HT","name":"High Taper","type":"Balance","mob":5,"sta":7,"stb":7,"price":6,"image":"images/Bit/BT-PRD-913085-01.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"LT","name":"Low Taper","type":"Balance","mob":5,"sta":6,"stb":8,"price":5,"image":"images/Bit/BT-PRD-089193-02.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"P","name":"Point","type":"Balance","mob":4,"sta":7,"stb":7,"price":4,"image":"images/Bit/BT-PRD-092698-00.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"GP","name":"Gear Point","type":"Balance","mob":4,"sta":7,"stb":8,"price":7,"image":"images/Bit/BT-PRD-085706-00.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"B","name":"Ball","type":"Stamina","mob":2,"sta":9,"stb":8,"price":5,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"MB","name":"Metal Ball","type":"Stamina","mob":2,"sta":10,"stb":9,"price":10,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"LB","name":"Low Ball","type":"Stamina","mob":2,"sta":9,"stb":8,"price":5,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"HB","name":"High Ball","type":"Stamina","mob":2,"sta":9,"stb":7,"price":6,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"RB","name":"Rubber Ball","type":"Stamina","mob":2,"sta":10,"stb":9,"price":9,"image":"images/Bit/BT-PRD-089193-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"FB","name":"Free Ball","type":"Stamina","mob":2,"sta":10,"stb":9,"price":12,"image":"images/Bit/BT-PRD-098775-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"DB","name":"Disc Ball","type":"Stamina","mob":3,"sta":8,"stb":8,"price":7,"image":"images/Bit/BT-EVE-936138-03.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"GB","name":"Gear Ball","type":"Stamina","mob":3,"sta":9,"stb":8,"price":9,"image":"images/Bit/BT-PRD-096092-04.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"O","name":"Orbit","type":"Stamina","mob":3,"sta":9,"stb":7,"price":6,"image":"images/Bit/BT-PRD-092858-02.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"H","name":"Hexa","type":"Stamina","mob":2,"sta":8,"stb":8,"price":5,"image":"images/Bit/BT-PRD-096160-00.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"D","name":"Dot","type":"Stamina","mob":2,"sta":8,"stb":7,"price":4,"image":"images/Bit/BT-PRD-092858-03.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"G","name":"Glide","type":"Stamina","mob":3,"sta":9,"stb":7,"price":6,"image":"images/Bit/BT-PRD-097167-05.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"E","name":"Elevate","type":"Stamina","mob":3,"sta":8,"stb":7,"price":5,"image":"images/Bit/BT-PRD-096092-02.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"L","name":"Level","type":"Stamina","mob":3,"sta":8,"stb":8,"price":6,"image":"images/Bit/BT-PRD-939535-00.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"N","name":"Needle","type":"Defense","mob":1,"sta":7,"stb":9,"price":5,"image":"images/Bit/BT-EVE-910879-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"HN","name":"High Needle","type":"Defense","mob":1,"sta":7,"stb":9,"price":6,"image":"images/Bit/BT-PRD-098775-02.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"GN","name":"Gear Needle","type":"Defense","mob":2,"sta":7,"stb":9,"price":6,"image":"images/Bit/BT-PRD-913115-01.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"S","name":"Spike","type":"Defense","mob":2,"sta":6,"stb":10,"price":4,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"LS","name":"Low Spike","type":"Defense","mob":2,"sta":7,"stb":10,"price":5,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"HS","name":"High Spike","type":"Defense","mob":2,"sta":6,"stb":10,"price":6,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"SS","name":"Semi Spike","type":"Defense","mob":3,"sta":6,"stb":9,"price":5,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"XS","name":"Xtreme Spike","type":"Defense","mob":1,"sta":5,"stb":10,"price":8,"image":"images/Bit/BT-PRD-096092-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"BS","name":"Bound Spike","type":"Defense","mob":2,"sta":6,"stb":9,"price":4,"image":"images/Bit/BT-PRD-919124-00.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"UN","name":"Under","type":"Defense","mob":1,"sta":7,"stb":10,"price":7,"image":"images/Bit/BT-PRD-097266-00.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"WD","name":"Wide Defense","type":"Defense","mob":1,"sta":7,"stb":10,"price":6,"image":"images/Bit/BT-EVE-958772-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"HD","name":"High Defense","type":"Defense","mob":1,"sta":7,"stb":10,"price":6,"image":"images/Bit/BT-EVE-958772-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"LD","name":"Low Defense","type":"Defense","mob":1,"sta":8,"stb":10,"price":5,"image":"images/Bit/BT-EVE-958772-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"LO","name":"Low Orb","type":"Stamina","sta":9,"stb":7,"mob":3,"price":5,"image":"images/Bit/BT-PRD-096146-03.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"W","name":"Wedge","type":"Defense","sta":5,"stb":9,"mob":4,"price":5,"image":"images/Bit/BT-EVE-958772-03.png","competitive":{"assessment":"Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.","viability":"Competitively viable for defense builds.","type":"Defense"}},{"id":"TK","name":"Trans Kick","type":"Balance","sta":7,"stb":6,"mob":7,"price":6,"image":"images/Bit/BT-PRD-995678-00.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"I","name":"Ignition","type":"Attack","sta":3,"stb":4,"mob":9,"price":6,"image":"images/Bit/BT-PRD-072447-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"Y","name":"Yielding","type":"Stamina","sta":9,"stb":8,"mob":2,"price":6,"image":"images/Bit/BT-EVE-088899-00.png","competitive":{"assessment":"Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.","viability":"Competitively viable for stamina builds.","type":"Stamina"}},{"id":"WB","name":"Wide Ball","type":"Stamina","sta":8,"stb":8,"mob":4,"price":5,"image":"images/Bit/BT-PRD-956983-01.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"MN","name":"Metal Needle","type":"Attack","sta":5,"stb":5,"mob":8,"price":6,"image":"images/Bit/BT-PRD-914549-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"Op","name":"Operate","type":"Balance","sta":6,"stb":7,"mob":6,"price":6,"image":"images/Bit/BT-PRD-098775-01.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"K","name":"Kick","type":"Attack","sta":4,"stb":5,"mob":8,"price":5,"image":"images/Bit/BT-PRD-085515-00.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}},{"id":"GU","name":"Gear Unite","type":"Balance","sta":6,"stb":6,"mob":7,"price":7,"image":"images/Bit/BT-PRD-096146-01.png","competitive":{"assessment":"Versatile balance bit. Good all-round performance. Works with any blade type.","viability":"Situational. Good for hybrid builds.","type":"Balance"}},{"id":"WW","name":"Wide Wave","type":"Stamina","sta":8,"stb":8,"mob":3,"price":7,"image":"images/Bit/BT-PRD-096153-00.png","competitive":{"assessment":" Stamina bit. Niche use case.","viability":"Niche pick. Outclassed by higher-tier options.","type":"Stamina"}},{"id":"FF","name":"Free Flat","type":"Attack","mob":9,"sta":4,"stb":4,"price":8,"image":"images/Bit/BT-EVE-077428-01.png","competitive":{"assessment":"High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.","viability":"Competitively viable for attack builds.","type":"Attack"}}],"imageBaseUrl":"https://raw.githubusercontent.com/hinfok/beys/master/","typeMatchups":{"Attack":{"strong_vs":"Stamina","weak_vs":"Defense"},"Defense":{"strong_vs":"Attack","weak_vs":"Stamina"},"Stamina":{"strong_vs":"Defense","weak_vs":"Attack"},"Balance":{"strong_vs":"None","weak_vs":"None"}}};
+window.BEY_DATA = {
+  "blades": [
+    {
+      "id": "cobalt_dragoon",
+      "name": "Cobalt Dragoon",
+      "type": "Stamina",
+      "tier": "S+",
+      "w": 35,
+      "spin": "L",
+      "color": "#1E40AF",
+      "desc": "LEFT SPIN — equalization king",
+      "price": 25,
+      "image": "images/Blade/BL-PRD-096092-01.png",
+      "competitive": {
+        "assessment": "Top-tier competitive blade. LEFT SPIN — equalization king. Meta-defining pick — appears in virtually every competitive deck.",
+        "viability": "Competitively viable. Top tournament pick.",
+        "tier": "S+",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "aero_pegasus",
+      "name": "Aero Pegasus",
+      "type": "Attack",
+      "tier": "S+",
+      "w": 47,
+      "color": "#38BDF8",
+      "desc": "Ultra-heavy winged attack",
+      "price": 22,
+      "image": "images/Blade/BL-PRD-096528-00.png",
+      "competitive": {
+        "assessment": "Top-tier competitive blade. Ultra-heavy winged attack. Meta-defining pick — appears in virtually every competitive deck.",
+        "viability": "Competitively viable. Top tournament pick.",
+        "tier": "S+",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "shark_scale",
+      "name": "Shark Scale",
+      "type": "Attack",
+      "tier": "S+",
+      "w": 36,
+      "color": "#0891B2",
+      "desc": "Scale armor + fierce smash",
+      "price": 18,
+      "image": "images/Blade/BL-PRD-982432-01.png",
+      "competitive": {
+        "assessment": "Top-tier competitive blade. Scale armor + fierce smash. Meta-defining pick — appears in virtually every competitive deck.",
+        "viability": "Competitively viable. Top tournament pick.",
+        "tier": "S+",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "hells_hammer",
+      "name": "Hells Hammer",
+      "type": "Attack",
+      "tier": "S+",
+      "w": 40,
+      "color": "#581C87",
+      "desc": "Heaviest smash blade",
+      "price": 15,
+      "image": "images/Blade/BL-PRD-096146-04.png",
+      "competitive": {
+        "assessment": "Top-tier competitive blade. Heaviest smash blade. Meta-defining pick — appears in virtually every competitive deck.",
+        "viability": "Competitively viable. Top tournament pick.",
+        "tier": "S+",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "phoenix_wing",
+      "name": "Phoenix Wing",
+      "type": "Attack",
+      "tier": "S",
+      "w": 38,
+      "color": "#F97316",
+      "desc": "Upper + Smash combo",
+      "price": 15,
+      "image": "images/Blade/BL-PRD-913092-00.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Upper + Smash combo. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "tyranno_beat",
+      "name": "Tyranno Beat",
+      "type": "Attack",
+      "tier": "S",
+      "w": 36,
+      "color": "#16A34A",
+      "desc": "8-sided heavy smash",
+      "price": 23,
+      "image": "images/Blade/BL-PRD-096146-05.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. 8-sided heavy smash. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "tyranno_roar",
+      "name": "Tyranno Roar",
+      "type": "Attack",
+      "tier": "S",
+      "w": 37,
+      "color": "#15803D",
+      "desc": "Heavy smash evolution",
+      "price": 20,
+      "image": "images/Blade/BL-PRD-982432-02.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Heavy smash evolution. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "silver_wolf",
+      "name": "Silver Wolf",
+      "type": "Stamina",
+      "tier": "S",
+      "w": 33,
+      "color": "#94A3B8",
+      "desc": "Free-spin ring LAD",
+      "price": 18,
+      "image": "images/Blade/BL-PRD-939498-00.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Free-spin ring LAD. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "wyvern_hover",
+      "name": "Wyvern Hover",
+      "type": "Balance",
+      "tier": "S",
+      "w": 33,
+      "color": "#06B6D4",
+      "desc": "Incredible reversal",
+      "price": 16,
+      "image": "images/Blade/BL-PRD-993636-00.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Incredible reversal. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "samurai_saber",
+      "name": "Samurai Saber",
+      "type": "Attack",
+      "tier": "S",
+      "w": 34,
+      "color": "#B91C1C",
+      "desc": "Retractable blades",
+      "price": 15,
+      "image": "images/Blade/BL-PRD-085515-00.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Retractable blades. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "lightning_ldrago_rh",
+      "name": "Lightning L-Drago (Rapid-Hit)",
+      "type": "Attack",
+      "tier": "S",
+      "w": 35,
+      "spin": "L",
+      "color": "#7C3AED",
+      "desc": "LEFT SPIN — rapid-hit dragon",
+      "price": 20,
+      "image": "images/Blade/BL-PRD-930358-00.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. LEFT SPIN — rapid-hit dragon. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "knight_mail",
+      "name": "Knight Mail",
+      "type": "Defense",
+      "tier": "S",
+      "w": 37,
+      "color": "#A8A29E",
+      "desc": "Full-armor knight guard",
+      "price": 16,
+      "image": "images/Blade/BL-PRD-919124-00.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Full-armor knight guard. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "ghost_circle",
+      "name": "Ghost Circle",
+      "type": "Defense",
+      "tier": "S",
+      "w": 35,
+      "color": "#C4B5FD",
+      "desc": "Ghost ring absorbs hits",
+      "price": 15,
+      "image": "images/Blade/BL-PRD-939566-01.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Ghost ring absorbs hits. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "unicorn_delta",
+      "name": "Unicorn Delta",
+      "type": "Attack",
+      "tier": "S",
+      "w": 35,
+      "color": "#E879F9",
+      "desc": "CX-17 Prize — delta wing smash",
+      "price": 18,
+      "image": "images/Blade/BL-PRD-096146-01.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. CX-17 Prize — delta wing smash. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "brachio_whip",
+      "name": "Brachio Whip",
+      "type": "Stamina",
+      "tier": "B",
+      "w": 34,
+      "color": "#0E7490",
+      "desc": "CX-18 — whip-tail stamina",
+      "price": 14,
+      "image": "images/Blade/BL-PRD-096177-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. CX-18 — whip-tail stamina. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "ragna_rage",
+      "name": "Ragna Rage",
+      "type": "Attack",
+      "tier": "A",
+      "w": 35,
+      "color": "#7C3AED",
+      "desc": "CX-15 — raging smash",
+      "price": 18,
+      "image": "images/Blade/BL-EVE-088899-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. CX-15 — raging smash. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "dran_strike",
+      "name": "Dran Strike",
+      "type": "Attack",
+      "tier": "A",
+      "w": 34,
+      "color": "#DC2626",
+      "desc": "BX-49 — strike smash attack",
+      "price": 12,
+      "image": "images/Blade/BL-EVE-077428-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. BX-49 — strike smash attack. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "bullet_griffon",
+      "name": "Bullet Griffon",
+      "type": "Balance",
+      "tier": "B",
+      "w": 33,
+      "color": "#0EA5E9",
+      "desc": "UX — rocket balance",
+      "price": 14,
+      "image": "images/Blade/BL-PRD-096160-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. UX — rocket balance. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Balance"
+      },
+      "integratedRatchet": true
+    },
+    {
+      "id": "rampart_aegis",
+      "name": "Rampart Aegis",
+      "type": "Defense",
+      "tier": "B",
+      "w": 36,
+      "color": "#475569",
+      "desc": "UX — ratchet-integrated shield",
+      "price": 13,
+      "image": "images/Blade/BL-PRD-097266-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. UX — ratchet-integrated shield. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      },
+      "integratedRatchet": true
+    },
+    {
+      "id": "cutter_shinobi",
+      "name": "Cutter Shinobi",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#1F2937",
+      "desc": "UX — mode-switch attack",
+      "price": 13,
+      "image": "images/Blade/BL-PRD-914549-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. UX — mode-switch attack. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      },
+      "integratedRatchet": true
+    },
+    {
+      "id": "impact_drake",
+      "name": "Impact Drake",
+      "type": "Attack",
+      "tier": "S",
+      "w": 36,
+      "color": "#1E3A5F",
+      "desc": "Heavy impact smash",
+      "price": 16,
+      "image": "images/Blade/BL-PRD-939559-00.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Heavy impact smash. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "meteor_dragoon",
+      "name": "Meteor Dragoon",
+      "type": "Attack",
+      "tier": "S",
+      "w": 36,
+      "color": "#2563EB",
+      "desc": "Meteor shower attack",
+      "price": 18,
+      "image": "images/Blade/BL-PRD-997627-00.png",
+      "competitive": {
+        "assessment": "Strong competitive blade. Meteor shower attack. Excellent choice for tournament play.",
+        "viability": "Competitively viable. Strong tournament pick.",
+        "tier": "S",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "dran_buster",
+      "name": "Dran Buster",
+      "type": "Attack",
+      "tier": "A",
+      "w": 33,
+      "color": "#F87171",
+      "desc": "Explosive attack",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-096092-05.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Explosive attack. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "hells_chain",
+      "name": "Hells Chain",
+      "type": "Balance",
+      "tier": "A",
+      "w": 35,
+      "color": "#6D28D9",
+      "desc": "High stamina balance",
+      "price": 14,
+      "image": "images/Blade/BL-PRD-913085-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. High stamina balance. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "shark_edge",
+      "name": "Shark Edge",
+      "type": "Attack",
+      "tier": "A",
+      "w": 31,
+      "color": "#2DD4BF",
+      "desc": "Low-profile aggression",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-085706-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Low-profile aggression. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "viper_tail",
+      "name": "Viper Tail",
+      "type": "Stamina",
+      "tier": "A",
+      "w": 32,
+      "color": "#A3E635",
+      "desc": "Whip attack stamina",
+      "price": 10,
+      "image": "images/Blade/BL-PRD-912972-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Whip attack stamina. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "cobalt_drake",
+      "name": "Cobalt Drake",
+      "type": "Attack",
+      "tier": "A",
+      "w": 34,
+      "color": "#1D4ED8",
+      "desc": "Cobalt dragon strike",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-910510-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Cobalt dragon strike. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "knight_lance",
+      "name": "Knight Lance",
+      "type": "Defense",
+      "tier": "A",
+      "w": 33,
+      "color": "#CBD5E1",
+      "desc": "Silver lance guard",
+      "price": 25,
+      "image": "images/Blade/BL-PRD-910565-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Silver lance guard. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "hells_scythe",
+      "name": "Hells Scythe",
+      "type": "Attack",
+      "tier": "A",
+      "w": 30,
+      "color": "#9333EA",
+      "desc": "Reaper smash",
+      "price": 14,
+      "image": "images/Blade/BL-PRD-096092-04.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Reaper smash. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "golem_rock",
+      "name": "Golem Rock",
+      "type": "Defense",
+      "tier": "A",
+      "w": 36,
+      "color": "#8B6914",
+      "desc": "Rock-solid counter defense",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-098775-02.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Rock-solid counter defense. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "crimson_garuda",
+      "name": "Crimson Garuda",
+      "type": "Attack",
+      "tier": "A",
+      "w": 34,
+      "color": "#DC2626",
+      "desc": "Crimson fire wings",
+      "price": 9,
+      "image": "images/Blade/BL-PRD-096146-06.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Crimson fire wings. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "leon_crest",
+      "name": "Leon Crest",
+      "type": "Balance",
+      "tier": "A",
+      "w": 33,
+      "color": "#CA8A04",
+      "desc": "Royal lion crest",
+      "price": 10,
+      "image": "images/Blade/BL-PRD-914600-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Royal lion crest. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "phoenix_rudder",
+      "name": "Phoenix Rudder",
+      "type": "Stamina",
+      "tier": "A",
+      "w": 34,
+      "color": "#FB923C",
+      "desc": "Flame rudder outspin",
+      "price": 13,
+      "image": "images/Blade/BL-PRD-914594-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Flame rudder outspin. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "lightning_ldrago_up",
+      "name": "Lightning L-Drago (Upper)",
+      "type": "Attack",
+      "tier": "A",
+      "w": 34,
+      "spin": "L",
+      "color": "#8B5CF6",
+      "desc": "LEFT SPIN — upper attack dragon",
+      "price": 18,
+      "image": "images/Blade/BL-PRD-930358-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. LEFT SPIN — upper attack dragon. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "clock_mirage",
+      "name": "Clock Mirage",
+      "type": "Stamina",
+      "tier": "A",
+      "w": 34,
+      "color": "#D4AF37",
+      "desc": "Time-gear spin trick",
+      "price": 14,
+      "image": "images/Blade/BL-PRD-990154-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Time-gear spin trick. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "orochi_cluster",
+      "name": "Orochi Cluster",
+      "type": "Balance",
+      "tier": "A",
+      "w": 45,
+      "color": "#166534",
+      "desc": "Multi-head serpent, ultra-heavy",
+      "price": 15,
+      "image": "images/Blade/BL-PRD-997023-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Multi-head serpent, ultra-heavy. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "samurai_calibur",
+      "name": "Samurai Calibur",
+      "type": "Balance",
+      "tier": "A",
+      "w": 32,
+      "color": "#991B1B",
+      "desc": "Calibur blade balanced",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-939580-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Calibur blade balanced. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "sphinx_cowl",
+      "name": "Sphinx Cowl",
+      "type": "Defense",
+      "tier": "A",
+      "w": 34,
+      "color": "#B8860B",
+      "desc": "Sphinx guard cowl",
+      "price": 10,
+      "image": "images/Blade/BL-PRD-913115-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Sphinx guard cowl. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "weiss_tiger",
+      "name": "Weiss Tiger",
+      "type": "Attack",
+      "tier": "A",
+      "w": 33,
+      "color": "#E2E8F0",
+      "desc": "White tiger claw strike",
+      "price": 10,
+      "image": "images/Blade/BL-PRD-097167-06.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. White tiger claw strike. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "phoenix_feather",
+      "name": "Phoenix Feather",
+      "type": "Stamina",
+      "tier": "A",
+      "w": 32,
+      "color": "#EA580C",
+      "desc": "Feather-light outspin",
+      "price": 10,
+      "image": "images/Blade/BL-FRB-CR2312-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Feather-light outspin. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "scorpio_spear",
+      "name": "Scorpio Spear",
+      "type": "Attack",
+      "tier": "A",
+      "w": 33,
+      "color": "#B91C1C",
+      "desc": "Scorpion stinger attack",
+      "price": 14,
+      "image": "images/Blade/BL-PRD-080558-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Scorpion stinger attack. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "shinobi_shadow",
+      "name": "Shinobi Shadow",
+      "type": "Attack",
+      "tier": "A",
+      "w": 32,
+      "color": "#312E81",
+      "desc": "Ninja stealth smash",
+      "price": 14,
+      "image": "images/Blade/BL-PRD-914549-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Ninja stealth smash. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "mummy_curse",
+      "name": "Mummy Curse",
+      "type": "Defense",
+      "tier": "A",
+      "w": 35,
+      "color": "#A3A38C",
+      "desc": "Wrap defense absorb",
+      "price": 14,
+      "image": "images/Blade/BL-PRD-097167-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Wrap defense absorb. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "wizard_rod",
+      "name": "Wizard Rod",
+      "type": "Stamina",
+      "tier": "A",
+      "w": 32,
+      "color": "#6D28D9",
+      "desc": "Magic rod outspin",
+      "price": 14,
+      "image": "images/Blade/BL-EVE-936138-01.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Magic rod outspin. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "shark_gill",
+      "name": "Shark Gill",
+      "type": "Attack",
+      "tier": "A",
+      "w": 30,
+      "color": "#0369A1",
+      "desc": "Gill-edge aggression",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-098775-03.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. Gill-edge aggression. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "storm_spriggan",
+      "name": "Storm Spriggan",
+      "type": "Balance",
+      "tier": "A",
+      "w": 34,
+      "color": "#DC2626",
+      "desc": "X-Over dual-spin balance",
+      "price": 15,
+      "image": "images/Blade/BL-PRD-997351-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. X-Over dual-spin balance. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "victory_valkyrie",
+      "name": "Victory Valkyrie",
+      "type": "Attack",
+      "tier": "A",
+      "w": 33,
+      "color": "#2563EB",
+      "desc": "X-Over winged rush",
+      "price": 15,
+      "image": "images/Blade/BL-PRD-946816-03.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. X-Over winged rush. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "xeno_xcalibur",
+      "name": "Xeno Xcalibur",
+      "type": "Attack",
+      "tier": "A",
+      "w": 35,
+      "color": "#B91C1C",
+      "desc": "X-Over sword strike",
+      "price": 15,
+      "image": "images/Blade/BL-PRD-946823-00.png",
+      "competitive": {
+        "assessment": "Solid competitive blade. X-Over sword strike. Viable in tournament play with the right setup.",
+        "viability": "Competitively viable with good matchups.",
+        "tier": "A",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "knight_shield",
+      "name": "Knight Shield",
+      "type": "Defense",
+      "tier": "B",
+      "w": 30,
+      "color": "#94A3B8",
+      "desc": "Absorbs hits",
+      "price": 8,
+      "image": "images/Blade/BL-EVE-910879-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Absorbs hits. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "leon_claw",
+      "name": "Leon Claw",
+      "type": "Balance",
+      "tier": "B",
+      "w": 30,
+      "color": "#EAB308",
+      "desc": "Versatile claws",
+      "price": 7,
+      "image": "images/Blade/BL-PRD-913030-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Versatile claws. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "mammoth_tusk",
+      "name": "Mammoth Tusk",
+      "type": "Defense",
+      "tier": "B",
+      "w": 35,
+      "color": "#78716C",
+      "desc": "Heavy immovable",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-096092-03.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Heavy immovable. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "unicorn_sting",
+      "name": "Unicorn Sting",
+      "type": "Balance",
+      "tier": "B",
+      "w": 26,
+      "color": "#F0ABFC",
+      "desc": "Light & fast",
+      "price": 7,
+      "image": "images/Blade/BL-PRD-914464-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Light & fast. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "dran_sword",
+      "name": "Dran Sword",
+      "type": "Attack",
+      "tier": "B",
+      "w": 29,
+      "color": "#E53E3E",
+      "desc": "Balanced attack",
+      "price": 6,
+      "image": "images/Blade/BL-EVE-910909-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Balanced attack. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "whale_wave",
+      "name": "Whale Wave",
+      "type": "Stamina",
+      "tier": "B",
+      "w": 33,
+      "color": "#0EA5E9",
+      "desc": "Wave stamina",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-085690-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Wave stamina. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "wizard_arrow",
+      "name": "Wizard Arrow",
+      "type": "Stamina",
+      "tier": "B",
+      "w": 31,
+      "color": "#7E22CE",
+      "desc": "Magic bolt spin",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-910473-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Magic bolt spin. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "rhino_horn",
+      "name": "Rhino Horn",
+      "type": "Attack",
+      "tier": "B",
+      "w": 35,
+      "color": "#A8A29E",
+      "desc": "Heavy horn charge",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-913061-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Heavy horn charge. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "bear_scratch",
+      "name": "Bear Scratch",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#92400E",
+      "desc": "Wild claw attack",
+      "price": 7,
+      "image": "images/Blade/BL-PRD-939481-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Wild claw attack. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "croc_crunch",
+      "name": "Croc Crunch",
+      "type": "Attack",
+      "tier": "B",
+      "w": 31,
+      "color": "#65A30D",
+      "desc": "Jaw crunch smash",
+      "price": 7,
+      "image": "images/Blade/BL-PRD-953678-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Jaw crunch smash. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "ptera_swing",
+      "name": "Ptera Swing",
+      "type": "Stamina",
+      "tier": "B",
+      "w": 30,
+      "color": "#7DD3FC",
+      "desc": "Pteranodon air stamina",
+      "price": 3,
+      "image": "images/Blade/BL-PRD-939542-03.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Pteranodon air stamina. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "draciel_shield",
+      "name": "Draciel Shield",
+      "type": "Defense",
+      "tier": "B",
+      "w": 33,
+      "color": "#059669",
+      "desc": "Emerald turtle guard",
+      "price": 11,
+      "image": "images/Blade/BL-PRD-945567-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Emerald turtle guard. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "dragoon_storm",
+      "name": "Dragoon Storm",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#3B82F6",
+      "desc": "Blue dragon storm",
+      "price": 11,
+      "image": "images/Blade/BL-PRD-099468-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Blue dragon storm. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "dranzer_spiral",
+      "name": "Dranzer Spiral",
+      "type": "Attack",
+      "tier": "B",
+      "w": 31,
+      "color": "#EF4444",
+      "desc": "Red phoenix spiral",
+      "price": 11,
+      "image": "images/Blade/BL-PRD-910503-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Red phoenix spiral. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "driger_slash",
+      "name": "Driger Slash",
+      "type": "Attack",
+      "tier": "B",
+      "w": 31,
+      "color": "#F59E0B",
+      "desc": "Tiger slash strike",
+      "price": 11,
+      "image": "images/Blade/BL-PRD-930341-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Tiger slash strike. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "black_shell",
+      "name": "Black Shell",
+      "type": "Defense",
+      "tier": "B",
+      "w": 30,
+      "color": "#1E1E1E",
+      "desc": "Hard shell defense",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-914570-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Hard shell defense. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "shelter_drake",
+      "name": "Shelter Drake",
+      "type": "Balance",
+      "tier": "B",
+      "w": 33,
+      "color": "#1E40AF",
+      "desc": "Shelter guard balance",
+      "price": 10,
+      "image": "images/Blade/BL-PRD-939511-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Shelter guard balance. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "wyvern_gale",
+      "name": "Wyvern Gale",
+      "type": "Stamina",
+      "tier": "B",
+      "w": 32,
+      "color": "#14B8A6",
+      "desc": "Wind gale outspin",
+      "price": 10,
+      "image": "images/Blade/BL-PRD-913108-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Wind gale outspin. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "tricera_press",
+      "name": "Tricera Press",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#15803D",
+      "desc": "Triceratops press smash",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-939528-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Triceratops press smash. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "kong_yell",
+      "name": "Kong Yell",
+      "type": "Attack",
+      "tier": "B",
+      "w": 33,
+      "color": "#78350F",
+      "desc": "Gorilla yell power",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-997610-02.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Gorilla yell power. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "samurai_steel",
+      "name": "Samurai Steel",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#71717A",
+      "desc": "Steel blade slash",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-993766-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Steel blade slash. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "shinobi_knife",
+      "name": "Shinobi Knife",
+      "type": "Attack",
+      "tier": "B",
+      "w": 29,
+      "color": "#4C1D95",
+      "desc": "Ninja knife throw",
+      "price": 8,
+      "image": "images/Blade/BL-PRD-946847-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Ninja knife throw. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "hack_viking",
+      "name": "Hack Viking",
+      "type": "Attack",
+      "tier": "B",
+      "w": 31,
+      "color": "#78716C",
+      "desc": "Viking axe hack",
+      "price": 10,
+      "image": "images/Blade/BL-PRD-993766-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Viking axe hack. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "stun_medusa",
+      "name": "Stun Medusa",
+      "type": "Defense",
+      "tier": "B",
+      "w": 32,
+      "color": "#7C3AED",
+      "desc": "Stone gaze stun",
+      "price": 10,
+      "image": "images/Blade/BL-PRD-939511-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Stone gaze stun. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "rock_leone",
+      "name": "Rock Leone",
+      "type": "Defense",
+      "tier": "B",
+      "w": 33,
+      "color": "#065F46",
+      "desc": "X-Over lion rock wall",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-957492-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. X-Over lion rock wall. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "storm_pegasis",
+      "name": "Storm Pegasis",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#2563EB",
+      "desc": "X-Over Pegasus storm",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-946816-02.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. X-Over Pegasus storm. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "dran_dagger",
+      "name": "Dran Dagger",
+      "type": "Attack",
+      "tier": "C",
+      "w": 25,
+      "color": "#FCA5A5",
+      "desc": "Small & fast",
+      "price": 5,
+      "image": "images/Blade/BL-PRD-097167-05.png",
+      "competitive": {
+        "assessment": "Entry-level blade. Small & fast. Not recommended for competitive play.",
+        "viability": "Not competitively viable. Beginner only.",
+        "tier": "C",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "goat_tackle",
+      "name": "Goat Tackle",
+      "type": "Attack",
+      "tier": "C",
+      "w": 28,
+      "color": "#D4D4D4",
+      "desc": "Goat ram tackle",
+      "price": 7,
+      "image": "images/Blade/BL-PRD-997610-02.png",
+      "competitive": {
+        "assessment": "Entry-level blade. Goat ram tackle. Not recommended for competitive play.",
+        "viability": "Not competitively viable. Beginner only.",
+        "tier": "C",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "tricera_spiky",
+      "name": "Tricera Spiky",
+      "type": "Attack",
+      "tier": "C",
+      "w": 29,
+      "color": "#22C55E",
+      "desc": "Spiky triceratops",
+      "price": 7,
+      "image": "images/Blade/BL-PRD-939528-00.png",
+      "competitive": {
+        "assessment": "Entry-level blade. Spiky triceratops. Not recommended for competitive play.",
+        "viability": "Not competitively viable. Beginner only.",
+        "tier": "C",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "trypio",
+      "name": "Trypio",
+      "type": "Balance",
+      "tier": "C",
+      "w": 28,
+      "color": "#F472B6",
+      "desc": "X-Over spinning balance",
+      "price": 10,
+      "image": "images/Blade/BL-EVE-958772-01.png",
+      "competitive": {
+        "assessment": "Entry-level blade. X-Over spinning balance. Not recommended for competitive play.",
+        "viability": "Not competitively viable. Beginner only.",
+        "tier": "C",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "t_rex",
+      "name": "T. Rex",
+      "type": "Attack",
+      "tier": "B",
+      "w": 33,
+      "color": "#7F1D1D",
+      "desc": "Collab — Jurassic World",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-982432-02.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Jurassic World. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "mosasaurus",
+      "name": "Mosasaurus",
+      "type": "Attack",
+      "tier": "B",
+      "w": 34,
+      "color": "#164E63",
+      "desc": "Collab — Jurassic World",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-085690-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Jurassic World. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "spinosaurus",
+      "name": "Spinosaurus",
+      "type": "Attack",
+      "tier": "B",
+      "w": 33,
+      "color": "#854D0E",
+      "desc": "Collab — Jurassic World",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-939542-03.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Jurassic World. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "quetzalcoatlus",
+      "name": "Quetzalcoatlus",
+      "type": "Stamina",
+      "tier": "B",
+      "w": 31,
+      "color": "#0E7490",
+      "desc": "Collab — Jurassic World",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-913108-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Jurassic World. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "spider_man",
+      "name": "Spider-Man",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#DC2626",
+      "desc": "Collab — Marvel",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-085706-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Marvel. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "venom",
+      "name": "Venom",
+      "type": "Attack",
+      "tier": "B",
+      "w": 34,
+      "color": "#1E1E1E",
+      "desc": "Collab — Marvel",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-080558-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Marvel. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "iron_man",
+      "name": "Iron Man",
+      "type": "Attack",
+      "tier": "B",
+      "w": 33,
+      "color": "#B91C1C",
+      "desc": "Collab — Marvel",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-913092-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Marvel. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "thanos",
+      "name": "Thanos",
+      "type": "Defense",
+      "tier": "B",
+      "w": 35,
+      "color": "#7C3AED",
+      "desc": "Collab — Marvel",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-098775-02.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Marvel. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "miles_morales",
+      "name": "Miles Morales",
+      "type": "Attack",
+      "tier": "B",
+      "w": 31,
+      "color": "#1E1E1E",
+      "desc": "Collab — Marvel",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-914549-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Marvel. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "green_goblin",
+      "name": "Green Goblin",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#15803D",
+      "desc": "Collab — Marvel",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-098775-03.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Marvel. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "captain_america",
+      "name": "Captain America",
+      "type": "Defense",
+      "tier": "B",
+      "w": 33,
+      "color": "#1D4ED8",
+      "desc": "Collab — Marvel",
+      "price": 12,
+      "image": "images/Blade/BL-EVE-910879-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Marvel. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "red_hulk",
+      "name": "Red Hulk",
+      "type": "Attack",
+      "tier": "B",
+      "w": 36,
+      "color": "#991B1B",
+      "desc": "Collab — Marvel",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-913061-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Marvel. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "darth_vader",
+      "name": "Darth Vader",
+      "type": "Attack",
+      "tier": "B",
+      "w": 34,
+      "color": "#1E1E1E",
+      "desc": "Collab — Star Wars",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-910510-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Star Wars. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "luke_skywalker",
+      "name": "Luke Skywalker",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#3B82F6",
+      "desc": "Collab — Star Wars",
+      "price": 12,
+      "image": "images/Blade/BL-EVE-077428-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Star Wars. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "the_mandalorian",
+      "name": "The Mandalorian",
+      "type": "Defense",
+      "tier": "B",
+      "w": 33,
+      "color": "#71717A",
+      "desc": "Collab — Star Wars",
+      "price": 12,
+      "image": "images/Blade/BL-EVE-910879-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Star Wars. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "moff_gideon",
+      "name": "Moff Gideon",
+      "type": "Attack",
+      "tier": "B",
+      "w": 32,
+      "color": "#1E1E1E",
+      "desc": "Collab — Star Wars",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-096092-05.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Star Wars. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "chewbacca",
+      "name": "Chewbacca",
+      "type": "Defense",
+      "tier": "B",
+      "w": 35,
+      "color": "#78350F",
+      "desc": "Collab — Star Wars",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-096092-03.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Star Wars. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "stormtrooper",
+      "name": "Stormtrooper",
+      "type": "Defense",
+      "tier": "C",
+      "w": 30,
+      "color": "#E2E8F0",
+      "desc": "Collab — Star Wars",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-914570-01.png",
+      "competitive": {
+        "assessment": "Entry-level blade. Collab — Star Wars. Not recommended for competitive play.",
+        "viability": "Not competitively viable. Beginner only.",
+        "tier": "C",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "general_grievous",
+      "name": "General Grievous",
+      "type": "Attack",
+      "tier": "B",
+      "w": 33,
+      "color": "#A3A3A3",
+      "desc": "Collab — Star Wars",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-080558-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Star Wars. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "obi_wan_kenobi",
+      "name": "Obi-Wan Kenobi",
+      "type": "Balance",
+      "tier": "B",
+      "w": 32,
+      "color": "#92400E",
+      "desc": "Collab — Star Wars",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-914600-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Star Wars. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "optimus_prime",
+      "name": "Optimus Prime",
+      "type": "Defense",
+      "tier": "B",
+      "w": 34,
+      "color": "#1D4ED8",
+      "desc": "Collab — Transformers",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-919124-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Transformers. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "megatron",
+      "name": "Megatron",
+      "type": "Attack",
+      "tier": "B",
+      "w": 35,
+      "color": "#71717A",
+      "desc": "Collab — Transformers",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-939559-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Transformers. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "bumblebee",
+      "name": "Bumblebee",
+      "type": "Attack",
+      "tier": "B",
+      "w": 30,
+      "color": "#EAB308",
+      "desc": "Collab — Transformers",
+      "price": 12,
+      "image": "images/Blade/BL-EVE-910909-01.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Transformers. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "starscream",
+      "name": "Starscream",
+      "type": "Attack",
+      "tier": "B",
+      "w": 31,
+      "color": "#9333EA",
+      "desc": "Collab — Transformers",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-099468-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Transformers. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "optimus_primal",
+      "name": "Optimus Primal",
+      "type": "Balance",
+      "tier": "B",
+      "w": 33,
+      "color": "#DC2626",
+      "desc": "Collab — Transformers",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-913030-00.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Transformers. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "shockwave",
+      "name": "Shockwave",
+      "type": "Defense",
+      "tier": "B",
+      "w": 34,
+      "color": "#6D28D9",
+      "desc": "Collab — Transformers",
+      "price": 12,
+      "image": "images/Blade/BL-PRD-098775-02.png",
+      "competitive": {
+        "assessment": "Budget/casual blade. Collab — Transformers. Works for casual play but outclassed by higher-tier options.",
+        "viability": "Not competitively viable. Casual/budget pick.",
+        "tier": "B",
+        "type": "Defense"
+      }
+    }
+  ],
+  "ratchets": [
+    {
+      "id": "0-60",
+      "name": "0-60",
+      "teeth": 0,
+      "h": 60,
+      "price": 5,
+      "image": "images/Ratchet/RC-PRD-097242-00.png",
+      "competitive": {
+        "assessment": "No teeth — zero burst resistance. Only use with bits that have high burst stats.",
+        "viability": "Not recommended for competitive play."
+      }
+    },
+    {
+      "id": "0-70",
+      "name": "0-70",
+      "teeth": 0,
+      "h": 70,
+      "price": 5,
+      "image": "images/Ratchet/RC-PRD-080558-00.png",
+      "competitive": {
+        "assessment": "No teeth — zero burst resistance. Only use with bits that have high burst stats.",
+        "viability": "Not recommended for competitive play."
+      }
+    },
+    {
+      "id": "0-80",
+      "name": "0-80",
+      "teeth": 0,
+      "h": 80,
+      "price": 5,
+      "image": "images/Ratchet/RC-PRD-939566-01.png",
+      "competitive": {
+        "assessment": "No teeth — zero burst resistance. Only use with bits that have high burst stats. High height — good for stamina (less friction).",
+        "viability": "Not recommended for competitive play."
+      }
+    },
+    {
+      "id": "1-60",
+      "name": "1-60",
+      "teeth": 1,
+      "h": 60,
+      "price": 9,
+      "image": "images/Ratchet/RC-PRD-090960-00.png",
+      "competitive": {
+        "assessment": "Low burst resistance (1 teeth). Risk of bursting.",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "1-70",
+      "name": "1-70",
+      "teeth": 1,
+      "h": 70,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-982432-02.png",
+      "competitive": {
+        "assessment": "Low burst resistance (1 teeth). Risk of bursting.",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "1-80",
+      "name": "1-80",
+      "teeth": 1,
+      "h": 80,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-085690-00.png",
+      "competitive": {
+        "assessment": "Low burst resistance (1 teeth). Risk of bursting. High height — good for stamina (less friction).",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "1-85",
+      "name": "1-85",
+      "teeth": 1,
+      "h": 85,
+      "price": 8,
+      "image": null,
+      "competitive": {
+        "assessment": "Low burst resistance (1 teeth). Risk of bursting. High height — good for stamina (less friction).",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "2-60",
+      "name": "2-60",
+      "teeth": 2,
+      "h": 60,
+      "price": 5,
+      "image": "images/Ratchet/RC-PRD-085706-00.png",
+      "competitive": {
+        "assessment": "Low burst resistance (2 teeth). Risk of bursting.",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "2-70",
+      "name": "2-70",
+      "teeth": 2,
+      "h": 70,
+      "price": 7,
+      "image": "images/Ratchet/RC-PRD-939535-00.png",
+      "competitive": {
+        "assessment": "Low burst resistance (2 teeth). Risk of bursting.",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "2-80",
+      "name": "2-80",
+      "teeth": 2,
+      "h": 80,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-096092-05.png",
+      "competitive": {
+        "assessment": "Low burst resistance (2 teeth). Risk of bursting. High height — good for stamina (less friction).",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "3-60",
+      "name": "3-60",
+      "teeth": 3,
+      "h": 60,
+      "price": 5,
+      "image": "images/Ratchet/RC-EVE-910909-01.png",
+      "competitive": {
+        "assessment": "Low burst resistance (3 teeth). Risk of bursting.",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "3-65",
+      "name": "3-65",
+      "teeth": 3,
+      "h": 65,
+      "price": 7,
+      "image": null,
+      "competitive": {
+        "assessment": "Low burst resistance (3 teeth). Risk of bursting.",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "3-70",
+      "name": "3-70",
+      "teeth": 3,
+      "h": 70,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-096528-00.png",
+      "competitive": {
+        "assessment": "Low burst resistance (3 teeth). Risk of bursting.",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "3-80",
+      "name": "3-80",
+      "teeth": 3,
+      "h": 80,
+      "price": 7,
+      "image": "images/Ratchet/RC-EVE-910879-02.png",
+      "competitive": {
+        "assessment": "Low burst resistance (3 teeth). Risk of bursting. High height — good for stamina (less friction).",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "3-85",
+      "name": "3-85",
+      "teeth": 3,
+      "h": 85,
+      "price": 10,
+      "image": "images/Ratchet/RC-PRD-096092-04.png",
+      "competitive": {
+        "assessment": "Low burst resistance (3 teeth). Risk of bursting. High height — good for stamina (less friction).",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "4-45",
+      "name": "4-45",
+      "teeth": 4,
+      "h": 45,
+      "price": 8,
+      "image": null,
+      "competitive": {
+        "assessment": "Good burst resistance (4 teeth). Balanced option. Low height — good for attack (faster movement).",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "4-50",
+      "name": "4-50",
+      "teeth": 4,
+      "h": 50,
+      "price": 14,
+      "image": "images/Ratchet/RC-EVE-077428-01.png",
+      "competitive": {
+        "assessment": "Good burst resistance (4 teeth). Balanced option. Low height — good for attack (faster movement).",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "4-55",
+      "name": "4-55",
+      "teeth": 4,
+      "h": 55,
+      "price": 8,
+      "image": "images/Ratchet/RC-EVE-088899-00.png",
+      "competitive": {
+        "assessment": "Good burst resistance (4 teeth). Balanced option. Low height — good for attack (faster movement).",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "4-60",
+      "name": "4-60",
+      "teeth": 4,
+      "h": 60,
+      "price": 5,
+      "image": "images/Ratchet/RC-PRD-097167-02.png",
+      "competitive": {
+        "assessment": "Good burst resistance (4 teeth). Balanced option.",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "4-70",
+      "name": "4-70",
+      "teeth": 4,
+      "h": 70,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-096092-02.png",
+      "competitive": {
+        "assessment": "Good burst resistance (4 teeth). Balanced option.",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "4-80",
+      "name": "4-80",
+      "teeth": 4,
+      "h": 80,
+      "price": 5,
+      "image": "images/Ratchet/RC-PRD-097167-06.png",
+      "competitive": {
+        "assessment": "Good burst resistance (4 teeth). Balanced option. High height — good for stamina (less friction).",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "5-60",
+      "name": "5-60",
+      "teeth": 5,
+      "h": 60,
+      "price": 5,
+      "image": "images/Ratchet/RC-PRD-085515-00.png",
+      "competitive": {
+        "assessment": "Good burst resistance (5 teeth). Balanced option.",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "5-70",
+      "name": "5-70",
+      "teeth": 5,
+      "h": 70,
+      "price": 6,
+      "image": "images/Ratchet/RC-EVE-936138-02.png",
+      "competitive": {
+        "assessment": "Good burst resistance (5 teeth). Balanced option.",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "5-80",
+      "name": "5-80",
+      "teeth": 5,
+      "h": 80,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-912972-01.png",
+      "competitive": {
+        "assessment": "Good burst resistance (5 teeth). Balanced option. High height — good for stamina (less friction).",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "6-60",
+      "name": "6-60",
+      "teeth": 6,
+      "h": 60,
+      "price": 5,
+      "image": "images/Ratchet/RC-EVE-982524-01.png",
+      "competitive": {
+        "assessment": "Good burst resistance (6 teeth). Balanced option.",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "6-70",
+      "name": "6-70",
+      "teeth": 6,
+      "h": 70,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-939580-00.png",
+      "competitive": {
+        "assessment": "Good burst resistance (6 teeth). Balanced option.",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "6-80",
+      "name": "6-80",
+      "teeth": 6,
+      "h": 80,
+      "price": 5,
+      "image": "images/Ratchet/RC-EVE-958772-02.png",
+      "competitive": {
+        "assessment": "Good burst resistance (6 teeth). Balanced option. High height — good for stamina (less friction).",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "7-60",
+      "name": "7-60",
+      "teeth": 7,
+      "h": 60,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-096092-03.png",
+      "competitive": {
+        "assessment": "High burst resistance (7 teeth). Excellent for survival.",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "7-70",
+      "name": "7-70",
+      "teeth": 7,
+      "h": 70,
+      "price": 14,
+      "image": "images/Ratchet/RC-PRD-939542-03.png",
+      "competitive": {
+        "assessment": "High burst resistance (7 teeth). Excellent for survival.",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "7-80",
+      "name": "7-80",
+      "teeth": 7,
+      "h": 80,
+      "price": 6,
+      "image": "images/Ratchet/RC-PRD-096146-06.png",
+      "competitive": {
+        "assessment": "High burst resistance (7 teeth). Excellent for survival. High height — good for stamina (less friction).",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "9-60",
+      "name": "9-60",
+      "teeth": 9,
+      "h": 60,
+      "price": 12,
+      "image": "images/Ratchet/RC-PRD-098843-00.png",
+      "competitive": {
+        "assessment": "High burst resistance (9 teeth). Excellent for survival.",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "9-65",
+      "name": "9-65",
+      "teeth": 9,
+      "h": 65,
+      "price": 10,
+      "image": "images/Ratchet/RC-PRD-096146-03.png",
+      "competitive": {
+        "assessment": "High burst resistance (9 teeth). Excellent for survival.",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "9-70",
+      "name": "9-70",
+      "teeth": 9,
+      "h": 70,
+      "price": 8,
+      "image": "images/Ratchet/RC-PRD-097167-04.png",
+      "competitive": {
+        "assessment": "High burst resistance (9 teeth). Excellent for survival.",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "9-80",
+      "name": "9-80",
+      "teeth": 9,
+      "h": 80,
+      "price": 7,
+      "image": "images/Ratchet/RC-PRD-096092-01.png",
+      "competitive": {
+        "assessment": "High burst resistance (9 teeth). Excellent for survival. High height — good for stamina (less friction).",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "8-70",
+      "name": "8-70",
+      "teeth": 8,
+      "h": 70,
+      "price": 10,
+      "image": "images/Ratchet/RC-PRD-097266-00.png",
+      "competitive": {
+        "assessment": "High burst resistance (8 teeth). Excellent for survival.",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "4-85",
+      "name": "4-85",
+      "teeth": 4,
+      "h": 85,
+      "price": 10,
+      "image": null,
+      "competitive": {
+        "assessment": "Good burst resistance (4 teeth). Balanced option. High height — good for stamina (less friction).",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "7-55",
+      "name": "7-55",
+      "teeth": 7,
+      "h": 55,
+      "price": 10,
+      "image": "images/Ratchet/RC-PRD-097167-01.png",
+      "competitive": {
+        "assessment": "High burst resistance (7 teeth). Excellent for survival. Low height — good for attack (faster movement).",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    },
+    {
+      "id": "1-50",
+      "name": "1-50",
+      "teeth": 1,
+      "h": 50,
+      "price": 10,
+      "image": "images/Ratchet/RC-PRD-072447-00.png",
+      "competitive": {
+        "assessment": "Low burst resistance (1 teeth). Risk of bursting. Low height — good for attack (faster movement).",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "M-85",
+      "name": "M-85",
+      "teeth": 0,
+      "h": 85,
+      "price": 14,
+      "image": "images/Ratchet/RC-PRD-098775-02.png",
+      "competitive": {
+        "assessment": "No teeth — zero burst resistance. Only use with bits that have high burst stats. High height — good for stamina (less friction).",
+        "viability": "Not recommended for competitive play."
+      }
+    },
+    {
+      "id": "PO3-60",
+      "name": "PO3-60",
+      "teeth": 3,
+      "h": 60,
+      "price": 12,
+      "image": null,
+      "competitive": {
+        "assessment": "Low burst resistance (3 teeth). Risk of bursting.",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "PO1-80",
+      "name": "PO1-80",
+      "teeth": 1,
+      "h": 80,
+      "price": 12,
+      "image": null,
+      "competitive": {
+        "assessment": "Low burst resistance (1 teeth). Risk of bursting. High height — good for stamina (less friction).",
+        "viability": "Situational. Low burst resistance."
+      }
+    },
+    {
+      "id": "FE4-55",
+      "name": "FE4-55",
+      "teeth": 4,
+      "h": 55,
+      "price": 12,
+      "image": null,
+      "competitive": {
+        "assessment": "Good burst resistance (4 teeth). Balanced option. Low height — good for attack (faster movement).",
+        "viability": "Competitively viable. Balanced choice."
+      }
+    },
+    {
+      "id": "GV8-70",
+      "name": "GV8-70",
+      "teeth": 8,
+      "h": 70,
+      "price": 12,
+      "image": null,
+      "competitive": {
+        "assessment": "High burst resistance (8 teeth). Excellent for survival.",
+        "viability": "Competitively viable. High burst resistance."
+      }
+    }
+  ],
+  "bits": [
+    {
+      "id": "F",
+      "name": "Flat",
+      "type": "Attack",
+      "mob": 9,
+      "sta": 3,
+      "stb": 4,
+      "price": 6,
+      "image": "images/Bit/BT-EVE-910909-01.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "GF",
+      "name": "Gear Flat",
+      "type": "Attack",
+      "mob": 10,
+      "sta": 2,
+      "stb": 3,
+      "price": 7,
+      "image": "images/Bit/BT-PRD-085690-00.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "LF",
+      "name": "Low Flat",
+      "type": "Attack",
+      "mob": 8,
+      "sta": 3,
+      "stb": 5,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-912965-01.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "HF",
+      "name": "High Flat",
+      "type": "Attack",
+      "mob": 9,
+      "sta": 3,
+      "stb": 4,
+      "price": 6,
+      "image": "images/Bit/BT-EVE-910909-01.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "SF",
+      "name": "Sharp Flat",
+      "type": "Attack",
+      "mob": 8,
+      "sta": 4,
+      "stb": 5,
+      "price": 7,
+      "image": "images/Bit/BT-EVE-910909-01.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "XF",
+      "name": "Xtreme Flat",
+      "type": "Attack",
+      "mob": 10,
+      "sta": 2,
+      "stb": 2,
+      "price": 8,
+      "image": "images/Bit/BT-EVE-910909-01.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "R",
+      "name": "Rush",
+      "type": "Attack",
+      "mob": 7,
+      "sta": 4,
+      "stb": 5,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-099468-00.png",
+      "competitive": {
+        "assessment": " Attack bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "HR",
+      "name": "High Rush",
+      "type": "Attack",
+      "mob": 7,
+      "sta": 4,
+      "stb": 5,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-099468-00.png",
+      "competitive": {
+        "assessment": " Attack bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "LR",
+      "name": "Low Rush",
+      "type": "Attack",
+      "mob": 7,
+      "sta": 4,
+      "stb": 6,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-097167-06.png",
+      "competitive": {
+        "assessment": " Attack bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "A",
+      "name": "Accel",
+      "type": "Attack",
+      "mob": 8,
+      "sta": 4,
+      "stb": 5,
+      "price": 9,
+      "image": "images/Bit/BT-PRD-096528-00.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "RA",
+      "name": "Rubber Accel",
+      "type": "Attack",
+      "mob": 9,
+      "sta": 3,
+      "stb": 6,
+      "price": 16,
+      "image": "images/Bit/BT-PRD-096528-00.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "C",
+      "name": "Cyclone",
+      "type": "Attack",
+      "mob": 7,
+      "sta": 4,
+      "stb": 5,
+      "price": 7,
+      "image": "images/Bit/BT-PRD-097167-02.png",
+      "competitive": {
+        "assessment": " Attack bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "GR",
+      "name": "Gear Rush",
+      "type": "Attack",
+      "mob": 8,
+      "sta": 3,
+      "stb": 4,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-096146-02.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "J",
+      "name": "Jolt",
+      "type": "Attack",
+      "mob": 8,
+      "sta": 3,
+      "stb": 5,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-997627-00.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "V",
+      "name": "Variable",
+      "type": "Attack",
+      "mob": 7,
+      "sta": 5,
+      "stb": 5,
+      "price": 6,
+      "image": "images/Bit/BT-EVE-982524-01.png",
+      "competitive": {
+        "assessment": " Attack bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "Q",
+      "name": "Quake",
+      "type": "Attack",
+      "mob": 8,
+      "sta": 3,
+      "stb": 4,
+      "price": 7,
+      "image": "images/Bit/BT-PRD-096092-05.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "U",
+      "name": "Unite",
+      "type": "Attack",
+      "mob": 7,
+      "sta": 5,
+      "stb": 6,
+      "price": 8,
+      "image": "images/Bit/BT-PRD-914556-00.png",
+      "competitive": {
+        "assessment": " Attack bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "T",
+      "name": "Taper",
+      "type": "Balance",
+      "mob": 5,
+      "sta": 6,
+      "stb": 7,
+      "price": 4,
+      "image": "images/Bit/BT-PRD-089193-02.png",
+      "competitive": {
+        "assessment": "Versatile balance bit. Good all-round performance. Works with any blade type.",
+        "viability": "Situational. Good for hybrid builds.",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "HT",
+      "name": "High Taper",
+      "type": "Balance",
+      "mob": 5,
+      "sta": 7,
+      "stb": 7,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-913085-01.png",
+      "competitive": {
+        "assessment": "Versatile balance bit. Good all-round performance. Works with any blade type.",
+        "viability": "Situational. Good for hybrid builds.",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "LT",
+      "name": "Low Taper",
+      "type": "Balance",
+      "mob": 5,
+      "sta": 6,
+      "stb": 8,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-089193-02.png",
+      "competitive": {
+        "assessment": "Versatile balance bit. Good all-round performance. Works with any blade type.",
+        "viability": "Situational. Good for hybrid builds.",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "P",
+      "name": "Point",
+      "type": "Balance",
+      "mob": 4,
+      "sta": 7,
+      "stb": 7,
+      "price": 4,
+      "image": "images/Bit/BT-PRD-092698-00.png",
+      "competitive": {
+        "assessment": "Versatile balance bit. Good all-round performance. Works with any blade type.",
+        "viability": "Situational. Good for hybrid builds.",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "GP",
+      "name": "Gear Point",
+      "type": "Balance",
+      "mob": 4,
+      "sta": 7,
+      "stb": 8,
+      "price": 7,
+      "image": "images/Bit/BT-PRD-085706-00.png",
+      "competitive": {
+        "assessment": "Versatile balance bit. Good all-round performance. Works with any blade type.",
+        "viability": "Situational. Good for hybrid builds.",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "B",
+      "name": "Ball",
+      "type": "Stamina",
+      "mob": 2,
+      "sta": 9,
+      "stb": 8,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-089193-03.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "MB",
+      "name": "Metal Ball",
+      "type": "Stamina",
+      "mob": 2,
+      "sta": 10,
+      "stb": 9,
+      "price": 10,
+      "image": "images/Bit/BT-PRD-089193-03.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "LB",
+      "name": "Low Ball",
+      "type": "Stamina",
+      "mob": 2,
+      "sta": 9,
+      "stb": 8,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-089193-03.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "HB",
+      "name": "High Ball",
+      "type": "Stamina",
+      "mob": 2,
+      "sta": 9,
+      "stb": 7,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-089193-03.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "RB",
+      "name": "Rubber Ball",
+      "type": "Stamina",
+      "mob": 2,
+      "sta": 10,
+      "stb": 9,
+      "price": 9,
+      "image": "images/Bit/BT-PRD-089193-03.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "FB",
+      "name": "Free Ball",
+      "type": "Stamina",
+      "mob": 2,
+      "sta": 10,
+      "stb": 9,
+      "price": 12,
+      "image": "images/Bit/BT-PRD-098775-03.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "DB",
+      "name": "Disc Ball",
+      "type": "Stamina",
+      "mob": 3,
+      "sta": 8,
+      "stb": 8,
+      "price": 7,
+      "image": "images/Bit/BT-EVE-936138-03.png",
+      "competitive": {
+        "assessment": " Stamina bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "GB",
+      "name": "Gear Ball",
+      "type": "Stamina",
+      "mob": 3,
+      "sta": 9,
+      "stb": 8,
+      "price": 9,
+      "image": "images/Bit/BT-PRD-096092-04.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "O",
+      "name": "Orbit",
+      "type": "Stamina",
+      "mob": 3,
+      "sta": 9,
+      "stb": 7,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-092858-02.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "H",
+      "name": "Hexa",
+      "type": "Stamina",
+      "mob": 2,
+      "sta": 8,
+      "stb": 8,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-096160-00.png",
+      "competitive": {
+        "assessment": " Stamina bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "D",
+      "name": "Dot",
+      "type": "Stamina",
+      "mob": 2,
+      "sta": 8,
+      "stb": 7,
+      "price": 4,
+      "image": "images/Bit/BT-PRD-092858-03.png",
+      "competitive": {
+        "assessment": " Stamina bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "G",
+      "name": "Glide",
+      "type": "Stamina",
+      "mob": 3,
+      "sta": 9,
+      "stb": 7,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-097167-05.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "E",
+      "name": "Elevate",
+      "type": "Stamina",
+      "mob": 3,
+      "sta": 8,
+      "stb": 7,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-096092-02.png",
+      "competitive": {
+        "assessment": " Stamina bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "L",
+      "name": "Level",
+      "type": "Stamina",
+      "mob": 3,
+      "sta": 8,
+      "stb": 8,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-939535-00.png",
+      "competitive": {
+        "assessment": " Stamina bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "N",
+      "name": "Needle",
+      "type": "Defense",
+      "mob": 1,
+      "sta": 7,
+      "stb": 9,
+      "price": 5,
+      "image": "images/Bit/BT-EVE-910879-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "HN",
+      "name": "High Needle",
+      "type": "Defense",
+      "mob": 1,
+      "sta": 7,
+      "stb": 9,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-098775-02.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "GN",
+      "name": "Gear Needle",
+      "type": "Defense",
+      "mob": 2,
+      "sta": 7,
+      "stb": 9,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-913115-01.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "S",
+      "name": "Spike",
+      "type": "Defense",
+      "mob": 2,
+      "sta": 6,
+      "stb": 10,
+      "price": 4,
+      "image": "images/Bit/BT-PRD-096092-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "LS",
+      "name": "Low Spike",
+      "type": "Defense",
+      "mob": 2,
+      "sta": 7,
+      "stb": 10,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-096092-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "HS",
+      "name": "High Spike",
+      "type": "Defense",
+      "mob": 2,
+      "sta": 6,
+      "stb": 10,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-096092-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "SS",
+      "name": "Semi Spike",
+      "type": "Defense",
+      "mob": 3,
+      "sta": 6,
+      "stb": 9,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-096092-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "XS",
+      "name": "Xtreme Spike",
+      "type": "Defense",
+      "mob": 1,
+      "sta": 5,
+      "stb": 10,
+      "price": 8,
+      "image": "images/Bit/BT-PRD-096092-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "BS",
+      "name": "Bound Spike",
+      "type": "Defense",
+      "mob": 2,
+      "sta": 6,
+      "stb": 9,
+      "price": 4,
+      "image": "images/Bit/BT-PRD-919124-00.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "UN",
+      "name": "Under",
+      "type": "Defense",
+      "mob": 1,
+      "sta": 7,
+      "stb": 10,
+      "price": 7,
+      "image": "images/Bit/BT-PRD-097266-00.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "WD",
+      "name": "Wide Defense",
+      "type": "Defense",
+      "mob": 1,
+      "sta": 7,
+      "stb": 10,
+      "price": 6,
+      "image": "images/Bit/BT-EVE-958772-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "HD",
+      "name": "High Defense",
+      "type": "Defense",
+      "mob": 1,
+      "sta": 7,
+      "stb": 10,
+      "price": 6,
+      "image": "images/Bit/BT-EVE-958772-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "LD",
+      "name": "Low Defense",
+      "type": "Defense",
+      "mob": 1,
+      "sta": 8,
+      "stb": 10,
+      "price": 5,
+      "image": "images/Bit/BT-EVE-958772-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "LO",
+      "name": "Low Orb",
+      "type": "Stamina",
+      "sta": 9,
+      "stb": 7,
+      "mob": 3,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-096146-03.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "W",
+      "name": "Wedge",
+      "type": "Defense",
+      "sta": 5,
+      "stb": 9,
+      "mob": 4,
+      "price": 5,
+      "image": "images/Bit/BT-EVE-958772-03.png",
+      "competitive": {
+        "assessment": "Strong defensive bit. Great for surviving attacks. Pairs well with defense blades like Knight Mail or Ghost Circle.",
+        "viability": "Competitively viable for defense builds.",
+        "type": "Defense"
+      }
+    },
+    {
+      "id": "TK",
+      "name": "Trans Kick",
+      "type": "Balance",
+      "sta": 7,
+      "stb": 6,
+      "mob": 7,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-995678-00.png",
+      "competitive": {
+        "assessment": "Versatile balance bit. Good all-round performance. Works with any blade type.",
+        "viability": "Situational. Good for hybrid builds.",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "I",
+      "name": "Ignition",
+      "type": "Attack",
+      "sta": 3,
+      "stb": 4,
+      "mob": 9,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-072447-00.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "Y",
+      "name": "Yielding",
+      "type": "Stamina",
+      "sta": 9,
+      "stb": 8,
+      "mob": 2,
+      "price": 6,
+      "image": "images/Bit/BT-EVE-088899-00.png",
+      "competitive": {
+        "assessment": "Excellent stamina bit. Ideal for outspin strategies. Pairs well with stamina blades like Silver Wolf or Wizard Rod.",
+        "viability": "Competitively viable for stamina builds.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "WB",
+      "name": "Wide Ball",
+      "type": "Stamina",
+      "sta": 8,
+      "stb": 8,
+      "mob": 4,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-956983-01.png",
+      "competitive": {
+        "assessment": " Stamina bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "MN",
+      "name": "Metal Needle",
+      "type": "Attack",
+      "sta": 5,
+      "stb": 5,
+      "mob": 8,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-914549-01.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "Op",
+      "name": "Operate",
+      "type": "Balance",
+      "sta": 6,
+      "stb": 7,
+      "mob": 6,
+      "price": 6,
+      "image": "images/Bit/BT-PRD-098775-01.png",
+      "competitive": {
+        "assessment": "Versatile balance bit. Good all-round performance. Works with any blade type.",
+        "viability": "Situational. Good for hybrid builds.",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "K",
+      "name": "Kick",
+      "type": "Attack",
+      "sta": 4,
+      "stb": 5,
+      "mob": 8,
+      "price": 5,
+      "image": "images/Bit/BT-PRD-085515-00.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    },
+    {
+      "id": "GU",
+      "name": "Gear Unite",
+      "type": "Balance",
+      "sta": 6,
+      "stb": 6,
+      "mob": 7,
+      "price": 7,
+      "image": "images/Bit/BT-PRD-096146-01.png",
+      "competitive": {
+        "assessment": "Versatile balance bit. Good all-round performance. Works with any blade type.",
+        "viability": "Situational. Good for hybrid builds.",
+        "type": "Balance"
+      }
+    },
+    {
+      "id": "WW",
+      "name": "Wide Wave",
+      "type": "Stamina",
+      "sta": 8,
+      "stb": 8,
+      "mob": 3,
+      "price": 7,
+      "image": "images/Bit/BT-PRD-096153-00.png",
+      "competitive": {
+        "assessment": " Stamina bit. Niche use case.",
+        "viability": "Niche pick. Outclassed by higher-tier options.",
+        "type": "Stamina"
+      }
+    },
+    {
+      "id": "FF",
+      "name": "Free Flat",
+      "type": "Attack",
+      "mob": 9,
+      "sta": 4,
+      "stb": 4,
+      "price": 8,
+      "image": "images/Bit/BT-EVE-077428-01.png",
+      "competitive": {
+        "assessment": "High-mobility attack bit. Great for aggressive KO strategies. Pairs well with attack blades like Cobalt Dragoon or Aero Pegasus.",
+        "viability": "Competitively viable for attack builds.",
+        "type": "Attack"
+      }
+    }
+  ],
+  "imageBaseUrl": "https://raw.githubusercontent.com/hinfok/beys/master/",
+  "typeMatchups": {
+    "Attack": {
+      "strong_vs": "Stamina",
+      "weak_vs": "Defense"
+    },
+    "Defense": {
+      "strong_vs": "Attack",
+      "weak_vs": "Stamina"
+    },
+    "Stamina": {
+      "strong_vs": "Defense",
+      "weak_vs": "Attack"
+    },
+    "Balance": {
+      "strong_vs": "None",
+      "weak_vs": "None"
+    }
+  },
+  "assistBlades": [
+    {
+      "id": "assault",
+      "name": "Assault",
+      "type": "Attack"
+    },
+    {
+      "id": "bumper",
+      "name": "Bumper",
+      "type": "Defense"
+    },
+    {
+      "id": "charge",
+      "name": "Charge",
+      "type": "Balance"
+    },
+    {
+      "id": "dual",
+      "name": "Dual",
+      "type": "Balance"
+    },
+    {
+      "id": "erase",
+      "name": "Erase",
+      "type": "Defense"
+    },
+    {
+      "id": "free",
+      "name": "Free",
+      "type": "Stamina"
+    },
+    {
+      "id": "gravity",
+      "name": "Gravity",
+      "type": "Defense"
+    },
+    {
+      "id": "heavy",
+      "name": "Heavy",
+      "type": "Defense"
+    },
+    {
+      "id": "Jaggy",
+      "name": "Jaggy",
+      "type": "Attack"
+    },
+    {
+      "id": "knuckle",
+      "name": "Knuckle",
+      "type": "Attack"
+    },
+    {
+      "id": "massive",
+      "name": "Massive",
+      "type": "Defense"
+    },
+    {
+      "id": "odd",
+      "name": "Odd",
+      "type": "Balance"
+    },
+    {
+      "id": "quell",
+      "name": "Quell",
+      "type": "Defense"
+    },
+    {
+      "id": "round",
+      "name": "Round",
+      "type": "Defense"
+    },
+    {
+      "id": "slash",
+      "name": "Slash",
+      "type": "Attack"
+    },
+    {
+      "id": "turn",
+      "name": "Turn",
+      "type": "Balance"
+    },
+    {
+      "id": "vertical",
+      "name": "Vertical",
+      "type": "Balance"
+    },
+    {
+      "id": "wheel",
+      "name": "Wheel",
+      "type": "Stamina"
+    },
+    {
+      "id": "zillion",
+      "name": "Zillion",
+      "type": "Balance"
+    }
+  ]
+};
