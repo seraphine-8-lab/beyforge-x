@@ -12,7 +12,7 @@
 <meta property="og:title" content="BeyForge X — Beyblade X Combo Builder">
 <meta property="og:description" content="Build combos, create decks, track matches, and run tournaments.">
 <meta property="og:type" content="website">
-<link rel="manifest" id="manifestLink" href="">
+<link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f3460'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -292,6 +292,7 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.75
   <section id="tab-combos" class="section active">
     <div class="card">
       <h2>🗡️ Blade <span class="sub">pick your blade</span></h2>
+      <input type="text" id="bladeSearch" placeholder="Search blades..." style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:0.9em;margin-bottom:6px" oninput="filterSelect('bladeSearch','bladeSelect')">
       <select id="bladeSelect" onchange="onBladeChange()"></select>
       <div id="bladePreview" class="part-preview"></div>
       <div id="assistBladeRow" class="hidden" style="margin-top:8px">
@@ -303,12 +304,14 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.75
     </div>
     <div class="card">
       <h2>⚙️ Ratchet <span class="sub">pick your ratchet</span></h2>
+      <input type="text" id="ratchetSearch" placeholder="Search ratchets..." style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:0.9em;margin-bottom:6px" oninput="filterSelect('ratchetSearch','ratchetSelect')">
       <select id="ratchetSelect" onchange="updateCombo()"></select>
       <div id="ratchetPreview" class="part-preview"></div>
       <div id="ratchetDisabledNote" class="hidden" style="font-size:0.85em;color:var(--gold);margin-top:4px">This blade has an integrated ratchet — no separate ratchet needed.</div>
     </div>
     <div class="card">
       <h2>🎯 Bit <span class="sub">pick your bit</span></h2>
+      <input type="text" id="bitSearch" placeholder="Search bits..." style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:0.9em;margin-bottom:6px" oninput="filterSelect('bitSearch','bitSelect')">
       <select id="bitSelect" onchange="updateCombo()"></select>
       <div id="bitPreview" class="part-preview"></div>
     </div>
@@ -328,7 +331,6 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.75
       <div id="comboSummary" class="combo-summary"></div>
       <div class="btn-row mt">
         <button class="btn" style="flex:1" onclick="shareCombo()">📋 Share Link</button>
-        <button class="btn" style="flex:1" onclick="downloadCard()">📸 Combo Card</button>
       </div>
     </div>
   </section>
@@ -542,6 +544,29 @@ function populateBits() {
   if (cur) sel.value = cur;
 }
 
+// Store full option lists for filtering
+let _fullOptions = {};
+function saveOptions(selectId) {
+  const sel = document.getElementById(selectId);
+  if (!sel) return;
+  _fullOptions[selectId] = Array.from(sel.options).map(o => ({ value: o.value, text: o.textContent }));
+}
+function filterSelect(searchId, selectId) {
+  if (!_fullOptions[selectId]) saveOptions(selectId);
+  const q = document.getElementById(searchId).value.toLowerCase().trim();
+  const sel = document.getElementById(selectId);
+  const cur = sel.value;
+  let html = '';
+  _fullOptions[selectId].forEach(o => {
+    if (!q || o.text.toLowerCase().includes(q) || o.value.toLowerCase().includes(q)) {
+      html += `<option value="${o.value}">${o.text}</option>`;
+    }
+  });
+  if (!html) html = '<option value="">— No matches —</option>';
+  sel.innerHTML = html;
+  if (cur && Array.from(sel.options).some(o => o.value === cur)) sel.value = cur;
+}
+
 function populateAssistBlades() {
   const sel = document.getElementById('assistBladeSelect');
   if (!sel) return;
@@ -656,22 +681,24 @@ function showAnalysis(rc) {
 function saveCombo() {
   const rc = currentCombo();
   if (!rc) { toast('Select blade and bit first'); return; }
-  const combos = lsGet(LS.combos, []);
-  const name = prompt('Combo name (optional):', rc.name);
-  if (name === null) return;
-  const combo = {
-    id: uid(),
-    name: (name && name.trim()) ? name.trim() : rc.name,
-    bladeId: rc.blade.id,
-    ratchetId: rc.ratchet.id,
-    bitId: rc.bit.id,
-    assistId: rc.assist ? rc.assist.id : '',
-    chip: rc.chip || '',
-    createdAt: Date.now()
-  };
-  combos.push(combo);
-  lsSet(LS.combos, combos);
-  toast('💾 Combo saved!');
+  showPromptModal('Save Combo', rc.name, function(name) {
+    if (name === null) return;
+    const combos = lsGet(LS.combos, []);
+    const combo = {
+      id: uid(),
+      name: (name && name.trim()) ? name.trim() : rc.name,
+      bladeId: rc.blade.id,
+      ratchetId: rc.ratchet.id,
+      bitId: rc.bit.id,
+      assistId: rc.assist ? rc.assist.id : '',
+      chip: rc.chip || '',
+      createdAt: Date.now()
+    };
+    combos.push(combo);
+    lsSet(LS.combos, combos);
+    toast('💾 Combo saved!');
+    renderSavedCombos();
+  });
 }
 
 function shareCombo() {
@@ -685,70 +712,23 @@ function shareCombo() {
   if (rc.chip) params.set('c', rc.chip);
   const url = `${location.origin}${location.pathname}?${params.toString()}`;
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(() => toast('📋 Link copied!')).catch(() => prompt('Copy this link:', url));
+    navigator.clipboard.writeText(url).then(() => toast('📋 Link copied!')).catch(() => showLinkModal(url));
   } else {
-    prompt('Copy this link:', url);
+    showLinkModal(url);
   }
 }
 
-function downloadCard() {
-  const rc = currentCombo();
-  if (!rc) { toast('Select blade and bit first'); return; }
-  const canvas = document.createElement('canvas');
-  canvas.width = 900; canvas.height = 500;
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#0d0d0d'; ctx.fillRect(0, 0, 900, 500);
-  ctx.textAlign = 'center';
-  ctx.fillStyle = '#ffd700'; ctx.font = 'bold 28px sans-serif';
-  ctx.fillText(rc.name, 450, 40);
-  ctx.fillStyle = '#7f8c9a'; ctx.font = '14px sans-serif';
-  ctx.fillText(`${rc.blade.type} • ${comboWeight(rc)}g • ${rc.blade.spin || 'R'}-spin`, 450, 65);
-  const labels = ['BLADE', 'RATCHET', 'BIT'];
-  const parts = [rc.blade, rc.ratchet, rc.bit];
-  let loaded = 0;
-  function finish() {
-    loaded++;
-    if (loaded === 3) {
-      ctx.fillStyle = '#e94560'; ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('BeyForge X', 450, 470);
-      const a = document.createElement('a');
-      a.download = rc.name.replace(/[^a-z0-9]+/gi, '_') + '.png';
-      a.href = canvas.toDataURL('image/png');
-      a.click();
-    }
-  }
-  parts.forEach((part, i) => {
-    const u = i === 0 ? imgUrl(part) : null; // only blade gets image
-    if (u) {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => {
-        ctx.drawImage(img, 150 + i * 250, 120, 200, 200);
-        ctx.fillStyle = '#7f8c9a'; ctx.font = '12px sans-serif';
-        ctx.fillText(labels[i], 250 + i * 250, 340);
-        ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
-        ctx.fillText(part.name, 250 + i * 250, 360);
-        finish();
-      };
-      img.onerror = () => {
-        ctx.fillStyle = '#0f3460'; ctx.fillRect(150 + i * 250, 120, 200, 200);
-        ctx.fillStyle = '#7f8c9a'; ctx.font = '12px sans-serif';
-        ctx.fillText(labels[i], 250 + i * 250, 340);
-        ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
-        ctx.fillText(part.name, 250 + i * 250, 360);
-        finish();
-      };
-      img.src = u;
-    } else {
-      // Text-only for ratchet and bit
-      ctx.fillStyle = '#0f3460'; ctx.fillRect(150 + i * 250, 120, 200, 200);
-      ctx.fillStyle = '#7f8c9a'; ctx.font = '12px sans-serif';
-      ctx.fillText(labels[i], 250 + i * 250, 340);
-      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px sans-serif';
-      ctx.fillText(part.name, 250 + i * 250, 360);
-      finish();
-    }
-  });
+function showLinkModal(url) {
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="max-width:400px">
+      <h3>Copy Link</h3>
+      <input type="text" value="${esc(url)}" readonly style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:0.85em;margin-bottom:14px" onclick="this.select()" />
+      <div class="btn-row">
+        <button class="btn" style="flex:1" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>`;
 }
 
 /* ============================================================
@@ -893,8 +873,14 @@ function saveDeck() {
   if (deckDraft.comboIds.length !== 3) { toast('Select exactly 3 combos'); return; }
   const warnings = checkDeckDuplicates();
   if (warnings.length) {
-    if (!confirm('⚠️ This deck has repeated parts:\n\n' + warnings.map(w => '• ' + w.replace(/<br>/g, '\n')).join('\n') + '\n\nMost tournaments don\'t allow this. Save anyway?')) return;
+    const msg = warnings.map(w => '• ' + w.replace(/<br>/g, '\n')).join('<br>') + '<br><br>Most tournaments don\'t allow this. Save anyway?';
+    showConfirmModal('⚠️ Repeated Parts', msg, function() { doSaveDeck(); }, 'Save Anyway', 'Cancel');
+    return;
   }
+  doSaveDeck();
+}
+
+function doSaveDeck() {
   const name = document.getElementById('deckNameInput').value.trim() || 'Untitled Deck';
   const decks = getSavedDecks();
   if (deckDraft.id) {
@@ -945,10 +931,11 @@ function editDeck(id) {
   document.getElementById('deckBuilder').scrollIntoView({ behavior: 'smooth' });
 }
 function deleteDeck(id) {
-  if (!confirm('Delete this deck?')) return;
-  lsSet(LS.decks, getSavedDecks().filter(d => d.id !== id));
-  renderDecks();
-  toast('Deck deleted');
+  showConfirmModal('Delete Deck', 'Delete this deck?', function() {
+    lsSet(LS.decks, getSavedDecks().filter(d => d.id !== id));
+    renderDecks();
+    toast('Deck deleted');
+  });
 }
 
 /* ============================================================
@@ -1392,7 +1379,7 @@ function finishMatch() {
 }
 
 function exitScoring() {
-  if (confirm('Exit match? Progress will be lost.')) closeScoring();
+  showConfirmModal('Exit Match', 'Exit match? Progress will be lost.', function() { closeScoring(); }, 'Exit', 'Cancel');
 }
 function closeScoring() {
   scorer = null;
@@ -1554,11 +1541,12 @@ function addPlayer(id) {
   const t = getTournaments().find(x => x.id === id);
   if (!t) return;
   if (t.players.length >= t.maxPlayers) { toast('Tournament is full'); return; }
-  const name = prompt('Player name:');
-  if (!name || !name.trim()) return;
-  t.players.push({ id: uid(), name: name.trim() });
-  lsSet(LS.tournaments, getTournaments().map(x => x.id === id ? t : x));
-  viewTournament(id);
+  showPromptModal('Add Player', '', function(name) {
+    if (!name || !name.trim()) return;
+    t.players.push({ id: uid(), name: name.trim() });
+    lsSet(LS.tournaments, getTournaments().map(x => x.id === id ? t : x));
+    viewTournament(id);
+  }, 'Enter player name');
 }
 
 function startTournament(id) {
@@ -1707,11 +1695,12 @@ function exportTournament(id) {
 }
 
 function deleteTournament(id) {
-  if (!confirm('Delete this tournament?')) return;
-  lsSet(LS.tournaments, getTournaments().filter(t => t.id !== id));
-  closeModal();
-  renderTournaments();
-  toast('Tournament deleted');
+  showConfirmModal('Delete Tournament', 'Delete this tournament?', function() {
+    lsSet(LS.tournaments, getTournaments().filter(t => t.id !== id));
+    closeModal();
+    renderTournaments();
+    toast('Tournament deleted');
+  });
 }
 
 /* ============================================================
@@ -1722,56 +1711,63 @@ function esc(s) {
 }
 
 /* ============================================================
-   PWA: manifest (data URI) + service worker (inline Blob)
+   MODAL HELPERS (replaces prompt/confirm)
+   ============================================================ */
+function showPromptModal(title, defaultValue, onConfirm, placeholder) {
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="max-width:400px">
+      <h3>${esc(title)}</h3>
+      <input type="text" id="modalInput" class="modal-input" value="${esc(defaultValue || '')}" placeholder="${esc(placeholder || '')}" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:1em;margin-bottom:14px" onkeydown="if(event.key==='Enter'){confirmPromptModal()}" />
+      <div class="btn-row">
+        <button class="btn" style="flex:1" onclick="closeModal()">Cancel</button>
+        <button class="btn" style="flex:1;background:var(--accent);border-color:var(--accent)" onclick="confirmPromptModal()">OK</button>
+      </div>
+    </div>
+  </div>`;
+  document.getElementById('modalInput').focus();
+  document.getElementById('modalInput').select();
+  window._modalCallback = onConfirm;
+}
+
+function confirmPromptModal() {
+  const val = document.getElementById('modalInput').value;
+  const cb = window._modalCallback;
+  window._modalCallback = null;
+  closeModal();
+  if (cb) cb(val);
+}
+
+function showConfirmModal(title, message, onConfirm, confirmLabel, cancelLabel) {
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="max-width:400px">
+      <h3>${esc(title)}</h3>
+      <div style="margin-bottom:14px;font-size:0.9em;line-height:1.5;color:var(--muted)">${message}</div>
+      <div class="btn-row">
+        <button class="btn" style="flex:1" onclick="closeModal()">${esc(cancelLabel || 'Cancel')}</button>
+        <button class="btn" style="flex:1;background:var(--accent);border-color:var(--accent)" onclick="confirmDialogModal()">${esc(confirmLabel || 'OK')}</button>
+      </div>
+    </div>
+  </div>`;
+  window._modalDialogCallback = onConfirm;
+}
+
+function confirmDialogModal() {
+  const cb = window._modalDialogCallback;
+  window._modalDialogCallback = null;
+  closeModal();
+  if (cb) cb();
+}
+
+/* ============================================================
+   PWA: real manifest.json + sw.js files
    ============================================================ */
 function setupPWA() {
-  // Manifest as data URI
-  const manifest = {
-    name: 'BeyForge X',
-    short_name: 'BeyForge',
-    description: 'Beyblade X combo builder, deck builder, match tracker & tournament tool',
-    start_url: '.',
-    display: 'standalone',
-    background_color: '#0d0d0d',
-    theme_color: '#0d0d0d',
-    icons: [
-      { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f3460'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E", sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
-    ]
-  };
-  const manifestUrl = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
-  document.getElementById('manifestLink').href = manifestUrl;
-
-  // Service worker via Blob (note: most browsers block SW registration from blob: URLs;
-  // this is a best-effort inline registration that degrades gracefully)
-  const swCode = `
-    const CACHE = 'beyforge-v1';
-    self.addEventListener('install', e => { self.skipWaiting(); });
-    self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
-    self.addEventListener('fetch', e => {
-      e.respondWith(
-        caches.match(e.request).then(cached => {
-          const fetchPromise = fetch(e.request).then(res => {
-            if (res && res.status === 200 && (e.request.method === 'GET')) {
-              const clone = res.clone();
-              caches.open(CACHE).then(c => c.put(e.request, clone));
-            }
-            return res;
-          }).catch(() => cached);
-          return cached || fetchPromise;
-        })
-      );
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(err => {
+      console.warn('Service worker registration failed:', err);
     });
-  `;
-  try {
-    const blob = new Blob([swCode], { type: 'text/javascript' });
-    const swUrl = URL.createObjectURL(blob);
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register(swUrl).catch(err => {
-        console.warn('Service worker registration via Blob not supported; skipping offline cache.', err);
-      });
-    }
-  } catch (e) {
-    console.warn('Service worker setup failed:', e);
   }
 }
 
@@ -1782,6 +1778,9 @@ function init() {
   populateBlades();
   populateRatchets();
   populateBits();
+  saveOptions('bladeSelect');
+  saveOptions('ratchetSelect');
+  saveOptions('bitSelect');
   renderSessionSummary();
   renderDecks();
   renderSavedCombos();
